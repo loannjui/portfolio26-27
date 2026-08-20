@@ -1,35 +1,51 @@
-@import './base.css';
+@import "./base.css";
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
-}
+h1 {
+  font-size: clamp(2.5rem, 5vw, 6rem);
+  line-height: 1;
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+  @media (min-width: 1920px) {
+    font-size: clamp(6rem, 5vw, 12rem);
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  line-height: 1;
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  @media (min-width: 1920px) {
+    font-size: clamp(2.5rem, 2.5vw, 5rem);
+    line-height: 1.1;
+  }
+}
+
+h3 {
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  line-height: 1.1;
+
+  @media (min-width: 1920px) {
+    font-size: clamp(1.5rem, 1.5vw, 3rem);
+    line-height: 1.15;
+  }
+}
+
+.all-caps {
+  text-transform: uppercase;
+}
+
+.details {
+  font-size: 0.75rem;
+
+  @media (min-width: 1921px) {
+    font-size: clamp(0.75rem, -0.75rem + 0.78125vw, 1.5rem);
   }
 }
