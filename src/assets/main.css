@@ -45,7 +45,7 @@ h3 {
 .details {
   font-size: 0.75rem;
 
-  @media (min-width: 1921px) {
-    font-size: clamp(0.75rem, -0.75rem + 0.78125vw, 1.5rem);
+  @media (min-width: 1920px) {
+    font-size: clamp(0.75rem, calc(0.75rem + 0.390625vw), 1.5rem);
   }
 }

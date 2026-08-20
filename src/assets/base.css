@@ -1,4 +1,3 @@
-/* color palette from <https://github.com/vuejs/theme> */
 :root {
   --white: #f5f4f4;
   --black: #181818;
@@ -9,10 +8,11 @@
   --dark-red: #7f1111;
   --blue: #1a5fd7;
   --dark-blue: #163b7c;
-}
 
-/* semantic color variables for this project */
-:root {
+  /* Light theme */
+
+  color-scheme: light;
+
   --color-main-bg: var(--white);
   --color-main: var(--black);
   --color-light-bg: var(--grey);
@@ -21,17 +21,17 @@
   --color-accent: var(--red);
   --color-strong-accent: var(--dark-red);
 }
-/*
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-main-bg: var(--black);
-    --color-main: var(--white);
-    --color-placeholder: var(--dark-grey);
-    --color-accent: var(--blue);
-    --color-strong-accent: var(--dark-blue);
-  }
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-main-bg: var(--black);
+  --color-main: var(--white);
+  --color-placeholder: var(--dark-grey);
+  --color-accent: var(--blue);
+  --color-strong-accent: var(--dark-blue);
 }
-*/
+
 @font-face {
   font-family: "Melange Grotesk";
   src: url("fonts/MelangeGrotesk-Regular.woff2") format("woff2");
@@ -56,11 +56,9 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-main-bg);
-  /*
   transition:
     color 0.5s,
     background-color 0.5s;
-    */
   font-family:
     Melange Grotesk,
     sans-serif;
@@ -69,4 +67,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @media (min-width: 1920px) {
+    font-size: clamp(1rem, calc(1rem + 0.8333vw), 2rem);
+  }
 }
