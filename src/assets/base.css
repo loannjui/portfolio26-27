@@ -28,6 +28,7 @@
 
   --color-main-bg: var(--black);
   --color-main: var(--white);
+  --color-light-light-bg: var(--dark-grey);
   --color-placeholder: var(--dark-grey);
   --color-accent: var(--blue);
   --color-strong-accent: var(--dark-blue);

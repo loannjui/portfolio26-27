@@ -44,16 +44,16 @@ defineProps({
   cursor: pointer;
   background: transparent;
   text-decoration: none;
+  padding: 0;
   border: none;
   box-shadow: none;
   min-height: 2.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: width 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   span {
-    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: color 0.5s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0.5s cubic-bezier(0.645, 0.045, 0.355, 1), border 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 }
 
@@ -71,7 +71,6 @@ defineProps({
 .btn-label {
   display: grid;
   grid-template-columns: 1fr 0fr;
-  transition: grid-template-columns 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .btn-label.is-swapped {
