@@ -10,13 +10,13 @@ defineProps({
 
 <template>
   <a v-if="href" :href="href" class="btn">
-    <span :class="['btn-content','all-caps', `btn-${variant}`]">
+    <span :class="['btn-content', 'all-caps', `btn-${variant}`]">
       <slot />
     </span>
   </a>
 
   <button v-else class="btn">
-    <span :class="['btn-content','all-caps', `btn-${variant}`]">
+    <span :class="['btn-content', 'all-caps', `btn-${variant}`]">
       <slot />
     </span>
   </button>
@@ -24,6 +24,7 @@ defineProps({
 
 <style scoped>
 .btn {
+  cursor: pointer;
   background: transparent;
   text-decoration: none;
   border: none;
