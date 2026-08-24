@@ -9,7 +9,12 @@ const error = ref(null);
 const theme = ref(document.documentElement.dataset.theme || "light");
 const menuOpen = ref(false);
 
-const route = useRoute();
+function toggleTheme() {
+  const html = document.documentElement;
+  theme.value = html.dataset.theme === "dark" ? "light" : "dark";
+  html.dataset.theme = theme.value;
+  localStorage.setItem("theme", theme.value);
+}
 
 const logo = computed(() => {
   if (theme.value === "dark" && nav.value?.logoDarkUrl) {
@@ -19,6 +24,9 @@ const logo = computed(() => {
   return { url: nav.value?.logoUrl, alt: nav.value?.logoAlt };
 });
 
+const route = useRoute();
+
+// NAV functions
 function linkTo(slug) {
   return slug.startsWith("/") ? slug : `/${slug}`;
 }
@@ -31,26 +39,19 @@ function onKeydown(event) {
   if (event.key === "Escape") menuOpen.value = false;
 }
 
-watch(
-  () => route.fullPath,
-  () => {
-    menuOpen.value = false;
-  },
-);
-
-function toggleTheme() {
-  const html = document.documentElement;
-  theme.value = html.dataset.theme === "dark" ? "light" : "dark";
-  html.dataset.theme = theme.value;
-  localStorage.setItem("theme", theme.value);
-}
-
 onUnmounted(() => {
   window.removeEventListener("keydown", onKeydown);
 });
 
 onMounted(async () => {
   window.addEventListener("keydown", onKeydown);
+  // Close nav when you click on a link
+  watch(
+    () => route.fullPath,
+    () => {
+      menuOpen.value = false;
+    },
+  );
 
   const query = `
     *[_type == "nav"][0]{
