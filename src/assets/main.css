@@ -57,3 +57,10 @@ a {
   color: var(--color-main);
   text-decoration: none;
 }
+
+button {
+  font-family:
+    Melange Grotesk,
+    sans-serif;
+  font-size: 1rem;
+}
