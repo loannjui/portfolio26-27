@@ -184,7 +184,35 @@ onMounted(async () => {
       @click="toggleMenu"
     >
       Menu
-      <template #alt>Close</template>
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2 4L14 4M2 8L14 8M2 12L14 12"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+      </svg>
+      <template #alt
+        >Close
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3.03039 3L13.0304 13M12.9697 3L2.96973 13"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+        </svg>
+      </template>
     </Button>
 
     <ul id="mobile-menu" :class="{ 'is-open': menuOpen }">
@@ -309,7 +337,7 @@ nav {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-0.5rem);
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all var(--transition-main);
   position: absolute;
   top: 5.75rem;
   gap: 0.5rem;
@@ -351,7 +379,7 @@ nav ul li a {
 
 .nav-arrow {
   flex: none;
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: transform var(--transition-main);
 }
 
 .nav-link:hover .nav-arrow,

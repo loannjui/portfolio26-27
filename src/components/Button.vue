@@ -53,7 +53,7 @@ defineProps({
   justify-content: center;
 
   span {
-    transition: color 0.5s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0.5s cubic-bezier(0.645, 0.045, 0.355, 1), border 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: color var(--transition-main), background-color var(--transition-main), border var(--transition-main);
   }
 }
 
@@ -84,7 +84,7 @@ defineProps({
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  transition: opacity 0.25s ease;
+  transition: opacity var(--transition-main);
 }
 
 .btn-label > span:last-child,
