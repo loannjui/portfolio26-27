@@ -58,6 +58,16 @@ defineProps({
       background-color var(--transition-main),
       border var(--transition-main);
   }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible .btn-filled,&:focus-visible .btn-stroke {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 9999px;
+  }
 }
 
 .btn-filled {
@@ -68,8 +78,14 @@ defineProps({
     border-color: var(--color-accent);
     background: var(--color-accent);
   }
+  &:active {
+    border-color: var(--color-strong-accent);
+    background: var(--color-strong-accent);
+  }
 
-  [data-theme="dark"] &:hover {
+  [data-theme="dark"] &:hover,
+  [data-theme="dark"] &:focus,
+  [data-theme="dark"] &:active {
     color: var(--color-main);
   }
 }
