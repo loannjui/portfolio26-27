@@ -1,0 +1,38 @@
+# ---------------------------------------------------------------------
+# Routage SPA
+# ---------------------------------------------------------------------
+# Les URLs comme /projects ne correspondent à aucun fichier : c'est Vue
+# Router qui les interprète. On sert donc index.html pour toute requête
+# qui ne pointe pas vers un fichier ou un dossier réel.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  RewriteRule ^index\.html$ - [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# ---------------------------------------------------------------------
+# Cache
+# ---------------------------------------------------------------------
+# Les fichiers de /assets/ portent un hash dans leur nom : un changement
+# de contenu change le nom. Ils peuvent donc être cachés indéfiniment.
+#
+# index.html, lui, ne doit JAMAIS être caché : il contient les références
+# vers ces noms hashés. S'il est caché, un visiteur qui revient après une
+# mise en ligne charge un index.html périmé qui pointe vers des fichiers
+# supprimés — page blanche.
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2?|svg|jpg|jpeg|png|webp|avif)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

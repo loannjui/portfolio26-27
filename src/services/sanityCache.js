@@ -4,8 +4,16 @@ import * as jsonStorage from '@/utils/jsonStorage.js'
 const CACHE_PREFIX = 'sanity:'
 const DEFAULT_TTL = 5 * 60 * 1000
 
-// Requêtes en cours, pour ne pas lancer deux fois le même fetch en parallèle.
+/**
+ * En développement on ne met rien en cache : voir ses modifications du Studio
+ * immédiatement prime sur l'économie de requêtes.
+ */
+const CACHE_ENABLED = import.meta.env.PROD
 
+/**
+ * Requêtes en cours, pour ne pas lancer deux fois le même fetch en parallèle.
+ * Vidé au rechargement de la page, contrairement au localStorage.
+ */
 const inFlight = new Map()
 
 function cacheKey(query, params) {
@@ -45,8 +53,10 @@ export function cachedFetch(query, params = {}, { ttl = DEFAULT_TTL, force = fal
   const key = cacheKey(query, params)
 
   if (!force) {
-    const entry = readCache(key, ttl)
-    if (entry) return Promise.resolve(entry.data)
+    if (CACHE_ENABLED) {
+      const entry = readCache(key, ttl)
+      if (entry) return Promise.resolve(entry.data)
+    }
 
     if (inFlight.has(key)) return inFlight.get(key)
   }
@@ -54,7 +64,7 @@ export function cachedFetch(query, params = {}, { ttl = DEFAULT_TTL, force = fal
   const request = sanity
     .fetch(query, params)
     .then(data => {
-      writeCache(key, data)
+      if (CACHE_ENABLED) writeCache(key, data)
       return data
     })
     .finally(() => {

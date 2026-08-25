@@ -1,32 +1,34 @@
 <script setup>
-import { computed, ref, onMounted } from 'vue'
-import { cachedFetch } from '../services/sanityCache'
+import { computed } from 'vue'
+import { useSanityQuery } from '../composables/useSanityQuery.js'
 import HomeHero from '../components/Home/HomeHero.vue'
 import HomeProjects from '../components/Home/HomeProjects.vue'
 
-const page = ref(null)
-const error = ref(null)
-
-const hero = computed(() => page.value?.sections?.[0])
-
-onMounted(async () => {
-  const query = `
-    *[_type == "page" && slug.current == "/"][0]{
+const query = `
+  *[_type == "page" && slug.current == "/"][0]{
+    title,
+    sections[]{
+      _key,
+      _type,
       title,
-      sections[]{
+      subtitle,
+      content[]{
         _key,
-        title,
-        subtitle
+        _type,
+        _type == "textBlock" => { title, content },
+        _type == "reference" => {
+          "url": @->image.asset->url,
+          "alt": @->alt,
+          "caption": @->caption
+        }
       }
     }
-  `
-
-  try {
-    page.value = await cachedFetch(query)
-  } catch (err) {
-    error.value = err
   }
-})
+`
+
+const { data: page, error } = useSanityQuery(query)
+
+const hero = computed(() => page.value?.sections?.[0])
 </script>
 
 <template>
@@ -36,5 +38,6 @@ onMounted(async () => {
     v-else-if="hero"
     :title="hero.title"
     :subtitle="hero.subtitle"
+    :content="hero.content"
   />
 </template>
