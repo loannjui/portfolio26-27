@@ -79,6 +79,7 @@ defineProps({
 
 .btn-label span {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: .5rem;
   min-width: 0;

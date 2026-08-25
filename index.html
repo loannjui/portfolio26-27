@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vite App</title>
     <script>
-      // Applique le thème avant le premier rendu pour éviter le flash.
-      // La valeur est écrite en JSON par useJsonStorage ; on tolère l'ancien
-      // format brut ("dark") pour ne pas casser les visiteurs existants.
+      // Add theme on first render
       (function () {
         var stored = localStorage.getItem("theme");
         var theme;
