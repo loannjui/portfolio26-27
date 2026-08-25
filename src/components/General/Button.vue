@@ -53,7 +53,10 @@ defineProps({
   justify-content: center;
 
   span {
-    transition: color var(--transition-main), background-color var(--transition-main), border var(--transition-main);
+    transition:
+      color var(--transition-main),
+      background-color var(--transition-main),
+      border var(--transition-main);
   }
 }
 
@@ -61,11 +64,23 @@ defineProps({
   border: 1px solid var(--color-main);
   background: var(--color-main);
   color: var(--color-main-bg);
+  &:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+  }
+
+  [data-theme="dark"] &:hover {
+    color: var(--color-main);
+  }
 }
 
 .btn-stroke {
   border: 1px solid var(--color-main);
   color: var(--color-main);
+  &:hover {
+    color: var(--color-main-bg);
+    background: var(--color-main);
+  }
 }
 
 .btn-label {
@@ -81,7 +96,7 @@ defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
