@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, onMounted } from 'vue'
-import { sanity } from '../services/sanity'
+import { cachedFetch } from '../services/sanityCache'
+import HomeHero from '../components/Home/HomeHero.vue'
 
 const page = ref(null)
 const error = ref(null)
@@ -20,7 +21,7 @@ onMounted(async () => {
   `
 
   try {
-    page.value = await sanity.fetch(query)
+    page.value = await cachedFetch(query)
   } catch (err) {
     error.value = err
   }
@@ -30,16 +31,9 @@ onMounted(async () => {
 <template>
   <p v-if="error" role="alert">Le contenu n’a pas pu être chargé.</p>
 
-  <section v-else-if="hero" class="hero">
-    <h1>
-      {{ hero.title }}
-      <span v-if="hero.subtitle" class="hero-subtitle">{{ hero.subtitle }}</span>
-    </h1>
-  </section>
+  <HomeHero
+    v-else-if="hero"
+    :title="hero.title"
+    :subtitle="hero.subtitle"
+  />
 </template>
-
-<style scoped>
-.hero-subtitle {
-  display: block;
-}
-</style>

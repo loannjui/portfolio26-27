@@ -3,17 +3,26 @@ import { computed, ref, watch, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 import Button from "./Button.vue";
 import { sanity } from "../services/sanity";
+import { useJsonStorage } from "../composables/useJsonStorage.js";
 
 const nav = ref(null);
 const error = ref(null);
-const theme = ref(document.documentElement.dataset.theme || "light");
 const menuOpen = ref(false);
 
+// Le composable relit la valeur au montage et la réécrit à chaque changement
+const { data: theme } = useJsonStorage("theme", "light");
+
+// Garde l'attribut data-theme du <html> aligné sur la valeur stockée
+watch(
+  theme,
+  (value) => {
+    document.documentElement.dataset.theme = value;
+  },
+  { immediate: true },
+);
+
 function toggleTheme() {
-  const html = document.documentElement;
-  theme.value = html.dataset.theme === "dark" ? "light" : "dark";
-  html.dataset.theme = theme.value;
-  localStorage.setItem("theme", theme.value);
+  theme.value = theme.value === "dark" ? "light" : "dark";
 }
 
 const logo = computed(() => {
