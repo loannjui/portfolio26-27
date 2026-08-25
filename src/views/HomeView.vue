@@ -2,6 +2,7 @@
 import { computed, ref, onMounted } from 'vue'
 import { cachedFetch } from '../services/sanityCache'
 import HomeHero from '../components/Home/HomeHero.vue'
+import HomeProjects from '../components/Home/HomeProjects.vue'
 
 const page = ref(null)
 const error = ref(null)

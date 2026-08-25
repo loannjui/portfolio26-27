@@ -2,8 +2,8 @@
 import { computed, ref, watch, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 import Button from "./Button.vue";
-import { sanity } from "../services/sanity";
-import { useJsonStorage } from "../composables/useJsonStorage.js";
+import { sanity } from "../../services/sanity.js";
+import { useJsonStorage } from "../../composables/useJsonStorage.js";
 
 const nav = ref(null);
 const error = ref(null);
