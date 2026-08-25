@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useSanityQuery } from '../composables/useSanityQuery.js'
 import HomeHero from '../components/Home/HomeHero.vue'
 import HomeProjects from '../components/Home/HomeProjects.vue'
-
+// Miam miam
 const query = `
   *[_type == "page" && slug.current == "/"][0]{
     title,
