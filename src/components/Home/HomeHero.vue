@@ -18,11 +18,11 @@ defineProps({
 <template>
   <section id="home" class="hero container flex-column flex-end">
     <template v-for="block in content" :key="block._key">
-      <h3 class="col-xs-12 col-xl-5" v-if="block._type === 'textBlock'">
+      <h3 class="flex-xs-12 flex-xl-5" v-if="block._type === 'textBlock'">
         {{ block.content }}
       </h3>
       <div
-        class="hero-img col-xs-12 col-xl-4"
+        class="hero-img flex-xs-12 flex-xl-4"
         v-else-if="block._type === 'reference' && block.url"
       >
         <img class="img-responsive" :src="block.url" :alt="block.alt" />
@@ -42,8 +42,8 @@ defineProps({
   padding-top: 450px;
 
   @media (min-width: 1440px) {
-    gap: 2.5rem;
-    height: 100dvh;
+    gap: 2rem;
+    height: 90dvh;
     padding-top: 0;
   }
 }
@@ -51,10 +51,18 @@ defineProps({
   display: block;
 }
 .hero-title {
-  font-size: 15.1cqw;
+  font-size: 15.13cqw;
   line-height: 0.9;
   overflow: hidden;
-  /* padding-bottom: 0.22em; */
+
+  @media (min-width: 1440px) {
+    font-size: 15.28cqw;
+    margin: 0 -0.5rem;
+  }
+
+  @media (min-width: 1920px) {
+    font-size: 15.21cqw;
+  }
 }
 
 h3 {

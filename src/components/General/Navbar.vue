@@ -161,6 +161,7 @@ onMounted(async () => {
 
 <style scoped>
 nav {
+  z-index: 9999;
   display: flex;
   position: fixed;
   align-items: center;
@@ -168,11 +169,15 @@ nav {
   left: 0;
   width: 100%;
   justify-content: space-between;
-  padding: 1rem 5rem;
   flex-wrap: wrap;
+  padding: 1rem;
 
-  @media (max-width: 64rem) {
-    padding: 1rem;
+  @media (min-width: 768px) {
+    padding: 1rem 2rem;
+  }
+
+  @media (min-width: 1440px) {
+    padding: 1rem 5rem;
   }
 }
 
