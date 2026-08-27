@@ -63,7 +63,8 @@ defineProps({
     outline: none;
   }
 
-  &:focus-visible .btn-filled,&:focus-visible .btn-stroke {
+  &:focus-visible .btn-filled,
+  &:focus-visible .btn-stroke {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
     border-radius: 9999px;
@@ -96,6 +97,23 @@ defineProps({
   &:hover {
     color: var(--color-main-bg);
     background: var(--color-main);
+  }
+  &:active {
+    border-color: var(--color-placeholder);
+    background: var(--color-placeholder);
+  }
+}
+
+.btn-stroke-inverted {
+  border: 1px solid var(--color-main-bg);
+  color: var(--color-main-bg);
+  &:hover {
+    color: var(--color-main);
+    background: var(--color-main-bg);
+  }
+  &:active {
+    border-color: var(--color-light-light-bg);
+    background: var(--color-light-light-bg);
   }
 }
 
@@ -133,6 +151,6 @@ defineProps({
   padding: 0.33rem 1rem;
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 </style>

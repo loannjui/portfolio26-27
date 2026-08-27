@@ -17,15 +17,10 @@ defineProps({
 <template>
   <section id="projectsPreview">
     <div class="container flex-middle flex-between">
-      <div class="container gap-sm">
-        <h4>
-          {{ title }}
-          <span
-            class="nav-arrow icon-arrow_down small"
-            aria-hidden="true"
-          ></span>
-        </h4>
-      </div>
+      <h3 class="container gap-sm flex-middle">
+        {{ title }}
+        <span class="nav-arrow icon-arrow_down small" aria-hidden="true"></span>
+      </h3>
       <Button variant="stroke" href="projects">View all</Button>
     </div>
 

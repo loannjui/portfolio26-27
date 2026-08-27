@@ -36,9 +36,14 @@ h2 {
   left: 1rem;
   bottom: 1rem;
   color: var(--color-main-bg);
+  
   @media (min-width: 1440px) {
     left: 1.5rem;
     bottom: 1.5rem;
+  }
+
+  [data-theme="dark"] {
+    color: var(--color-main);
   }
 }
 </style>

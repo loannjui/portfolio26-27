@@ -135,7 +135,7 @@ onMounted(async () => {
       </li>
       <li>
         <Button
-          variant="filled"
+          variant="stroke-inverted"
           :swapped="theme === 'dark'"
           @click="toggleTheme"
         >
@@ -173,11 +173,11 @@ nav {
   padding: 1rem;
 
   @media (min-width: 768px) {
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
   }
 
   @media (min-width: 1440px) {
-    padding: 1rem 5rem;
+    padding: 1rem 1.5rem;
   }
 }
 
@@ -196,13 +196,14 @@ nav {
   position: absolute;
   top: 5.75rem;
   gap: 0.5rem;
-  background-color: var(--color-light-light-bg);
+  background-color: var(--color-main);
   border-radius: 10px;
   padding: 2rem;
 
   li a {
     font-size: 1.5rem;
     font-weight: 600;
+    color: var(--color-main-bg);
   }
 }
 
@@ -216,7 +217,7 @@ nav ul {
   display: flex;
   padding: 0;
   list-style: none;
-  gap: 2.5rem;
+  gap: 3rem;
 }
 
 nav ul li a {

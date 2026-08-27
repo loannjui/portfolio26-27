@@ -50,6 +50,7 @@ defineProps({
 .hero-subtitle {
   display: block;
 }
+
 .hero-title {
   font-size: 15.13cqw;
   line-height: 0.9;
@@ -68,8 +69,8 @@ defineProps({
 .hero-img {
   position: absolute;
   z-index: -1;
-  width: calc(100% - 2rem);
-  left: 1rem;
+  width: calc(100% - 4rem);
+  left: 2rem;
   top: 320px;
 
   @media (min-width: 1440px) {
@@ -83,5 +84,11 @@ defineProps({
 .hero-img img {
   width: 100%;
   height: auto;
+  filter: invert(0);
+  transition: invert var(--transition-main);
+
+  [data-theme="dark"] & {
+    filter: invert(1);
+  }
 }
 </style>
