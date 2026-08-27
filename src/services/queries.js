@@ -38,5 +38,5 @@ export const homeQuery = `
 
 // Four most recent projects
 export const recentProjectsQuery = `
-*[_type == "project"] | order(date desc)[0...4]{${PROJECT_CARD}
+*[_type == "project"] | order(date desc)[0...3]{${PROJECT_CARD}
 }`;

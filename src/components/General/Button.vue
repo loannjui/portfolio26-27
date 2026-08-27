@@ -130,8 +130,9 @@ defineProps({
 
 .btn-content {
   border-radius: 9999px;
-  padding: 0.5rem 1rem;
+  padding: 0.33rem 1rem;
   display: flex;
   align-items: center;
+  gap: .5rem;
 }
 </style>

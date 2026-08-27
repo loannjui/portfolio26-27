@@ -43,7 +43,7 @@ defineProps({
 
   @media (min-width: 1440px) {
     gap: 2rem;
-    height: 90dvh;
+    height: 80dvh;
     padding-top: 0;
   }
 }
@@ -65,15 +65,6 @@ defineProps({
   }
 }
 
-h3 {
-  color: var(--color-main-bg);
-  mix-blend-mode: exclusion;
-  font-weight: 400;
-  [data-theme="dark"] & {
-    color: var(--color-main);
-  }
-}
-
 .hero-img {
   position: absolute;
   z-index: -1;
@@ -83,8 +74,9 @@ h3 {
 
   @media (min-width: 1440px) {
     width: 33.3333%;
-    left: 33.3333%;
-    top: 24%;
+    left: auto;
+    right: 10rem;
+    top: 7.25rem;
   }
 }
 
