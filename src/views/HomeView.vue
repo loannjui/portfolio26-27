@@ -1,13 +1,13 @@
 <script setup>
 import { computed } from "vue";
 import { useSanityQuery } from "../composables/useSanityQuery.js";
-import { homeQuery, aboutHeroQuery } from "../services/queries.js";
+import { homeQuery, aboutHomeQuery } from "../services/queries.js";
 import HomeHero from "../components/Home/HomeHero.vue";
 import HomeProjects from "../components/Home/HomeProjects.vue";
 import AboutHero from "../components/About/AboutHero.vue";
 
 const { data: page, error: pageError } = useSanityQuery(homeQuery);
-const { data: aboutHero, error: aboutError } = useSanityQuery(aboutHeroQuery);
+const { data: aboutHero, error: aboutError } = useSanityQuery(aboutHomeQuery);
 
 const error = computed(() => pageError.value ?? aboutError.value);
 

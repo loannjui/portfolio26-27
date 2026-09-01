@@ -44,13 +44,19 @@ export const homeQuery = `
   title,${SECTIONS}
 }`;
 
-// About hero section
-export const aboutHeroQuery = `
+// About hero section, filter by subtitle
+const aboutSectionQuery = (subtitle) => `
 *[_type == "page" && slug.current == "about"][0]
-  .sections[_type == "section"][0]{
+  .sections[_type == "section" && subtitle == "${subtitle}"][0]{
     _key,
     _type,
     title,
     subtitle,
 ${SECTION_CONTENT}
   }`;
+
+// Home about
+export const aboutHomeQuery = aboutSectionQuery("home");
+
+// About page
+export const aboutHeroQuery = aboutSectionQuery("about_page");
