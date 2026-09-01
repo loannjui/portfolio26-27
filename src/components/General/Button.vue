@@ -54,10 +54,10 @@ defineProps({
 
   span {
     transition:
-      color var(--transi-fast) var(--bezier-a),
-      background-color var(--transi-fast) var(--bezier-a),
-      border var(--transi-fast) var(--bezier-a),
-      opacity var(--transi-slow) var(--bezier-o);
+      color var(--transi-fast) var(--bezier-o),
+      background-color var(--transi-fast) var(--bezier-o),
+      border var(--transi-fast) var(--bezier-o),
+      opacity var(--transi-fast) var(--bezier-o);
   }
 
   &:focus-visible {

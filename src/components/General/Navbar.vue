@@ -192,7 +192,7 @@ nav {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-0.5rem);
-  transition: all var(--transition-main);
+  transition: all var(--transi-fast) var(--bezier-a);
   position: absolute;
   top: 5.75rem;
   gap: 0.5rem;
@@ -235,7 +235,7 @@ nav ul li a {
 
 .nav-arrow {
   flex: none;
-  transition: transform var(--transition-main);
+  transition: transform var(--transi-fast) var(--bezier-a);
 }
 
 .nav-link:hover .nav-arrow,

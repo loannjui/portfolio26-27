@@ -18,9 +18,9 @@ defineProps({
 <template>
   <section id="home" class="hero container flex-column flex-end gap-m">
     <template v-for="block in content" :key="block._key">
-      <h3 class="flex-xs-12 flex-xl-5 fade-in" v-if="block._type === 'textBlock'">
+      <h4 class="flex-xs-12 flex-xl-5 fade-in" v-if="block._type === 'textBlock'">
         {{ block.content }}
-      </h3>
+      </h4>
       <div
         class="hero-img flex-xs-12 flex-xl-4 fade-in"
         v-else-if="block._type === 'reference' && block.url"
@@ -72,7 +72,7 @@ defineProps({
   }
 }
 
-h3 {
+h4 {
   animation-delay: var(--delay-1);
 }
 
@@ -96,7 +96,7 @@ h3 {
   width: 100%;
   height: auto;
   filter: invert(0);
-  transition: invert var(--transition-main);
+  transition: filter var(--transi-fast) var(--bezier-o);
 
   [data-theme="dark"] & {
     filter: invert(1);

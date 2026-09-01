@@ -17,10 +17,10 @@ defineProps({
 <template>
   <section id="projectsPreview" class="container flex-column gap-m fade-in">
     <div class="container flex-middle flex-between">
-      <h3 class="container gap-sm flex-middle">
+      <h4 class="container gap-sm flex-middle">
         {{ title }}
         <span class="nav-arrow icon-arrow_down small" aria-hidden="true"></span>
-      </h3>
+      </h4>
       <Button variant="stroke" href="projects">View all</Button>
     </div>
 
@@ -40,6 +40,7 @@ defineProps({
     </div>
   </section>
 </template>
+
 <style scoped>
 #projectsPreview{
   animation-delay: var(--delay-4);

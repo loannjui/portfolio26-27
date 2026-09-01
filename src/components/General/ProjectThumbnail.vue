@@ -21,7 +21,7 @@ defineProps({
 
 <template>
   <RouterLink class="wrapper" v-if="to" :to="to">
-    <h2>{{ title }}</h2>
+    <h3>{{ title }}</h3>
     <img v-if="src" class="img-responsive" :src="src" :alt="alt" />
   </RouterLink>
 </template>
@@ -31,6 +31,7 @@ defineProps({
   position: relative;
   display: block;
 }
+
 .wrapper img {
   width: 100%;
   height: auto;
@@ -38,19 +39,20 @@ defineProps({
   object-fit: cover;
   object-position: center;
 }
-h2 {
+
+h3 {
   position: absolute;
   z-index: 1;
   left: 1rem;
   bottom: 1rem;
   color: var(--color-main-bg);
-  
+
   @media (min-width: 1440px) {
     left: 1.5rem;
     bottom: 1.5rem;
   }
 
-  [data-theme="dark"] {
+  [data-theme="dark"] & {
     color: var(--color-main);
   }
 }

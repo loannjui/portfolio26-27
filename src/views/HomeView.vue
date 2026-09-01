@@ -1,11 +1,15 @@
 <script setup>
 import { computed } from "vue";
 import { useSanityQuery } from "../composables/useSanityQuery.js";
-import { homeQuery } from "../services/queries.js";
+import { homeQuery, aboutHeroQuery } from "../services/queries.js";
 import HomeHero from "../components/Home/HomeHero.vue";
 import HomeProjects from "../components/Home/HomeProjects.vue";
+import AboutHero from "../components/About/AboutHero.vue";
 
-const { data: page, error } = useSanityQuery(homeQuery);
+const { data: page, error: pageError } = useSanityQuery(homeQuery);
+const { data: aboutHero, error: aboutError } = useSanityQuery(aboutHeroQuery);
+
+const error = computed(() => pageError.value ?? aboutError.value);
 
 const sections = computed(() => page.value?.sections ?? []);
 const hero = computed(() => sections.value.find((s) => s._type === "section"));
@@ -23,6 +27,12 @@ const projectsSection = computed(() =>
       v-if="projectsSection?.projects?.length"
       :title="projectsSection.title ?? undefined"
       :projects="projectsSection.projects"
+    />
+    <AboutHero
+      v-if="aboutHero"
+      :title="aboutHero.title"
+      :subtitle="aboutHero.subtitle"
+      :content="aboutHero.content"
     />
   </template>
 </template>

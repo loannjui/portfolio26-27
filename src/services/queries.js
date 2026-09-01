@@ -10,6 +10,10 @@ export const SECTION_CONTENT = `
         "url": @->image.asset->url,
         "alt": @->alt,
         "caption": @->caption
+      },
+      _type == "table" => {
+        columns[]{ _key, name },
+        rows[]{ _key, cells[]{ _key, value } }
       }
     }`;
 
@@ -39,3 +43,14 @@ export const homeQuery = `
 *[_type == "page" && slug.current == "/"][0]{
   title,${SECTIONS}
 }`;
+
+// About hero section
+export const aboutHeroQuery = `
+*[_type == "page" && slug.current == "about"][0]
+  .sections[_type == "section"][0]{
+    _key,
+    _type,
+    title,
+    subtitle,
+${SECTION_CONTENT}
+  }`;

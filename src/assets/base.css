@@ -70,10 +70,10 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-main-bg);
+  background-color: var(--color-main-bg);
   transition:
-    color var(--transition-main),
-    background-color var(--transition-main);
+    color var(--transi-fast) var(--bezier-o),
+    background-color var(--transi-fast) var(--bezier-o);
   font-family:
     Melange Grotesk,
     sans-serif;
@@ -89,8 +89,8 @@ body {
   }
   a {
     transition:
-      color var(--transition-main),
-      background-color var(--transition-main);
+      color var(--transi-fast) var(--bezier-o),
+      background-color var(--transi-fast) var(--bezier-o);
 
     &:focus-visible {
       outline: 2px solid var(--color-accent);
