@@ -85,7 +85,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <nav>
+  <nav class="fade-in">
     <RouterLink to="/" class="logo">
       <img v-if="logo.url" :src="logo.url" :alt="logo.alt" />
     </RouterLink>

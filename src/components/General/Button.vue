@@ -54,9 +54,10 @@ defineProps({
 
   span {
     transition:
-      color var(--transition-main),
-      background-color var(--transition-main),
-      border var(--transition-main);
+      color var(--transi-fast) var(--bezier-a),
+      background-color var(--transi-fast) var(--bezier-a),
+      border var(--transi-fast) var(--bezier-a),
+      opacity var(--transi-slow) var(--bezier-o);
   }
 
   &:focus-visible {
@@ -134,7 +135,6 @@ defineProps({
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  transition: opacity var(--transition-main);
 }
 
 .btn-label > span:last-child,

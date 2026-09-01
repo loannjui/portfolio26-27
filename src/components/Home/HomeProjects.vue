@@ -15,7 +15,7 @@ defineProps({
 </script>
 
 <template>
-  <section id="projectsPreview" class="container flex-column gap-m">
+  <section id="projectsPreview" class="container flex-column gap-m fade-in">
     <div class="container flex-middle flex-between">
       <h3 class="container gap-sm flex-middle">
         {{ title }}
@@ -40,3 +40,8 @@ defineProps({
     </div>
   </section>
 </template>
+<style scoped>
+#projectsPreview{
+  animation-delay: var(--delay-4);
+}
+</style>

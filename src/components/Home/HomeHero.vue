@@ -18,11 +18,11 @@ defineProps({
 <template>
   <section id="home" class="hero container flex-column flex-end gap-m">
     <template v-for="block in content" :key="block._key">
-      <h3 class="flex-xs-12 flex-xl-5 reveal" v-if="block._type === 'textBlock'">
-        <span>{{ block.content }}</span>
+      <h3 class="flex-xs-12 flex-xl-5 fade-in" v-if="block._type === 'textBlock'">
+        {{ block.content }}
       </h3>
       <div
-        class="hero-img flex-xs-12 flex-xl-4"
+        class="hero-img flex-xs-12 flex-xl-4 fade-in"
         v-else-if="block._type === 'reference' && block.url"
       >
         <img class="img-responsive" :src="block.url" :alt="block.alt" />
@@ -49,44 +49,12 @@ defineProps({
   display: block;
 }
 
-/* Apparition du texte, de bas en haut, au chargement de la page */
-.reveal {
-  display: block;
-  overflow: hidden;
-}
-
-.reveal > span {
-  display: block;
-  animation: rise-in 0.9s cubic-bezier(0.075, 0.82, 0.165, 1) both;
-}
-
-h3.reveal > span {
-  animation-delay: 0.05s;
-}
-
 .hero-title > .reveal:first-child > span {
-  animation-delay: 0.2s;
+  animation-delay: var(--delay-2);
 }
 
 .hero-subtitle > span {
-  animation-delay: 0.35s;
-}
-
-@keyframes rise-in {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal > span {
-    animation: none;
-  }
+  animation-delay: var(--delay-3);
 }
 
 .hero-title {
@@ -104,7 +72,12 @@ h3.reveal > span {
   }
 }
 
+h3 {
+  animation-delay: var(--delay-1);
+}
+
 .hero-img {
+  animation-delay: var(--delay-2);
   position: absolute;
   z-index: -1;
   width: calc(100% - 4rem);
