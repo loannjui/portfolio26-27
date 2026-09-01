@@ -28,7 +28,7 @@ defineProps({
       <div
         v-for="project in projects"
         :key="project._id"
-        class="col-xs-12 col-xl-4"
+        class="col-xs-12 col-xl-6"
       >
         <ProjectThumbnail
           :title="project.title"
