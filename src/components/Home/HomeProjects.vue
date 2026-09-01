@@ -15,7 +15,7 @@ defineProps({
 </script>
 
 <template>
-  <section id="projectsPreview">
+  <section id="projectsPreview" class="container flex-column gap-m">
     <div class="container flex-middle flex-between">
       <h3 class="container gap-sm flex-middle">
         {{ title }}

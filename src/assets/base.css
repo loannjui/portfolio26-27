@@ -70,7 +70,7 @@ body {
   font-family:
     Melange Grotesk,
     sans-serif;
-  font-size: clamp(1rem, 0.8333vw, 2rem);
+  font-size: clamp(1rem, 0.8333vw, 1.25rem);
   line-height: 1.25;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

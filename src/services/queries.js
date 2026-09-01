@@ -13,16 +13,6 @@ export const SECTION_CONTENT = `
       }
     }`;
 
-// Array "sections"
-export const SECTIONS = `
-  sections[]{
-    _key,
-    _type,
-    title,
-    subtitle,
-${SECTION_CONTENT}
-  }`;
-
 // Thumbnail projects
 export const PROJECT_CARD = `
   _id,
@@ -30,13 +20,22 @@ export const PROJECT_CARD = `
   "slug": slug.current,
   "coverUrl": coverImage.asset->url`;
 
+// Array "sections"
+export const SECTIONS = `
+  sections[]{
+    _key,
+    _type,
+    title,
+    subtitle,
+${SECTION_CONTENT},
+    _type == "projectsSection" => {
+      projects[]->{${PROJECT_CARD}
+      }
+    }
+  }`;
+
 // Home and sections
 export const homeQuery = `
 *[_type == "page" && slug.current == "/"][0]{
   title,${SECTIONS}
-}`;
-
-// Four most recent projects
-export const recentProjectsQuery = `
-*[_type == "project"] | order(date desc)[0...3]{${PROJECT_CARD}
 }`;
