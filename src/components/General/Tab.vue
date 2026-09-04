@@ -51,7 +51,6 @@ const cellClass = computed(() => `col-xs-12 col-xl-${12 / count.value}`);
 <style scoped>
 table {
   border-top: 1px solid var(--color-light-light-bg);
-
   width: 100%;
   border-collapse: collapse;
   text-transform: uppercase;
@@ -63,7 +62,7 @@ table {
 
 thead {
   display: block;
-    padding-top: 1rem;
+  padding-top: 1rem;
   margin-bottom: 0.5rem;
 }
 

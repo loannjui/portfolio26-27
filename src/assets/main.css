@@ -50,7 +50,7 @@ main.container {
 }
 
 .pad-section {
-  padding-top: 2rem;
+  padding: 2rem 0;
 }
 
 .flex-end {
@@ -84,8 +84,26 @@ main.container {
   }
 }
 
-.fade-in {
-  animation: fade-in var(--transi-slow) var(--bezier-o) both;
+[data-animate] {
+  opacity: 0;
+}
+
+[data-animate].is-visible {
+  animation-delay: calc(var(--stagger) * var(--animate-index, 0));
+  animation-duration: var(--transi-slow);
+  animation-fill-mode: both;
+}
+
+/* IMG */
+[data-animate="fade"].is-visible {
+  animation-name: fade-in;
+  animation-timing-function: var(--bezier-o);
+}
+
+/* Everything else */
+[data-animate="rise"].is-visible {
+  animation-name: rise-fade;
+  animation-timing-function: var(--bezier-a);
 }
 
 @keyframes fade-in {
@@ -94,6 +112,17 @@ main.container {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes rise-fade {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 

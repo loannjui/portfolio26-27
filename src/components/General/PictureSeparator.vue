@@ -13,7 +13,7 @@ const { data } = useSanityQuery(mediaByTitleQuery, { title: props.name });
 </script>
 
 <template>
-  <div v-if="data?.url" class="picture-separator">
+  <div v-if="data?.url" v-animate:fade class="picture-separator">
     <img :src="data.url" :alt="data.alt ?? ''" />
   </div>
 </template>

@@ -15,8 +15,8 @@ defineProps({
 </script>
 
 <template>
-  <section id="projectsPreview" class="container flex-column gap-md fade-in">
-    <div class="container flex-middle flex-between">
+  <section id="projectsPreview" class="container flex-column gap-md">
+    <div v-animate class="container flex-middle flex-between">
       <h4 class="container gap-sm flex-middle">
         {{ title }}
         <span class="nav-arrow icon-arrow_down small" aria-hidden="true"></span>
@@ -26,6 +26,7 @@ defineProps({
 
     <div class="grid gap-xl">
       <div
+        v-animate
         v-for="project in projects"
         :key="project._id"
         class="col-xs-12 col-xl-6"
@@ -42,8 +43,3 @@ defineProps({
   </section>
 </template>
 
-<style scoped>
-#projectsPreview{
-  animation-delay: var(--delay-4);
-}
-</style>

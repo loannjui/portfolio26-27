@@ -14,10 +14,7 @@
   --transi-rl-slow: 1.5s;
   --bezier-a: cubic-bezier(0.22, 1, 0.36, 1);
   --bezier-o: cubic-bezier(0.4, 0, 0.2, 1);
-  --delay-1: 0.25s;
-  --delay-2: 0.5s;
-  --delay-3: 0.75s;
-  --delay-4: 1s;
+  --stagger: 0.25s;
 
   /* Light theme */
 

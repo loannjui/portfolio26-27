@@ -11,9 +11,6 @@ const props = defineProps({
   tag: String,
 });
 
-// <a> et <button> sont du contenu interactif : imbriques dans un lien
-// parent (une carte cliquable), ils produisent du HTML invalide. `tag`
-// permet alors de forcer un element neutre, ex. tag="span".
 const element = computed(() => props.tag || (props.href ? "a" : "button"));
 </script>
 
