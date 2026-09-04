@@ -82,7 +82,6 @@ defineProps({
 
 h4 {
   animation-delay: var(--delay-1);
-  font-weight: 400;
 }
 
 .hero-img {
@@ -101,10 +100,10 @@ h4 {
   }
 
   @media (min-width: 1440px) {
-    width: 50%;
+    width: 33%;
     left: auto;
     right: 10rem;
-    top: 7.25rem;
+    top: 5rem;
   }
 }
 

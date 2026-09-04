@@ -27,17 +27,11 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 </script>
 
 <template>
-  <section id="about" class="hero container flex-column flex-end gap-md">
+  <section id="about" class="hero container flex-column flex-end gap-md pad-section">
     <h2>{{ title }}</h2>
     <div class="separator" />
     <div class="grid gap-xl">
-      <div class="col-xs-12 col-xl-6 container flex-column">
-        <p v-for="block in texts" :key="block._key">
-          {{ block.content }}
-        </p>
-      </div>
-      <div class="col-xs-12 col-xl-2" />
-      <div class="col-xs-12 col-xl-4">
+            <div class="col-xs-12 col-xl-4">
         <figure
           class="wrapper"
           v-for="block in images"
@@ -47,9 +41,13 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
           <img class="img-responsive" :src="block.url" :alt="block.alt" />
         </figure>
       </div>
+
+      <div class="col-xs-12 col-xl-6 container flex-column">
+        <p v-for="block in texts" :key="block._key">
+          {{ block.content }}
+        </p>
+      </div>
     </div>
-    <div class="separator" />
     <Tab v-if="table" :columns="table.columns" :rows="table.rows" />
   </section>
 </template>
-

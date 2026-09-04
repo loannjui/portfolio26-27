@@ -1,42 +1,36 @@
 <script setup>
-defineProps({
+import { computed } from "vue";
+
+const props = defineProps({
   variant: {
     type: String,
     default: "filled",
   },
   href: String,
   swapped: Boolean,
+  tag: String,
 });
+
+// <a> et <button> sont du contenu interactif : imbriques dans un lien
+// parent (une carte cliquable), ils produisent du HTML invalide. `tag`
+// permet alors de forcer un element neutre, ex. tag="span".
+const element = computed(() => props.tag || (props.href ? "a" : "button"));
 </script>
 
 <template>
-  <a v-if="href" :href="href" class="btn">
-    <span :class="['btn-content', 'all-caps', `btn-${variant}`]">
+  <component :is="element" :href="href" class="btn">
+    <span :class="['btn-content', `btn-${variant}`]">
       <span
         v-if="$slots.alt"
         class="btn-label"
         :class="{ 'is-swapped': swapped }"
       >
-        <span><slot /></span>
+        <span class="all-caps"><slot /></span>
         <span><slot name="alt" /></span>
       </span>
       <slot v-else />
     </span>
-  </a>
-
-  <button v-else class="btn">
-    <span :class="['btn-content', 'all-caps', `btn-${variant}`]">
-      <span
-        v-if="$slots.alt"
-        class="btn-label"
-        :class="{ 'is-swapped': swapped }"
-      >
-        <span><slot /></span>
-        <span><slot name="alt" /></span>
-      </span>
-      <slot v-else />
-    </span>
-  </button>
+  </component>
 </template>
 
 <style scoped>
@@ -95,6 +89,7 @@ defineProps({
 .btn-stroke {
   border: 1px solid var(--color-main);
   color: var(--color-main);
+  background-color: var(--color-main-bg);
   &:hover {
     color: var(--color-main-bg);
     background: var(--color-main);

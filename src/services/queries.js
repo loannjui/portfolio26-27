@@ -22,7 +22,8 @@ export const PROJECT_CARD = `
   _id,
   title,
   "slug": slug.current,
-  "coverUrl": coverImage.asset->url`;
+  "coverUrl": coverImage.asset->url,
+  date`;
 
 // Array "sections"
 export const SECTIONS = `
@@ -60,3 +61,10 @@ export const aboutHomeQuery = aboutSectionQuery("home");
 
 // About page
 export const aboutHeroQuery = aboutSectionQuery("about_page");
+
+// Une image de la mediatheque, appelee par son titre
+export const mediaByTitleQuery = `
+*[_type == "media" && title == $title][0]{
+  "url": image.asset->url,
+  alt
+}`;

@@ -5,6 +5,7 @@ import { homeQuery, aboutHomeQuery } from "../services/queries.js";
 import HomeHero from "../components/Home/HomeHero.vue";
 import HomeProjects from "../components/Home/HomeProjects.vue";
 import AboutHero from "../components/About/AboutHero.vue";
+import PictureSeparator from "@/components/General/PictureSeparator.vue";
 
 const { data: page, error: pageError } = useSanityQuery(homeQuery);
 const { data: aboutHero, error: aboutError } = useSanityQuery(aboutHomeQuery);
@@ -34,5 +35,6 @@ const projectsSection = computed(() =>
       :subtitle="aboutHero.subtitle"
       :content="aboutHero.content"
     />
+    <PictureSeparator name="Flower arrangement"/>
   </template>
 </template>

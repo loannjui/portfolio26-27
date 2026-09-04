@@ -49,6 +49,10 @@ main.container {
   gap: 2rem;
 }
 
+.pad-section {
+  padding-top: 2rem;
+}
+
 .flex-end {
   justify-content: flex-end;
 }
@@ -99,12 +103,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 700;
   margin-bottom: 0;
-
-  span {
-    font-weight: 700;
-  }
 }
 
 h1,
@@ -128,11 +127,11 @@ h3 {
 }
 
 h4 {
-  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  font-size: clamp(1.2rem, 1.4vw, 1.5rem);
   line-height: 1.1;
 
   @media (min-width: 1440px) {
-    font-size: clamp(1.5rem, 1.5vw, 3rem);
+    font-size: clamp(1.5rem, 1.4vw, 3rem);
     line-height: 1.15;
   }
 }
@@ -143,6 +142,7 @@ h5 {
 
 .all-caps {
   text-transform: uppercase;
+  font-weight: 700;
 }
 
 .details {
@@ -156,7 +156,6 @@ p {
 a {
   color: var(--color-main);
   text-decoration: none;
-  font-weight: 700;
 }
 
 button {
@@ -176,11 +175,11 @@ button {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: .5rem;
 }
 
 .wrapper {
   position: relative;
-  display: block;
 }
 
 .wrapper img {

@@ -1,4 +1,7 @@
 <script setup>
+import { ref } from "vue";
+import Button from "./Button.vue";
+
 defineProps({
   title: {
     type: String,
@@ -16,33 +19,58 @@ defineProps({
     type: String,
     default: "",
   },
+  date: {
+    type: String,
+    default: "",
+  },
 });
+
+// Position du curseur, relative a la carte
+const x = ref(0);
+const y = ref(0);
+
+function follow(event) {
+  const rect = event.currentTarget.getBoundingClientRect();
+  x.value = event.clientX - rect.left;
+  y.value = event.clientY - rect.top;
+}
 </script>
 
 <template>
-  <RouterLink class="wrapper" v-if="to" :to="to">
-    <h3>{{ title }}</h3>
+  <RouterLink class="wrapper container flex-column gap-md" v-if="to" :to="to" @mousemove="follow">
     <img v-if="src" class="img-responsive" :src="src" :alt="alt" />
+    <div class="container flex-between">
+      <h5>{{ title }}</h5>
+      <time v-if="date" :datetime="date">{{ date.slice(0, 4) }}</time>
+    </div>
+    <Button
+      tag="span"
+      variant="filled"
+      class="view"
+      aria-hidden="true"
+      :style="{ '--x': `${x}px`, '--y': `${y}px` }"
+    >
+      View
+    </Button>
   </RouterLink>
 </template>
 
 <style scoped>
-
-h3 {
+.view {
   position: absolute;
-  z-index: 1;
-  left: 1rem;
-  bottom: 1rem;
-  color: var(--color-main-bg);
-  mix-blend-mode: difference;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  min-height: 0;
+  transform: translate(calc(var(--x) - 50%), calc(var(--y) - 100% - 0.25rem));
+  opacity: 0;
+  transition:
+    opacity var(--transi-rl-slow) var(--bezier-o),
+    transform 0.15s linear;
+  pointer-events: none;
+}
 
-  @media (min-width: 1440px) {
-    left: 1.5rem;
-    bottom: 1.5rem;
-  }
-
-  [data-theme="dark"] & {
-    color: var(--color-main);
-  }
+.wrapper:hover .view {
+  opacity: 0.5;
 }
 </style>

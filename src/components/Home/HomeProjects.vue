@@ -24,7 +24,7 @@ defineProps({
       <Button variant="stroke" href="projects">View all</Button>
     </div>
 
-    <div class="grid">
+    <div class="grid gap-xl">
       <div
         v-for="project in projects"
         :key="project._id"
@@ -35,6 +35,7 @@ defineProps({
           :to="`/projects/${project.slug}`"
           :src="project.coverUrl"
           :alt="project.title"
+          :date="project.date"
         />
       </div>
     </div>
