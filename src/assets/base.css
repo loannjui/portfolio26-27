@@ -54,8 +54,8 @@
 @font-face {
   font-family: "Melange Grotesk";
   src:
-    url("fonts/MelangeGrotesk-SemiBold.woff2") format("woff2"),
-    url("fonts/MelangeGrotesk-SemiBold.woff") format("woff");
+    url("fonts/MelangeGrotesk-SemiB.woff2") format("woff2"),
+    url("fonts/MelangeGrotesk-Medium.woff") format("woff");
   font-weight: 700;
 }
 
@@ -69,7 +69,7 @@
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
+  color: var(--color-main);
   background-color: var(--color-main-bg);
   transition:
     color var(--transi-fast) var(--bezier-o),

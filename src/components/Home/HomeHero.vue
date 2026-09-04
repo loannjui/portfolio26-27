@@ -16,9 +16,12 @@ defineProps({
 </script>
 
 <template>
-  <section id="home" class="hero container flex-column flex-end gap-m">
+  <section id="home" class="hero container flex-column flex-end gap-md">
     <template v-for="block in content" :key="block._key">
-      <h4 class="flex-xs-12 flex-xl-5 fade-in" v-if="block._type === 'textBlock'">
+      <h4
+        class="flex-xs-12 flex-xl-5 fade-in"
+        v-if="block._type === 'textBlock'"
+      >
         {{ block.content }}
       </h4>
       <div
@@ -30,15 +33,19 @@ defineProps({
     </template>
 
     <h1 class="hero-title">
-      <span class="reveal"><span>{{ title }}</span></span>
-      <span v-if="subtitle" class="hero-subtitle reveal"><span>{{ subtitle }}</span></span>
+      <span class="reveal"
+        ><span>{{ title }}</span></span
+      >
+      <span v-if="subtitle" class="hero-subtitle reveal"
+        ><span>{{ subtitle }}</span></span
+      >
     </h1>
   </section>
 </template>
 
 <style scoped>
 #home {
-  padding-top: 450px;
+  padding-top: 50vh;
 
   @media (min-width: 1440px) {
     height: 80dvh;
@@ -58,12 +65,13 @@ defineProps({
 }
 
 .hero-title {
-  font-size: 15.13cqw;
-  line-height: 0.9;
+  font-size: 15.5cqw;
   overflow: hidden;
+  line-height: 0.9;
 
   @media (min-width: 1440px) {
-    font-size: 15.28cqw;
+    font-size: 15.7cqw;
+    line-height: 0.9;
     margin: 0 -0.5rem;
   }
 
@@ -74,6 +82,7 @@ defineProps({
 
 h4 {
   animation-delay: var(--delay-1);
+  font-weight: 400;
 }
 
 .hero-img {
@@ -82,10 +91,17 @@ h4 {
   z-index: -1;
   width: calc(100% - 4rem);
   left: 2rem;
-  top: 320px;
+  top: 35vh;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    left: auto;
+    right: 2rem;
+    top: 30vh;
+  }
 
   @media (min-width: 1440px) {
-    width: 33.3333%;
+    width: 50%;
     left: auto;
     right: 10rem;
     top: 7.25rem;

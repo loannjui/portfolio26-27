@@ -15,7 +15,7 @@ defineProps({
 </script>
 
 <template>
-  <section id="projectsPreview" class="container flex-column gap-m fade-in">
+  <section id="projectsPreview" class="container flex-column gap-md fade-in">
     <div class="container flex-middle flex-between">
       <h4 class="container gap-sm flex-middle">
         {{ title }}

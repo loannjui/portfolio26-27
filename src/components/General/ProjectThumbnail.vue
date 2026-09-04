@@ -27,18 +27,6 @@ defineProps({
 </template>
 
 <style scoped>
-.wrapper {
-  position: relative;
-  display: block;
-}
-
-.wrapper img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-position: center;
-}
 
 h3 {
   position: absolute;
@@ -46,6 +34,7 @@ h3 {
   left: 1rem;
   bottom: 1rem;
   color: var(--color-main-bg);
+  mix-blend-mode: difference;
 
   @media (min-width: 1440px) {
     left: 1.5rem;
