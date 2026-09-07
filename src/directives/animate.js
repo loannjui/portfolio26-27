@@ -17,7 +17,7 @@ function getObserver() {
     },
     {
       threshold: 0,
-      rootMargin: "0px 0px 10% 0px",
+      rootMargin: "0px 0px -7.5% 0px",
     },
   );
 

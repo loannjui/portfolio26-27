@@ -111,6 +111,19 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   }
 }
 
+.btn-contact {
+  border: 1px solid var(--color-contact-text);
+  color: var(--color-contact-text);
+  &:hover {
+    color: var(--color-contact);
+    background: var(--color-contact-text);
+  }
+  &:active {
+    border-color: var(--color-light-light-bg);
+    background: var(--color-light-light-bg);
+  }
+}
+
 .btn-label {
   display: grid;
   grid-template-columns: 1fr 0fr;

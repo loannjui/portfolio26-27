@@ -54,7 +54,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
         </p>
       </div>
     </div>
-    <Tab v-animate v-if="table" :columns="table.columns" :rows="table.rows" />
+    <Tab v-if="table" :columns="table.columns" :rows="table.rows" />
   </section>
 </template>
 

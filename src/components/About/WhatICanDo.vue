@@ -30,11 +30,10 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
     class="hero container flex-column flex-end gap-md pad-section"
   >
     <h2 v-animate>{{ title }}</h2>
-    <h4  v-animate v-for="block in texts" :key="block._key">
+    <h4 v-animate v-for="block in texts" :key="block._key">
       {{ block.content }}
     </h4>
     <TabList
-      v-animate
       v-if="table"
       :columns="table.columns"
       :rows="table.rows"
@@ -43,7 +42,9 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 </template>
 
 <style scoped>
+
 h4 {
   margin-bottom: 4rem;
 }
+
 </style>

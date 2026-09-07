@@ -6,13 +6,12 @@ import { sanity } from "../../services/sanity.js";
 import { useJsonStorage } from "../../composables/useJsonStorage.js";
 
 const nav = ref(null);
+const navEl = ref(null);
 const error = ref(null);
 const menuOpen = ref(false);
 
-// Le composable relit la valeur au montage et la réécrit à chaque changement
 const { data: theme } = useJsonStorage("theme", "light");
 
-// Garde l'attribut data-theme du <html> aligné sur la valeur stockée
 watch(
   theme,
   (value) => {
@@ -48,12 +47,21 @@ function onKeydown(event) {
   if (event.key === "Escape") menuOpen.value = false;
 }
 
+// Close the menu when clicking anywhere outside the nav
+function onPointerDown(event) {
+  if (menuOpen.value && !navEl.value?.contains(event.target)) {
+    menuOpen.value = false;
+  }
+}
+
 onUnmounted(() => {
   window.removeEventListener("keydown", onKeydown);
+  document.removeEventListener("pointerdown", onPointerDown);
 });
 
 onMounted(async () => {
   window.addEventListener("keydown", onKeydown);
+  document.addEventListener("pointerdown", onPointerDown);
   // Close nav when you click on a link
   watch(
     () => route.fullPath,
@@ -85,7 +93,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <nav v-animate:fade>
+  <nav ref="navEl" v-animate:fade>
     <RouterLink to="/" class="logo">
       <img v-if="logo.url" :src="logo.url" :alt="logo.alt" />
     </RouterLink>
@@ -194,10 +202,10 @@ nav {
   transform: translateY(-0.5rem);
   transition: all var(--transi-fast) var(--bezier-a);
   position: absolute;
-  top: 5.75rem;
+  top: 4.75rem;
   gap: 0.5rem;
   background-color: var(--color-main);
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   padding: 2rem;
 
   li a {

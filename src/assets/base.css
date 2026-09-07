@@ -9,6 +9,8 @@
   --blue: #1a5fd7;
   --dark-blue: #163b7c;
 
+  --border-radius: 0.25rem;
+
   --transi-fast: 0.75s;
   --transi-slow: 1.5s;
   --transi-rl-slow: 1.75s;
@@ -28,6 +30,9 @@
   --color-placeholder: var(--dark-grey);
   --color-accent: var(--red);
   --color-strong-accent: var(--dark-red);
+  --color-contact: var(--black);
+  --color-contact-text: var(--white);
+  --color-input: var(--light-grey);
 }
 
 [data-theme="dark"] {
@@ -35,10 +40,9 @@
 
   --color-main-bg: var(--black);
   --color-main: var(--white);
-  --color-light-light-bg: var(--dark-grey);
-  --color-placeholder: var(--dark-grey);
   --color-accent: var(--blue);
   --color-strong-accent: var(--dark-blue);
+  --color-contact: var(--dark-grey);
 }
 
 @font-face {
@@ -93,7 +97,7 @@ body {
     &:focus-visible {
       outline: 2px solid var(--color-accent);
       outline-offset: 2px;
-      border-radius: 0.25rem;
+      border-radius: var(--border-radius);
     }
   }
 }

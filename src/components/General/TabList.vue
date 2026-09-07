@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
+import { resolveLink } from "../../services/links.js";
 
 const props = defineProps({
   columns: {
@@ -18,6 +19,19 @@ const count = computed(() => props.columns.length);
 const COL_WIDTHS = [3, 6, 3];
 
 const cellClass = (index) => `col-xs-12 col-xl-${COL_WIDTHS[index] ?? 12}`;
+
+// Only the middle column reveals the image
+const PREVIEW_COLUMN = 1;
+
+const linkedRows = computed(() =>
+  props.rows.map((row) => ({
+    ...row,
+    cells: (row.cells ?? []).map((cell) => ({
+      ...cell,
+      link: resolveLink(cell.link),
+    })),
+  })),
+);
 
 // Desktop only: the hovered row's image follows the cursor
 const preview = ref(null);
@@ -38,35 +52,54 @@ function movePreview(event) {
 function hidePreview() {
   preview.value = null;
 }
+
+const previewHandlers = (row) => ({
+  mouseenter: (event) => showPreview(row, event),
+  mousemove: movePreview,
+  mouseleave: hidePreview,
+});
 </script>
 
 <template>
-  <!-- Single root element, so v-animate & co. have an element to bind to -->
   <div>
     <table v-if="count" role="table">
       <tbody role="rowgroup">
         <tr
-          v-for="row in rows"
+          v-animate
+          v-for="row in linkedRows"
           :key="row._key"
           class="grid gap-xl"
           role="row"
-          @mouseenter="showPreview(row, $event)"
-          @mousemove="movePreview"
-          @mouseleave="hidePreview"
         >
           <td
             v-for="(cell, index) in row.cells"
             :key="cell._key"
             :class="cellClass(index)"
             role="cell"
+            v-on="index === PREVIEW_COLUMN ? previewHandlers(row) : {}"
           >
-            <span>{{ cell.value }}</span>
             <img
               v-if="cell.imageUrl"
               class="cell-image"
               :src="cell.imageUrl"
               :alt="cell.imageAlt ?? ''"
             />
+            <RouterLink
+              v-if="cell.link?.to"
+              :to="cell.link.to"
+              :target="cell.link.newTab ? '_blank' : undefined"
+            >
+              {{ cell.value }}
+            </RouterLink>
+            <a
+              v-else-if="cell.link?.href"
+              :href="cell.link.href"
+              :target="cell.link.newTab ? '_blank' : undefined"
+              :rel="cell.link.newTab ? 'noopener noreferrer' : undefined"
+            >
+              {{ cell.value }}
+            </a>
+            <span v-else>{{ cell.value }}</span>
           </td>
         </tr>
       </tbody>
@@ -102,6 +135,10 @@ tr {
   border-top: 1px solid var(--color-light-light-bg);
   padding-top: 1rem;
   padding-bottom: 4rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
 }
 
 td {
@@ -135,10 +172,22 @@ td:nth-child(2) {
   display: block;
   width: 100%;
   height: auto;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
 }
 
 .cursor-image {
   display: none;
+}
+
+@media (max-width: 1439px) {
+  td:nth-child(1) {
+    grid-column: span 4;
+  }
+
+  td:nth-child(n + 2) {
+    grid-column: 5 / -1;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -157,7 +206,7 @@ td:nth-child(2) {
 
   .cursor-image {
     display: block;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     position: fixed;
     z-index: 10;
     width: 300px;

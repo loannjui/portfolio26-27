@@ -19,7 +19,13 @@ export const SECTION_CONTENT = `
             _key,
             value,
             "imageUrl": image->image.asset->url,
-            "imageAlt": image->alt
+            "imageAlt": image->alt,
+            link{
+              "type": reference->_type,
+              "slug": reference->slug.current,
+              url,
+              newTab
+            }
           }
         }
       }

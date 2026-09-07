@@ -46,7 +46,10 @@ main.container {
 }
 
 .gap-xl {
-  gap: 2rem;
+  gap: 1rem;
+  @media (min-width: 768px) {
+    gap: 2rem;
+  }
 }
 
 .pad-section {
@@ -70,7 +73,6 @@ main.container {
 
 .reveal > * {
   display: block;
-  animation: rise-in var(--transi-slow) var(--bezier-a) both;
 }
 
 @keyframes rise-in {
@@ -98,6 +100,20 @@ main.container {
 [data-animate="fade"].is-visible {
   animation-name: fade-in;
   animation-timing-function: var(--bezier-o);
+}
+
+/* Text sliding up behind its own overflow, on a .reveal element */
+[data-animate="reveal"] {
+  opacity: 1;
+}
+
+[data-animate="reveal"] > * {
+  opacity: 0;
+}
+
+[data-animate="reveal"].is-visible > * {
+  animation: rise-in var(--transi-slow) var(--bezier-a) both;
+  animation-delay: calc(var(--stagger) * var(--animate-index, 0));
 }
 
 /* Everything else */
@@ -210,7 +226,7 @@ button {
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
 }
 
 .wrapper {
@@ -232,8 +248,26 @@ button {
   transition: background-color var(--transi-fast) var(--bezier-o);
 }
 
+
+.col-xs-4 {
+  grid-column: span 4;
+}
+
+.col-xs-6 {
+  grid-column: span 6;
+}
+
+.col-xs-8 {
+  grid-column: span 8;
+}
+
 .col-xs-12 {
   grid-column: span 12;
+}
+
+.flex-xs-6 {
+  flex: 0 0 auto;
+  width: 50%;
 }
 
 .flex-xs-12 {

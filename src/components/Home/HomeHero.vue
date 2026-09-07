@@ -35,10 +35,10 @@ defineProps({
     </template>
 
     <h1 class="hero-title">
-      <span class="reveal"
+      <span v-animate:reveal class="reveal"
         ><span>{{ title }}</span></span
       >
-      <span v-if="subtitle" class="hero-subtitle reveal"
+      <span v-if="subtitle" v-animate:reveal class="hero-subtitle reveal"
         ><span>{{ subtitle }}</span></span
       >
     </h1>
@@ -47,7 +47,7 @@ defineProps({
 
 <style scoped>
 #home {
-  padding-top: 50vh;
+  padding-top: 60vh;
 
   @media (min-width: 1440px) {
     height: 80dvh;
@@ -56,14 +56,6 @@ defineProps({
 }
 .hero-subtitle {
   display: block;
-}
-
-.hero-title > .reveal:first-child > span {
-  animation-delay: var(--delay-2);
-}
-
-.hero-subtitle > span {
-  animation-delay: var(--delay-3);
 }
 
 .hero-title {
@@ -91,7 +83,7 @@ defineProps({
   z-index: -1;
   width: calc(100% - 4rem);
   left: 2rem;
-  top: 35vh;
+  top: 15vh;
 
   @media (min-width: 768px) {
     width: 50%;
