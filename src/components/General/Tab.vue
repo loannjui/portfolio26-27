@@ -75,6 +75,5 @@ th,
 td {
   padding: 0;
   line-height: 1;
-  font-weight: 700;
 }
 </style>

@@ -45,7 +45,7 @@ export const homeQuery = `
   title,${SECTIONS}
 }`;
 
-// About hero section, filter by subtitle
+// About hero section, filtered by subtitle
 const aboutSectionQuery = (subtitle) => `
 *[_type == "page" && slug.current == "about"][0]
   .sections[_type == "section" && subtitle == "${subtitle}"][0]{
@@ -62,7 +62,17 @@ export const aboutHomeQuery = aboutSectionQuery("home");
 // About page
 export const aboutHeroQuery = aboutSectionQuery("about_page");
 
-// Une image de la mediatheque, appelee par son titre
+export const whatICanDoQuery = `
+*[_type == "page" && slug.current == "about"][0]
+  .sections[_type == "section" && title == "What I can do"][0]{
+    _key,
+    _type,
+    title,
+    subtitle,
+${SECTION_CONTENT}
+  }`;
+
+// Image called by title
 export const mediaByTitleQuery = `
 *[_type == "media" && title == $title][0]{
   "url": image.asset->url,

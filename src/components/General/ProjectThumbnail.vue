@@ -25,7 +25,7 @@ defineProps({
   },
 });
 
-// Position du curseur, relative a la carte
+// cursor position
 const x = ref(0);
 const y = ref(0);
 
@@ -46,7 +46,7 @@ function follow(event) {
     <Button
       tag="span"
       variant="filled"
-      class="view"
+      class="view all-caps"
       aria-hidden="true"
       :style="{ '--x': `${x}px`, '--y': `${y}px` }"
     >

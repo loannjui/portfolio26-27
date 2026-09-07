@@ -9,9 +9,9 @@
   --blue: #1a5fd7;
   --dark-blue: #163b7c;
 
-  --transi-fast: 0.66s;
-  --transi-slow: 1.2s;
-  --transi-rl-slow: 1.5s;
+  --transi-fast: 0.75s;
+  --transi-slow: 1.5s;
+  --transi-rl-slow: 1.75s;
   --bezier-a: cubic-bezier(0.22, 1, 0.36, 1);
   --bezier-o: cubic-bezier(0.4, 0, 0.2, 1);
   --stagger: 0.25s;
@@ -44,16 +44,16 @@
 @font-face {
   font-family: "Melange Grotesk";
   src:
-    url("fonts/MelangeGrotesk-Medium.woff2") format("woff2"),
-    url("fonts/MelangeGrotesk-Medium.woff") format("woff");
+    url("fonts/MelangeGrotesk-Regular.woff2") format("woff2"),
+    url("fonts/MelangeGrotesk-Regular.woff") format("woff");
   font-weight: 400;
 }
 
 @font-face {
   font-family: "Melange Grotesk";
   src:
-    url("fonts/MelangeGrotesk-Regular.woff2") format("woff2"),
-    url("fonts/MelangeGrotesk-Regular.woff") format("woff");
+    url("fonts/MelangeGrotesk-Medium.woff2") format("woff2"),
+    url("fonts/MelangeGrotesk-Medium.woff") format("woff");
   font-weight: 700;
 }
 

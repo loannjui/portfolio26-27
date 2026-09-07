@@ -132,6 +132,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-weight: 700;
   margin-bottom: 0;
 }
 
@@ -171,11 +172,11 @@ h5 {
 
 .all-caps {
   text-transform: uppercase;
-  font-weight: 700;
 }
 
 .details {
   font-size: clamp(0.75rem, 0.625vw, 1.5rem);
+  font-weight: 700;
 }
 
 p {
@@ -183,8 +184,13 @@ p {
 }
 
 a {
+  font-weight: 700;
   color: var(--color-main);
   text-decoration: none;
+}
+
+time{
+  font-weight: 700;
 }
 
 button {

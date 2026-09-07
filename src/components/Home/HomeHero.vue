@@ -71,6 +71,10 @@ defineProps({
   overflow: hidden;
   line-height: 0.9;
 
+  span {
+    font-weight: 700;
+  }
+
   @media (min-width: 1440px) {
     font-size: 15.7cqw;
     line-height: 0.9;

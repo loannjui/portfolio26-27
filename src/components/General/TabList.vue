@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 
 const props = defineProps({
   columns: {
@@ -10,6 +11,11 @@ const props = defineProps({
     default: () => [],
   },
 });
+
+const count = computed(() => props.columns.length);
+
+// Change col classes to match the number of tabs
+const cellClass = computed(() => `col-xs-12 col-xl-${12 / count.value}`);
 </script>
 
 <template>
@@ -34,17 +40,6 @@ table {
   border-top: 1px solid var(--color-light-light-bg);
   width: 100%;
   border-collapse: collapse;
-  text-transform: uppercase;
-  th {
-    color: var(--color-light-bg);
-    text-align: left;
-  }
-}
-
-thead {
-  display: block;
-  padding-top: 1rem;
-  margin-bottom: 0.5rem;
 }
 
 tbody {
@@ -52,10 +47,25 @@ tbody {
   gap: 0.5rem;
 }
 
-th,
 td {
   padding: 0;
   line-height: 1;
+  font-weight: 400;
+}
+
+td:nth-child(1) {
+  font-size: clamp(0.75rem, 0.625vw, 1.5rem);
   font-weight: 700;
+}
+
+td:nth-child(2) {
+  font-size: clamp(1.2rem, 1.4vw, 1.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+
+  @media (min-width: 1440px) {
+    font-size: clamp(1.5rem, 1.4vw, 3rem);
+    line-height: 1.15;
+  }
 }
 </style>

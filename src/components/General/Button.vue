@@ -22,7 +22,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
         class="btn-label"
         :class="{ 'is-swapped': swapped }"
       >
-        <span class="all-caps"><slot /></span>
+        <span><slot /></span>
         <span><slot name="alt" /></span>
       </span>
       <slot v-else />
@@ -44,6 +44,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   justify-content: center;
 
   span {
+    text-transform: uppercase;
     transition:
       color var(--transi-fast) var(--bezier-o),
       background-color var(--transi-fast) var(--bezier-o),

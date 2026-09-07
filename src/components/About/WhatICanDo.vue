@@ -32,7 +32,10 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
     class="hero container flex-column flex-end gap-xl pad-section"
   >
     <h2 v-animate>{{ title }}</h2>
-    <h3 v-animate></h3>
+    <div class="separator" />
+    <h4  v-animate v-for="block in texts" :key="block._key">
+      {{ block.content }}
+    </h4>
     <TabList
       v-animate
       v-if="table"
