@@ -37,9 +37,14 @@ function follow(event) {
 </script>
 
 <template>
-  <RouterLink class="wrapper container flex-column gap-md" v-if="to" :to="to" @mousemove="follow">
+  <RouterLink
+    class="wrapper container flex-column gap-md"
+    v-if="to"
+    :to="to"
+    @mousemove="follow"
+  >
     <img v-if="src" class="img-responsive" :src="src" :alt="alt" />
-    <div class="container flex-between">
+    <div class="art-details container flex-between">
       <h5>{{ title }}</h5>
       <time v-if="date" :datetime="date">{{ date.slice(0, 4) }}</time>
     </div>
@@ -56,6 +61,15 @@ function follow(event) {
 </template>
 
 <style scoped>
+.art-details {
+  position: absolute;
+  width: calc(100% - 2rem);
+  left: 1rem;
+  bottom: 1rem;
+  color: var(--white);
+  mix-blend-mode: exclusion;
+}
+
 .view {
   position: absolute;
   top: 0;
@@ -71,6 +85,6 @@ function follow(event) {
 }
 
 .wrapper:hover .view {
-  opacity: 0.5;
+  opacity: 0.7;
 }
 </style>

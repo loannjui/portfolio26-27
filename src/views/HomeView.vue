@@ -5,19 +5,29 @@ import {
   homeQuery,
   aboutHomeQuery,
   whatICanDoQuery,
+  contactQuery,
 } from "../services/queries.js";
 import HomeHero from "../components/Home/HomeHero.vue";
 import HomeProjects from "../components/Home/HomeProjects.vue";
 import AboutHero from "../components/About/AboutHero.vue";
 import PictureSeparator from "@/components/General/PictureSeparator.vue";
 import WhatICanDo from "@/components/About/WhatICanDo.vue";
+import ContactSection from "@/components/Contact/ContactSection.vue";
 
 const { data: page, error: pageError } = useSanityQuery(homeQuery);
 const { data: aboutHero, error: aboutError } = useSanityQuery(aboutHomeQuery);
 const { data: whatICanDo, error: whatICanDoError } =
   useSanityQuery(whatICanDoQuery);
+const { data: contactSection, error: contactSectionError } =
+  useSanityQuery(contactQuery);
 
-const error = computed(() => pageError.value ?? aboutError.value ?? whatICanDoError.value);
+const error = computed(
+  () =>
+    pageError.value ??
+    aboutError.value ??
+    whatICanDoError.value ??
+    contactSectionError.value,
+);
 
 const sections = computed(() => page.value?.sections ?? []);
 const hero = computed(() => sections.value.find((s) => s._type === "section"));
@@ -52,6 +62,11 @@ const projectsSection = computed(() =>
       v-if="whatICanDo"
       :title="whatICanDo.title"
       :content="whatICanDo.content"
+    />
+    <ContactSection
+      v-if="contactSection"
+      :title="contactSection.title"
+      :content="contactSection.content"
     />
   </template>
 </template>

@@ -10,6 +10,10 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  showHeader: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const count = computed(() => props.columns.length);
@@ -20,7 +24,7 @@ const cellClass = computed(() => `col-xs-12 col-xl-${12 / count.value}`);
 
 <template>
   <table v-if="count" role="table">
-    <thead role="rowgroup">
+    <thead v-if="showHeader" role="rowgroup">
       <tr class="grid gap-xl" role="row">
         <th
           v-for="col in columns"
@@ -41,7 +45,13 @@ const cellClass = computed(() => `col-xs-12 col-xl-${12 / count.value}`);
           :class="cellClass"
           role="cell"
         >
-          {{ cell.value }}
+          <img
+            v-if="cell.imageUrl"
+            class="cell-image"
+            :src="cell.imageUrl"
+            :alt="cell.imageAlt ?? ''"
+          />
+          <span>{{ cell.value }}</span>
         </td>
       </tr>
     </tbody>
@@ -71,9 +81,25 @@ tbody {
   gap: 0.5rem;
 }
 
+tbody:first-child {
+  padding-top: 1rem;
+}
+
 th,
 td {
   padding: 0;
   line-height: 1;
+}
+
+/* Optional image sitting next to the cell text */
+td {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cell-image {
+  width: auto;
+  max-height: 1.5em;
 }
 </style>

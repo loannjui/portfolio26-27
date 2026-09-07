@@ -189,7 +189,7 @@ a {
   text-decoration: none;
 }
 
-time{
+time {
   font-weight: 700;
 }
 
@@ -210,7 +210,7 @@ button {
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 .wrapper {
@@ -228,7 +228,7 @@ button {
 .separator {
   width: 100%;
   height: 1px;
-  background-color: var(--color-light-light-bg);
+  background-color: var(--color-light-light-bg) !important;
   transition: background-color var(--transi-fast) var(--bezier-o);
 }
 
@@ -257,6 +257,10 @@ button {
     }
     .col-xl-6 {
       grid-column: span 6;
+    }
+
+    .col-xl-12 {
+      grid-column: span 12;
     }
 
     .flex-xl-4 {

@@ -33,7 +33,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
   >
     <div class="container flex-column gap-md">
       <h2 v-animate>{{ title }}</h2>
-      <div class="separator" />
+      <div v-animate class="separator" />
     </div>
     <div class="grid gap-xl">
       <div class="col-xs-12 col-xl-4">
@@ -57,3 +57,9 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
     <Tab v-animate v-if="table" :columns="table.columns" :rows="table.rows" />
   </section>
 </template>
+
+<style scoped>
+section {
+  padding-bottom: 3rem;
+}
+</style>

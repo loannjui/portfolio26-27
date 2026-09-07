@@ -20,19 +20,16 @@ const props = defineProps({
 const texts = computed(() =>
   props.content.filter((b) => b._type === "textBlock"),
 );
-const images = computed(() =>
-  props.content.filter((b) => b._type === "reference"),
-);
+
 const table = computed(() => props.content.find((b) => b._type === "table"));
 </script>
 
 <template>
   <section
     id="about"
-    class="hero container flex-column flex-end gap-xl pad-section"
+    class="hero container flex-column flex-end gap-md pad-section"
   >
     <h2 v-animate>{{ title }}</h2>
-    <div class="separator" />
     <h4  v-animate v-for="block in texts" :key="block._key">
       {{ block.content }}
     </h4>
@@ -44,3 +41,9 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
     />
   </section>
 </template>
+
+<style scoped>
+h4 {
+  margin-bottom: 4rem;
+}
+</style>

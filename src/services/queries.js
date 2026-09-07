@@ -13,7 +13,15 @@ export const SECTION_CONTENT = `
       },
       _type == "table" => {
         columns[]{ _key, name },
-        rows[]{ _key, cells[]{ _key, value } }
+        rows[]{
+          _key,
+          cells[]{
+            _key,
+            value,
+            "imageUrl": image->image.asset->url,
+            "imageAlt": image->alt
+          }
+        }
       }
     }`;
 
@@ -65,6 +73,17 @@ export const aboutHeroQuery = aboutSectionQuery("about_page");
 export const whatICanDoQuery = `
 *[_type == "page" && slug.current == "about"][0]
   .sections[_type == "section" && title == "What I can do"][0]{
+    _key,
+    _type,
+    title,
+    subtitle,
+${SECTION_CONTENT}
+  }`;
+
+// Contact page
+export const contactQuery = `
+*[_type == "page" && slug.current == "contact"][0]
+  .sections[_type == "section"][0]{
     _key,
     _type,
     title,
