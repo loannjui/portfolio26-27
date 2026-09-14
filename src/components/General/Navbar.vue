@@ -9,6 +9,8 @@ const nav = ref(null);
 const navEl = ref(null);
 const error = ref(null);
 const menuOpen = ref(false);
+const scrolled = ref(false);
+const hoverSuppressed = ref(false);
 
 const { data: theme } = useJsonStorage("theme", "light");
 
@@ -39,8 +41,44 @@ function linkTo(slug) {
   return slug.startsWith("/") ? slug : `/${slug}`;
 }
 
+// Desktop pointers open the menu on hover; touch and mobile keep the click
+function hoverEnabled() {
+  return window.matchMedia("(min-width: 1040px) and (hover: hover)").matches;
+}
+
+let closeTimer;
+
 function toggleMenu() {
+  clearTimeout(closeTimer);
   menuOpen.value = !menuOpen.value;
+  // Clicking close while still on the button: drop the hover styling too,
+  // until the pointer actually leaves and comes back
+  hoverSuppressed.value = !menuOpen.value && hoverEnabled();
+}
+
+function onMenuEnter() {
+  if (!hoverEnabled()) return;
+  clearTimeout(closeTimer);
+  hoverSuppressed.value = false;
+  menuOpen.value = true;
+}
+
+// Small grace period so the gap between the button and the panel is crossable
+function onMenuLeave() {
+  hoverSuppressed.value = false;
+  if (!hoverEnabled()) return;
+  clearTimeout(closeTimer);
+  closeTimer = setTimeout(() => {
+    menuOpen.value = false;
+  }, 150);
+}
+
+// Collapse the nav links into the menu button once the page is scrolled
+function onScroll() {
+  const next = window.scrollY > 32;
+  if (next === scrolled.value) return;
+  scrolled.value = next;
+  if (!next) menuOpen.value = false;
 }
 
 function onKeydown(event) {
@@ -55,11 +93,15 @@ function onPointerDown(event) {
 }
 
 onUnmounted(() => {
+  clearTimeout(closeTimer);
+  window.removeEventListener("scroll", onScroll);
   window.removeEventListener("keydown", onKeydown);
   document.removeEventListener("pointerdown", onPointerDown);
 });
 
 onMounted(async () => {
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
   window.addEventListener("keydown", onKeydown);
   document.addEventListener("pointerdown", onPointerDown);
   // Close nav when you click on a link
@@ -93,7 +135,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <nav ref="navEl" v-animate:fade>
+  <nav ref="navEl" :data-scrolled="scrolled" v-animate:fade>
     <RouterLink to="/" class="logo">
       <img v-if="logo.url" :src="logo.url" :alt="logo.alt" />
     </RouterLink>
@@ -120,11 +162,14 @@ onMounted(async () => {
 
     <Button
       class="menu-toggle"
-      :variant="menuOpen ? 'stroke' : 'filled'"
+      :class="{ 'no-hover': hoverSuppressed }"
+      :variant="menuOpen ? 'filled' : 'stroke'"
       :swapped="menuOpen"
       aria-controls="mobile-menu"
       :aria-expanded="menuOpen ? 'true' : 'false'"
       @click="toggleMenu"
+      @mouseenter="onMenuEnter"
+      @mouseleave="onMenuLeave"
     >
       Menu
       <span class="icon-burger" aria-hidden="true"></span>
@@ -134,11 +179,16 @@ onMounted(async () => {
       </template>
     </Button>
 
-    <ul id="mobile-menu" :class="{ 'is-open': menuOpen }">
+    <ul
+      id="mobile-menu"
+      :class="{ 'is-open': menuOpen }"
+      @mouseenter="onMenuEnter"
+      @mouseleave="onMenuLeave"
+    >
       <li v-for="item in nav?.items" :key="item._key">
         <RouterLink :to="linkTo(item.slug)" class="nav-link">
           {{ item.label }}
-          <span class="icon-arrow" aria-hidden="true"></span>
+          <span class="nav-arrow icon-arrow" aria-hidden="true"></span>
         </RouterLink>
       </li>
       <li>
@@ -183,10 +233,6 @@ nav {
   @media (min-width: 768px) {
     padding: 1rem 1.5rem;
   }
-
-  @media (min-width: 1440px) {
-    padding: 1rem 1.5rem;
-  }
 }
 
 .links {
@@ -212,6 +258,9 @@ nav {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--color-main-bg);
+    span {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -246,24 +295,62 @@ nav ul li a {
   transition: transform var(--transi-fast) var(--bezier-a);
 }
 
+/* The button keeps receiving clicks and mouseenter/leave, but its inner
+   content is no longer a hit target, so none of the :hover rules match */
+.menu-toggle.no-hover :deep(.btn-content) {
+  pointer-events: none;
+}
+
 .nav-link:hover .nav-arrow,
 .nav-link:focus-visible .nav-arrow {
   transform: rotate(-90deg);
 }
 
-@media (min-width: 64rem) {
+@media (min-width: 1040px) {
+  .links,
   .menu-toggle {
-    display: none;
+    transition:
+      transform var(--transi-fast) var(--bezier-a),
+      visibility var(--transi-fast) var(--bezier-a);
   }
 
   .links {
     display: flex;
     gap: 2.5rem;
+    transition-delay: var(--stagger);
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    visibility: hidden;
+    transform: translateY(calc(-100% - 1rem));
+    transition-delay: 0s;
   }
 
   #mobile-menu,
   #mobile-menu.is-open {
     display: none;
+  }
+
+  nav[data-scrolled="true"] .links {
+    visibility: hidden;
+    transform: translateY(calc(-100% - 1rem));
+    transition-delay: 0s;
+  }
+
+  nav[data-scrolled="true"] .menu-toggle {
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: var(--stagger);
+  }
+
+  nav[data-scrolled="true"] #mobile-menu {
+    display: flex;
+    width: 25%;
+    right: 1.5rem;
   }
 }
 </style>

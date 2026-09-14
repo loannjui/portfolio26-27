@@ -97,6 +97,22 @@ export const contactQuery = `
 ${SECTION_CONTENT}
   }`;
 
+// Every project, newest first
+export const allProjectsQuery = `
+*[_type == "project"]|order(date desc){${PROJECT_CARD}
+}`;
+
+// Projects page
+export const projectsQuery = `
+*[_type == "page" && slug.current == "projects"][0]
+  .sections[_type == "section"][0]{
+    _key,
+    _type,
+    title,
+    subtitle,
+${SECTION_CONTENT}
+  }`;
+
 // Image called by title
 export const mediaByTitleQuery = `
 *[_type == "media" && title == $title][0]{

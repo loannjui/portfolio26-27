@@ -85,7 +85,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
 }
 
 .btn-stroke {
-  border: 1px solid var(--color-main);
+  border: 1px solid var(--color-light-light-bg);
   color: var(--color-main);
   background-color: var(--color-main-bg);
   &:hover {

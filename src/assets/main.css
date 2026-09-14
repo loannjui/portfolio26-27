@@ -2,19 +2,15 @@
 @import "./icons.css";
 
 main {
-  padding: 0 1rem;
-
-  @media (min-width: 768px) {
-    padding: 0 1.5rem;
-  }
-
-  @media (min-width: 1440px) {
-    padding: 0 3rem;
-  }
+  padding: var(--page-pading);
 }
 
 .container {
   display: flex;
+}
+
+.wd-100 {
+  width: 100%;
 }
 
 main.container {
@@ -274,36 +270,40 @@ button {
   width: 100%;
 }
 
+#projects {
+  height: 100vh;
+}
+
 @media (min-width: 1440px) {
-    .col-xl-2 {
-      grid-column: span 2;
-    }
-    .col-xl-3 {
-      grid-column: span 3;
-    }
-    .col-xl-4 {
-      grid-column: span 4;
-    }
-    .col-xl-5 {
-      grid-column: span 5;
-    }
-    .col-xl-6 {
-      grid-column: span 6;
-    }
-    .col-xl-8 {
-      grid-column: span 8;
-    }
-    .col-xl-12 {
-      grid-column: span 12;
-    }
+  .col-xl-2 {
+    grid-column: span 2;
+  }
+  .col-xl-3 {
+    grid-column: span 3;
+  }
+  .col-xl-4 {
+    grid-column: span 4;
+  }
+  .col-xl-5 {
+    grid-column: span 5;
+  }
+  .col-xl-6 {
+    grid-column: span 6;
+  }
+  .col-xl-8 {
+    grid-column: span 8;
+  }
+  .col-xl-12 {
+    grid-column: span 12;
+  }
 
-    .flex-xl-4 {
-      flex: 0 0 auto;
-      width: 33.3333%;
-    }
+  .flex-xl-4 {
+    flex: 0 0 auto;
+    width: 33.3333%;
+  }
 
-    .flex-xl-5 {
-      flex: 0 0 auto;
-      width: 40.6666%;
-    }
+  .flex-xl-5 {
+    flex: 0 0 auto;
+    width: 40.6666%;
+  }
 }

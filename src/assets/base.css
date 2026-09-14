@@ -18,9 +18,15 @@
   --bezier-o: cubic-bezier(0.4, 0, 0.2, 1);
   --stagger: 0.25s;
   --picture-offset: 2rem;
+  --page-pading: 0 1rem;
+
+  @media (min-width: 768px) {
+    --page-pading: 0 1.5rem;
+  }
 
   @media (min-width: 1440px) {
     --picture-offset: 3rem;
+    --page-pading: 0 3rem;
   }
 
   /* Light theme */

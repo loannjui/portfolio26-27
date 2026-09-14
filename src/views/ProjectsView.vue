@@ -1,1 +1,25 @@
-<template>aa</template>
+<script setup>
+import { useSanityQuery } from "../composables/useSanityQuery.js";
+import { projectsQuery, allProjectsQuery } from "../services/queries.js";
+import ProjectsHero from "../components/Projects/ProjectsHero.vue";
+import AllProjects from "../components/Projects/AllProjects.vue";
+
+const { data: hero, error } = useSanityQuery(projectsQuery);
+const { data: projects, error: projectsError } =
+  useSanityQuery(allProjectsQuery);
+</script>
+
+<template>
+  <section id="projects" class="container flex-middle">
+    <div class="container flex-column wd-100">
+      <p v-if="error || projectsError" role="alert">
+        Le contenu n’a pas pu être chargé.
+      </p>
+
+      <template v-else>
+        <ProjectsHero v-if="hero" :title="hero.title" :content="hero.content" />
+        <AllProjects v-if="projects" :projects="projects" />
+      </template>
+    </div>
+  </section>
+</template>
