@@ -1,6 +1,6 @@
 :root {
   --white: #f8f7f7;
-  --black: #181818;
+  --black: #191818;
   --grey: #7d7d7d;
   --dark-grey: #3e3b3b;
   --light-grey: #ccc8c8;
@@ -17,6 +17,11 @@
   --bezier-a: cubic-bezier(0.22, 1, 0.36, 1);
   --bezier-o: cubic-bezier(0.4, 0, 0.2, 1);
   --stagger: 0.25s;
+  --picture-offset: 2rem;
+
+  @media (min-width: 1440px) {
+    --picture-offset: 5rem;
+  }
 
   /* Light theme */
 
@@ -33,6 +38,7 @@
   --color-contact: var(--black);
   --color-contact-text: var(--white);
   --color-input: var(--light-grey);
+  --backdrop-nav: rgba(204, 204, 204, 0.2);
 }
 
 [data-theme="dark"] {

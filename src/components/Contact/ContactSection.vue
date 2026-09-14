@@ -69,7 +69,6 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 <style scoped>
 .contact-wrapper {
   position: relative;
-  --picture-offset: 5rem;
   padding-bottom: var(--picture-offset);
 }
 
@@ -79,7 +78,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
   background-color: var(--color-contact);
   color: var(--color-contact-text);
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   :deep(a) {
     color: var(--color-contact-text);
   }
