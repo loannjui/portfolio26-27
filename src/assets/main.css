@@ -248,7 +248,6 @@ button {
   transition: background-color var(--transi-fast) var(--bezier-o);
 }
 
-
 .col-xs-4 {
   grid-column: span 4;
 }
@@ -276,7 +275,6 @@ button {
 }
 
 @media (min-width: 1440px) {
-  @media (min-width: 1440px) {
     .col-xl-2 {
       grid-column: span 2;
     }
@@ -292,7 +290,9 @@ button {
     .col-xl-6 {
       grid-column: span 6;
     }
-
+    .col-xl-8 {
+      grid-column: span 8;
+    }
     .col-xl-12 {
       grid-column: span 12;
     }
@@ -306,5 +306,4 @@ button {
       flex: 0 0 auto;
       width: 40.6666%;
     }
-  }
 }

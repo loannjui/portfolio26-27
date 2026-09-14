@@ -20,6 +20,7 @@ const { data } = useSanityQuery(mediaByTitleQuery, { title: props.name });
 
 <style scoped>
 .picture-separator {
+  position: relative;
   width: 100%;
   height: 120px;
   overflow: hidden;

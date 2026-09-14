@@ -95,8 +95,8 @@ defineProps({
   @media (min-width: 1440px) {
     width: 33%;
     left: auto;
-    right: 10rem;
-    top: 5rem;
+    right: 12rem;
+    top: 4.75rem;
   }
 }
 

@@ -31,7 +31,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
   >
     <h2 v-animate>{{ title }}</h2>
     <div class="grid">
-      <div class="col-xl-6 col-xs-12">
+      <div class="col-xl-8 col-xs-12">
         <h4 v-animate v-for="block in texts" :key="block._key">
           {{ block.content }}
         </h4>
