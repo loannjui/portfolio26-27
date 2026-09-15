@@ -60,6 +60,6 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 
 <style scoped>
 section {
-  padding-bottom: 3rem;
+  padding-bottom: 2.5rem;
 }
 </style>

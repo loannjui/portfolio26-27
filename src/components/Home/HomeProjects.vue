@@ -41,9 +41,3 @@ defineProps({
     </div>
   </section>
 </template>
-
-<style scoped>
-section {
-  padding-bottom: 1rem;
-}
-</style>

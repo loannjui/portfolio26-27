@@ -17,7 +17,7 @@ main.container {
   gap: 1.5rem;
 
   @media (min-width: 768px) {
-    gap: 2rem;
+    gap: 2.5rem;
   }
 }
 
@@ -49,7 +49,7 @@ main.container {
 }
 
 .pad-section {
-  padding: 2rem 0;
+  padding: 2.5rem 0;
 }
 
 .flex-end {

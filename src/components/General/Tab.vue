@@ -141,7 +141,6 @@ td {
     gap: 0.5rem;
   }
 
-  /* tbody has no box anymore, so the table carries its own spacing */
   table:has(> tbody:first-child) {
     padding-top: 1rem;
     gap: 2rem;

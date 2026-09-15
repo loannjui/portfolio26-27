@@ -22,7 +22,7 @@ const { data } = useSanityQuery(mediaByTitleQuery, { title: props.name });
 .picture-separator {
   position: relative;
   width: 100%;
-  height: 120px;
+  height: 200px;
   overflow: hidden;
   border-radius: var(--border-radius);
 }
@@ -33,11 +33,5 @@ const { data } = useSanityQuery(mediaByTitleQuery, { title: props.name });
   height: 100%;
   object-fit: cover;
   object-position: center;
-}
-
-@media (min-width: 1440px) {
-  .picture-separator {
-    height: 200px;
-  }
 }
 </style>
