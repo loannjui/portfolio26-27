@@ -67,8 +67,8 @@
 @font-face {
   font-family: "Melange Grotesk";
   src:
-    url("fonts/MelangeGrotesk-Medium.woff2") format("woff2"),
-    url("fonts/MelangeGrotesk-Medium.woff") format("woff");
+    url("fonts/MelangeGrotesk-SemiBold.woff2") format("woff2"),
+    url("fonts/MelangeGrotesk-SemiBold.woff") format("woff");
   font-weight: 700;
 }
 
