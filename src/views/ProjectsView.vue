@@ -2,7 +2,7 @@
 import { useSanityQuery } from "../composables/useSanityQuery.js";
 import { projectsQuery, allProjectsQuery } from "../services/queries.js";
 import ProjectsHero from "../components/Projects/ProjectsHero.vue";
-import AllProjects from "../components/Projects/AllProjects.vue";
+import ProjectsMarquee from "../components/Projects/ProjectsMarquee.vue";
 
 const { data: hero, error } = useSanityQuery(projectsQuery);
 const { data: projects, error: projectsError } =
@@ -18,7 +18,7 @@ const { data: projects, error: projectsError } =
 
       <template v-else>
         <ProjectsHero v-if="hero" :title="hero.title" :content="hero.content" />
-        <AllProjects v-if="projects" :projects="projects" />
+        <ProjectsMarquee v-animate v-if="projects" :projects="projects" />
       </template>
     </div>
   </section>

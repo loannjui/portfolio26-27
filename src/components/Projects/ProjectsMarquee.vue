@@ -78,7 +78,10 @@ onUnmounted(() => cancelAnimationFrame(frame));
 
 <style scoped>
 #projectsPreview {
-  padding-top: 2rem;
+  padding-top: 1.5rem;
+  @media (min-width: 768px) {
+    padding-top: 2.5rem;
+  }
 }
 .marquee {
   --marquee-offset: 3rem;

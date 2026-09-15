@@ -42,9 +42,9 @@ main.container {
 }
 
 .gap-xl {
-  gap: 1rem;
+  gap: 1.5rem;
   @media (min-width: 768px) {
-    gap: 2rem;
+    gap: 2.5rem;
   }
 }
 
@@ -98,7 +98,7 @@ main.container {
   animation-timing-function: var(--bezier-o);
 }
 
-/* Text sliding up behind its own overflow, on a .reveal element */
+/* Text sliding up behind its own overflow */
 [data-animate="reveal"] {
   opacity: 1;
 }
