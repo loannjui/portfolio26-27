@@ -32,8 +32,11 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
     class="hero container flex-column flex-end gap-xl pad-section"
   >
     <div class="container flex-column gap-md">
-      <h2 v-animate>{{ title }}</h2>
-      <div v-animate class="separator" />
+      <h1 class="hero-title">
+        <span v-animate:reveal class="reveal"
+          ><span>{{ title }}</span></span
+        >
+      </h1>
     </div>
     <div class="grid gap-xl">
       <div class="col-xs-12 col-xl-4">
@@ -47,10 +50,9 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
           <img class="img-responsive" :src="block.url" :alt="block.alt" />
         </figure>
       </div>
-
-      <div v-animate class="col-xs-12 col-xl-6 container flex-column">
+      <div v-animate class="col-xs-12 col-xl-4 container flex-column">
         <p v-for="block in texts" :key="block._key">
-          {{ block.content }}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ block.content }}
         </p>
       </div>
     </div>

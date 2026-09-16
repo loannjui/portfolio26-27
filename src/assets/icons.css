@@ -21,7 +21,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   &.small {
-    font-size: .6875em;
+    font-size: 0.65em;
   }
 }
 

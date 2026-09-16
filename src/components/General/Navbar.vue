@@ -229,10 +229,6 @@ nav {
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 1rem;
-
-  @media (min-width: 768px) {
-    padding: 1rem 1.5rem;
-  }
 }
 
 .links {

@@ -1,5 +1,5 @@
 :root {
-  --white: #f8f7f7;
+  --white: #fdfcfc;
   --black: #272525;
   --grey: #7d7d7d;
   --dark-grey: #3e3b3b;
@@ -19,17 +19,17 @@
   --bezier-o: cubic-bezier(0.4, 0, 0.2, 1);
   --stagger: 0.25s;
   --picture-offset: 2rem;
-  --page-padding: 0 1rem;
+  --page-padding: 1rem;
   --section-padding: 1rem;
 
   @media (min-width: 768px) {
-    --page-padding: 0 1.5rem;
+    --page-padding: 1.5rem;
     --section-padding: 1.5rem;
   }
 
   @media (min-width: 1440px) {
     --picture-offset: 3rem;
-    --page-padding: 0 3rem;
+    --page-padding: 4rem;
     --section-padding: 2.5rem;
   }
 
@@ -63,8 +63,8 @@
 @font-face {
   font-family: "Melange Grotesk";
   src:
-    url("fonts/KMRMelangeGrotesk-Regular.woff2") format("woff2"),
-    url("fonts/KMRMelangeGrotesk-Regular.woff") format("woff");
+    url("fonts/KMRMelangeGrotesk-Book.woff2") format("woff2"),
+    url("fonts/KMRMelangeGrotesk-Book.woff") format("woff");
   font-weight: 400;
 }
 

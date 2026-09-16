@@ -2,7 +2,7 @@
 @import "./icons.css";
 
 main {
-  padding: var(--page-padding);
+  padding: 0 var(--page-padding);
 }
 
 .container {
@@ -158,6 +158,67 @@ h2 {
   }
 }
 
+.hero-subtitle {
+  display: block;
+  width: 100%;
+  text-align: justify;
+  text-align-last: justify;
+}
+
+.hero-title {
+  font-size: 15.4cqw;
+  overflow: hidden;
+  line-height: 0.9;
+
+  span {
+    font-weight: 700;
+  }
+
+  @media (min-width: 1440px) {
+    font-size: 15.28cqw;
+    line-height: 0.9;
+    margin: 0 -0.5rem;
+  }
+
+  @media (min-width: 1920px) {
+    font-size: 15.21cqw;
+  }
+}
+
+.hero-img {
+  position: absolute;
+  flex: 0 0 auto;
+  z-index: -1;
+  width: calc(100% - 4rem);
+  left: 2rem;
+  top: 15vh;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    left: auto;
+    right: 2rem;
+    top: 30vh;
+  }
+
+  @media (min-width: 1440px) {
+    width: 33.3333%;
+    left: auto;
+    right: calc(var(--page-padding) + 1rem);
+    top: 4.75rem;
+  }
+}
+
+.hero-img img {
+  width: 100%;
+  height: auto;
+  filter: invert(0);
+  transition: filter var(--transi-fast) var(--bezier-o);
+
+  [data-theme="dark"] & {
+    filter: invert(1);
+  }
+}
+
 h3 {
   font-size: clamp(1.5rem, 2.5vw, 2.5rem);
   line-height: 1;
@@ -170,6 +231,7 @@ h3 {
 
 h4 {
   font-size: clamp(1.2rem, 1.4vw, 1.5rem);
+  font-weight: 400;
   line-height: 1.1;
 
   @media (min-width: 1440px) {
@@ -239,9 +301,8 @@ button {
 
 .separator {
   width: 100%;
-  height: 1px;
-  background-color: var(--color-light-light-bg) !important;
-  transition: background-color var(--transi-fast) var(--bezier-o);
+  border-top: 1px solid var(--color-light-light-bg);
+  transition: border-top var(--transi-fast) var(--bezier-o);
 }
 
 .col-xs-4 {

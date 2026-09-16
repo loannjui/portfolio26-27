@@ -13,7 +13,7 @@ const { data } = useSanityQuery(mediaByTitleQuery, { title: props.name });
 </script>
 
 <template>
-  <div v-if="data?.url" v-animate:fade class="picture-separator pad-section">
+  <div v-if="data?.url" v-animate:fade class="picture-separator">
     <img :src="data.url" :alt="data.alt ?? ''" />
   </div>
 </template>
@@ -25,6 +25,7 @@ const { data } = useSanityQuery(mediaByTitleQuery, { title: props.name });
   height: 200px;
   overflow: hidden;
   border-radius: var(--border-radius);
+  margin-bottom: var(--padding-section);
 }
 
 .picture-separator img {

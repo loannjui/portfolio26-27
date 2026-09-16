@@ -37,10 +37,6 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 
 <template>
   <div class="contact-wrapper">
-    <div v-if="image?.url" v-animate:fade class="background-picture">
-      <img :src="image.url" :alt="image.alt ?? ''" />
-    </div>
-
     <section v-animate id="contact" class="grid gap-xl">
       <div class="col-xs-12 col-xl-12 container flex-column gap-md">
         <h2>{{ title }}</h2>
@@ -63,6 +59,9 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
         />
       </div>
     </section>
+    <div v-if="image?.url" v-animate:fade class="background-picture">
+      <img :src="image.url" :alt="image.alt ?? ''" />
+    </div>
   </div>
 </template>
 
@@ -100,13 +99,13 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
   top: var(--picture-offset);
   right: 0;
   bottom: 0;
-  left: -3rem;
+  left: calc(-1 * var(--page-padding));
   pointer-events: none;
 }
 
 .background-picture img {
   display: block;
-  width: calc(100% + 1rem);
+  width: calc(100% + var(--page-padding));
   height: 100%;
   object-fit: cover;
   object-position: center;
@@ -115,14 +114,6 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 
   [data-theme="dark"] & {
     filter: invert(1);
-  }
-
-  @media (min-width: 768px) {
-    width: calc(100% + 1.5rem);
-  }
-
-  @media (min-width: 1440px) {
-    width: calc(100% + 3rem);
   }
 }
 </style>

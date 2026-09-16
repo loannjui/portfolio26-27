@@ -27,7 +27,7 @@ defineProps({
       </h4>
       <div
         v-animate:fade
-        class="hero-img flex-xs-12 flex-xl-4"
+        class="hero-img"
         v-else-if="block._type === 'reference' && block.url"
       >
         <img class="img-responsive" :src="block.url" :alt="block.alt" />
@@ -52,62 +52,6 @@ defineProps({
   @media (min-width: 1440px) {
     height: 80dvh;
     padding-top: 0;
-  }
-}
-.hero-subtitle {
-  display: block;
-}
-
-.hero-title {
-  font-size: 15.4cqw;
-  overflow: hidden;
-  line-height: 0.9;
-
-  span {
-    font-weight: 700;
-  }
-
-  @media (min-width: 1440px) {
-    font-size: 15.59cqw;
-    line-height: 0.9;
-    margin: 0 -0.5rem;
-  }
-
-  @media (min-width: 1920px) {
-    font-size: 15.21cqw;
-  }
-}
-
-.hero-img {
-  position: absolute;
-  z-index: -1;
-  width: calc(100% - 4rem);
-  left: 2rem;
-  top: 15vh;
-
-  @media (min-width: 768px) {
-    width: 50%;
-    left: auto;
-    right: 2rem;
-    top: 30vh;
-  }
-
-  @media (min-width: 1440px) {
-    width: 33%;
-    left: auto;
-    right: 12rem;
-    top: 4.75rem;
-  }
-}
-
-.hero-img img {
-  width: 100%;
-  height: auto;
-  filter: invert(0);
-  transition: filter var(--transi-fast) var(--bezier-o);
-
-  [data-theme="dark"] & {
-    filter: invert(1);
   }
 }
 </style>

@@ -34,8 +34,8 @@ const cellClass = computed(() => `col-xs-12 col-xl-${12 / count.value}`);
 </script>
 
 <template>
-  <table v-if="count" role="table">
-    <thead v-if="showHeader" role="rowgroup">
+  <table v-animate v-if="count" role="table">
+    <thead v-animate v-if="showHeader" role="rowgroup">
       <tr class="grid gap-xl" role="row">
         <th
           v-for="col in columns"
