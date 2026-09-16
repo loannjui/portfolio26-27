@@ -2,7 +2,7 @@
 @import "./icons.css";
 
 main {
-  padding: var(--page-pading);
+  padding: var(--page-padding);
 }
 
 .container {
@@ -49,7 +49,7 @@ main.container {
 }
 
 .pad-section {
-  padding: 2.5rem 0;
+  padding-bottom: var(--section-padding);
 }
 
 .flex-end {

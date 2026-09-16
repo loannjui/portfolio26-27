@@ -15,7 +15,7 @@ defineProps({
 </script>
 
 <template>
-  <section v-animate id="projectsPreview" class="container flex-column gap-md">
+  <section v-animate id="projectsPreview" class="container flex-column gap-md pad-section">
     <div class="container flex-middle flex-between">
       <h4 class="container gap-sm flex-middle">
         {{ title }}

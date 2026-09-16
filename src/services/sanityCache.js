@@ -5,14 +5,14 @@ const CACHE_PREFIX = 'sanity:'
 const DEFAULT_TTL = 5 * 60 * 1000
 
 /**
- * En développement on ne met rien en cache : voir ses modifications du Studio
- * immédiatement prime sur l'économie de requêtes.
+ * Nothing is cached in development: seeing Studio edits immediately matters
+ * more than saving requests.
  */
 const CACHE_ENABLED = import.meta.env.PROD
 
 /**
- * Requêtes en cours, pour ne pas lancer deux fois le même fetch en parallèle.
- * Vidé au rechargement de la page, contrairement au localStorage.
+ * In-flight requests, so the same fetch is not fired twice in parallel.
+ * Cleared on page reload, unlike localStorage.
  */
 const inFlight = new Map()
 
@@ -33,21 +33,21 @@ function writeCache(key, data) {
   try {
     jsonStorage.setItem(key, { savedAt: Date.now(), data })
   } catch (err) {
-    // localStorage plein ou indisponible (navigation privée) : on ignore
-    console.warn('Cache Sanity non enregistré', err)
+    // localStorage full or unavailable (private browsing): ignore it
+    console.warn('Sanity cache entry not saved', err)
   }
 }
 
 /**
- * Exécute une requête GROQ en réutilisant le résultat mis en cache s'il est
- * encore frais.
+ * Runs a GROQ query, reusing the cached result while it is still fresh.
  *
- * @param {string} query - Requête GROQ
- * @param {Object} [params={}] - Paramètres de la requête
+ *
+ * @param {string} query - GROQ query
+ * @param {Object} [params={}] - Query parameters
  * @param {Object} [options={}]
- * @param {number} [options.ttl=300000] - Durée de validité du cache en ms
- * @param {boolean} [options.force=false] - Ignorer le cache et refetch
- * @returns {Promise<any>} Le résultat de la requête
+ * @param {number} [options.ttl=300000] - Cache lifetime in ms
+ * @param {boolean} [options.force=false] - Bypass the cache and refetch
+ * @returns {Promise<any>} The query result
  */
 export function cachedFetch(query, params = {}, { ttl = DEFAULT_TTL, force = false } = {}) {
   const key = cacheKey(query, params)
@@ -76,7 +76,7 @@ export function cachedFetch(query, params = {}, { ttl = DEFAULT_TTL, force = fal
   return request
 }
 
-// Vide tout le cache Sanity du localStorage.
+// Clears every Sanity cache entry from localStorage.
 
 export function clearCache() {
   Object.keys(localStorage)

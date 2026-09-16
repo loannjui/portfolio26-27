@@ -59,7 +59,7 @@ defineProps({
 }
 
 .hero-title {
-  font-size: 15.5cqw;
+  font-size: 15.4cqw;
   overflow: hidden;
   line-height: 0.9;
 
@@ -68,7 +68,7 @@ defineProps({
   }
 
   @media (min-width: 1440px) {
-    font-size: 15.7cqw;
+    font-size: 15.59cqw;
     line-height: 0.9;
     margin: 0 -0.5rem;
   }

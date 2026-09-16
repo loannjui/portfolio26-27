@@ -3,14 +3,14 @@ import { sanity } from "@/services/sanity.js";
 import { cachedFetch } from "@/services/sanityCache.js";
 
 /**
- * Exécute une requête GROQ et expose son résultat de façon réactive.
+ * Runs a GROQ query and exposes its result reactively.
  *
- * En développement, écoute les mutations du dataset et réinterroge Sanity dès
- * qu'un document change : les modifications faites dans le Studio apparaissent
- * sans recharger la page. En production, l'écoute n'est pas mise en place.
+ * In development, listens for dataset mutations and re-queries Sanity as soon
+ * as a document changes: edits made in the Studio show up without reloading
+ * the page. In production, no listener is set up.
  *
- * @param {string} query - Requête GROQ
- * @param {Object} [params={}] - Paramètres de la requête
+ * @param {string} query - GROQ query
+ * @param {Object} [params={}] - Query parameters
  * @returns {Object} { data, error, loading, refresh }
  */
 export function useSanityQuery(query, params = {}) {
@@ -34,9 +34,9 @@ export function useSanityQuery(query, params = {}) {
   refresh();
 
   if (import.meta.env.DEV) {
-    // '*' écoute tout le dataset : en dev on privilégie la simplicité.
-    // includeResult/includeMutations à false car on refetch de toute façon,
-    // inutile de faire transiter le document.
+    // '*' listens to the whole dataset: in dev we favour simplicity.
+    // includeResult/includeMutations are false because we refetch anyway,
+    // so there is no point in sending the document over the wire.
     const subscription = sanity
       .listen(
         "*",
@@ -51,7 +51,7 @@ export function useSanityQuery(query, params = {}) {
         next: (event) => {
           if (event.type === "mutation") refresh({ force: true });
         },
-        error: (err) => console.warn("Écoute Sanity interrompue", err),
+        error: (err) => console.warn("Sanity listener interrupted", err),
       });
 
     onScopeDispose(() => subscription.unsubscribe());

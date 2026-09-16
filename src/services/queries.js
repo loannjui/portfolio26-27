@@ -1,4 +1,4 @@
-// GROQ REQUESTS & fragments
+// GROQ queries & reusable fragments
 
 // Section content
 export const SECTION_CONTENT = `
@@ -31,7 +31,7 @@ export const SECTION_CONTENT = `
       }
     }`;
 
-// Thumbnail projects
+// Fields used by project thumbnails
 export const PROJECT_CARD = `
   _id,
   title,
@@ -39,7 +39,7 @@ export const PROJECT_CARD = `
   "coverUrl": coverImage.asset->url,
   date`;
 
-// Array "sections"
+// The "sections" array of a page
 export const SECTIONS = `
   sections[]{
     _key,
@@ -53,7 +53,7 @@ ${SECTION_CONTENT},
     }
   }`;
 
-// Home and sections
+// Home page with its sections
 export const homeQuery = `
 *[_type == "page" && slug.current == "/"][0]{
   title,${SECTIONS}
@@ -70,10 +70,10 @@ const aboutSectionQuery = (subtitle) => `
 ${SECTION_CONTENT}
   }`;
 
-// Home about
+// About block shown on the home page
 export const aboutHomeQuery = aboutSectionQuery("home");
 
-// About page
+// About hero shown on the about page
 export const aboutHeroQuery = aboutSectionQuery("about_page");
 
 export const whatICanDoQuery = `
@@ -113,7 +113,7 @@ export const projectsQuery = `
 ${SECTION_CONTENT}
   }`;
 
-// Image called by title
+// Single image looked up by its title
 export const mediaByTitleQuery = `
 *[_type == "media" && title == $title][0]{
   "url": image.asset->url,

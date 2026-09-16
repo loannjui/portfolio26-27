@@ -47,8 +47,8 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
     text-transform: uppercase;
     transition:
       color var(--transi-fast) var(--bezier-o),
-      background-color var(--transi-fast) var(--bezier-o),
-      border var(--transi-fast) var(--bezier-o),
+      background-color var(--transi-mid) var(--bezier-o),
+      border var(--transi-mid) var(--bezier-o),
       opacity var(--transi-fast) var(--bezier-o);
   }
 

@@ -12,21 +12,25 @@
   --border-radius: 0.25rem;
 
   --transi-fast: 0.75s;
+  --transi-mid: 1s;
   --transi-slow: 1.5s;
   --transi-rl-slow: 1.75s;
   --bezier-a: cubic-bezier(0.22, 1, 0.36, 1);
   --bezier-o: cubic-bezier(0.4, 0, 0.2, 1);
   --stagger: 0.25s;
   --picture-offset: 2rem;
-  --page-pading: 0 1rem;
+  --page-padding: 0 1rem;
+  --section-padding: 1rem;
 
   @media (min-width: 768px) {
-    --page-pading: 0 1.5rem;
+    --page-padding: 0 1.5rem;
+    --section-padding: 1.5rem;
   }
 
   @media (min-width: 1440px) {
     --picture-offset: 3rem;
-    --page-pading: 0 3rem;
+    --page-padding: 0 3rem;
+    --section-padding: 2.5rem;
   }
 
   /* Light theme */
@@ -59,16 +63,16 @@
 @font-face {
   font-family: "Melange Grotesk";
   src:
-    url("fonts/MelangeGrotesk-Regular.woff2") format("woff2"),
-    url("fonts/MelangeGrotesk-Regular.woff") format("woff");
+    url("fonts/KMRMelangeGrotesk-Regular.woff2") format("woff2"),
+    url("fonts/KMRMelangeGrotesk-Regular.woff") format("woff");
   font-weight: 400;
 }
 
 @font-face {
   font-family: "Melange Grotesk";
   src:
-    url("fonts/MelangeGrotesk-SemiBold.woff2") format("woff2"),
-    url("fonts/MelangeGrotesk-SemiBold.woff") format("woff");
+    url("fonts/KMRMelangeGrotesk-SemiBold.woff2") format("woff2"),
+    url("fonts/KMRMelangeGrotesk-SemiBold.woff") format("woff");
   font-weight: 700;
 }
 

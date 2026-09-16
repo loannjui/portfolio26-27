@@ -57,9 +57,3 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
     <Tab v-if="table" :columns="table.columns" :rows="table.rows" />
   </section>
 </template>
-
-<style scoped>
-section {
-  padding-bottom: 2.5rem;
-}
-</style>
