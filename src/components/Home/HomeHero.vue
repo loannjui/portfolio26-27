@@ -44,14 +44,3 @@ defineProps({
     </h1>
   </section>
 </template>
-
-<style scoped>
-#home {
-  padding-top: 60vh;
-
-  @media (min-width: 1440px) {
-    height: 80dvh;
-    padding-top: 0;
-  }
-}
-</style>

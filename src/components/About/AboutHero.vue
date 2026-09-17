@@ -27,18 +27,21 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 </script>
 
 <template>
-  <section
-    id="about"
-    class="hero container flex-column flex-end gap-xl pad-section"
-  >
+  <section id="about" class="hero container flex-column flex-end gap-xl">
     <div class="container flex-column gap-md">
       <h1 class="hero-title">
         <span v-animate:reveal class="reveal"
           ><span>{{ title }}</span></span
         >
       </h1>
-    </div>
-    <div class="grid gap-xl">
+
+      <div class="grid gap-xl">
+        <div v-animate class="col-xs-12 col-xl-6 container flex-column">
+          <h4 v-for="block in texts" :key="block._key">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ block.content }}
+          </h4>
+        </div>
+        <!--
       <div class="col-xs-12 col-xl-4">
         <figure
           v-animate:fade
@@ -50,10 +53,8 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
           <img class="img-responsive" :src="block.url" :alt="block.alt" />
         </figure>
       </div>
-      <div v-animate class="col-xs-12 col-xl-4 container flex-column">
-        <p v-for="block in texts" :key="block._key">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ block.content }}
-        </p>
+    -->
+        <div class="col-xs-12 col-xl-2" />
       </div>
     </div>
     <Tab v-if="table" :columns="table.columns" :rows="table.rows" />

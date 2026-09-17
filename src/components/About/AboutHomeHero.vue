@@ -28,7 +28,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 
 <template>
   <section
-    id="about"
+    id="aboutSection"
     class="hero container flex-column flex-end gap-xl pad-section"
   >
     <div class="container flex-column gap-md">

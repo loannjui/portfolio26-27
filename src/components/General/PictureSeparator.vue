@@ -25,7 +25,7 @@ const { data } = useSanityQuery(mediaByTitleQuery, { title: props.name });
   height: 200px;
   overflow: hidden;
   border-radius: var(--border-radius);
-  margin-bottom: var(--padding-section);
+  margin-bottom: var( --section-padding);
 }
 
 .picture-separator img {

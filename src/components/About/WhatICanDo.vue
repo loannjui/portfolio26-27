@@ -26,7 +26,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 
 <template>
   <section
-    id="about"
+    id="whatICanDo"
     class="hero container flex-column flex-end gap-md pad-section"
   >
     <h2 v-animate>{{ title }}</h2>

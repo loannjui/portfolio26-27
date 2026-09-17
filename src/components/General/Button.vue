@@ -16,7 +16,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
 
 <template>
   <component :is="element" :href="href" class="btn">
-    <span :class="['btn-content', `btn-${variant}`]">
+    <span :class="['btn-content', `btn-${variant}`, 'details']">
       <span
         v-if="$slots.alt"
         class="btn-label"
@@ -44,12 +44,12 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   justify-content: center;
 
   span {
-    text-transform: uppercase;
     transition:
       color var(--transi-fast) var(--bezier-o),
       background-color var(--transi-mid) var(--bezier-o),
       border var(--transi-mid) var(--bezier-o),
-      opacity var(--transi-fast) var(--bezier-o);
+      opacity var(--transi-fast) var(--bezier-o),
+      filter var(--transi-fast) var(--bezier-o);
   }
 
   &:focus-visible {
@@ -68,13 +68,10 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   border: 1px solid var(--color-main);
   background: var(--color-main);
   color: var(--color-main-bg);
-  &:hover {
-    border-color: var(--color-accent);
-    background: var(--color-accent);
-  }
+  filter: brightness(1);
+  &:hover,
   &:active {
-    border-color: var(--color-strong-accent);
-    background: var(--color-strong-accent);
+    filter: brightness(1.4);
   }
 
   [data-theme="dark"] &:hover,
@@ -88,39 +85,31 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   border: 1px solid var(--color-light-light-bg);
   color: var(--color-main);
   background-color: var(--color-main-bg);
-  &:hover {
+  &:hover,
+  &:active {
+    border-color: var(--color-main);
     color: var(--color-main-bg);
     background: var(--color-main);
-  }
-  &:active {
-    border-color: var(--color-placeholder);
-    background: var(--color-placeholder);
   }
 }
 
 .btn-stroke-inverted {
   border: 1px solid var(--color-main-bg);
   color: var(--color-main-bg);
-  &:hover {
+  &:hover,
+  &:active {
     color: var(--color-main);
     background: var(--color-main-bg);
-  }
-  &:active {
-    border-color: var(--color-light-light-bg);
-    background: var(--color-light-light-bg);
   }
 }
 
 .btn-contact {
   border: 1px solid var(--color-contact-text);
   color: var(--color-contact-text);
-  &:hover {
+  &:hover,
+  &:active {
     color: var(--color-contact);
     background: var(--color-contact-text);
-  }
-  &:active {
-    border-color: var(--color-light-light-bg);
-    background: var(--color-light-light-bg);
   }
 }
 
@@ -137,7 +126,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
@@ -154,7 +143,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
 
 .btn-content {
   border-radius: 9999px;
-  padding: 0.33rem 1rem;
+  padding: 0.33rem 0.75rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
