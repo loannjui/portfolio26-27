@@ -246,7 +246,7 @@ nav {
   position: absolute;
   top: 4.75rem;
   gap: 0.5rem;
-  background-color: var(--color-main);
+  background-color: var(--color-menu);
   border-radius: var(--border-radius);
   padding: 2rem;
 
@@ -291,8 +291,6 @@ nav ul li a {
   transition: transform var(--transi-fast) var(--bezier-a);
 }
 
-/* The button keeps receiving clicks and mouseenter/leave, but its inner
-   content is no longer a hit target, so none of the :hover rules match */
 .menu-toggle.no-hover :deep(.btn-content) {
   pointer-events: none;
 }

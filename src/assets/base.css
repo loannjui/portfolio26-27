@@ -4,13 +4,10 @@
   --grey: #7d7d7d;
   --dark-grey: #3e3b3b;
   --light-grey: #ccc8c8;
-  --red: #d71a1a;
-  --dark-red: #7f1111;
-  --blue: #1a5fd7;
-  --dark-blue: #163b7c;
 
   --border-radius: 0.75rem;
 
+  --transi-quick: 0.25s;
   --transi-fast: 0.75s;
   --transi-mid: 1s;
   --transi-slow: 1.5s;
@@ -43,11 +40,10 @@
   --color-light-bg: var(--grey);
   --color-lgt-txt: var(--grey);
   --color-placeholder: var(--dark-grey);
-  --color-accent: var(--red);
-  --color-strong-accent: var(--dark-red);
   --color-contact: var(--black);
   --color-contact-text: var(--white);
   --color-input: var(--light-grey);
+  --color-menu: var(--dark-grey);
 }
 
 [data-theme="dark"] {
@@ -55,9 +51,8 @@
 
   --color-main-bg: var(--black);
   --color-main: var(--white);
-  --color-accent: var(--blue);
-  --color-strong-accent: var(--dark-blue);
   --color-contact: var(--dark-grey);
+  --color-menu: var(--light-grey);
 }
 
 @font-face {

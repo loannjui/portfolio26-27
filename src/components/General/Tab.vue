@@ -97,7 +97,7 @@ table {
   border-collapse: collapse;
   text-transform: uppercase;
   th {
-    color: var(--color-light-bg);
+    color: var(--color-lgt-txt);
     text-align: left;
   }
 }

@@ -41,21 +41,16 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ block.content }}
           </h4>
         </div>
-        <!--
-      <div class="col-xs-12 col-xl-4">
-        <figure
-          v-animate:fade
-          class="wrapper"
-          v-for="block in images"
-          :key="block._key"
-          v-show="block.url"
-        >
-          <img class="img-responsive" :src="block.url" :alt="block.alt" />
-        </figure>
       </div>
-    -->
-        <div class="col-xs-12 col-xl-2" />
-      </div>
+    </div>
+    <div
+      v-animate:fade
+      class="hero-img"
+      v-for="block in images"
+      :key="block._key"
+      v-show="block.url"
+    >
+      <img class="img-responsive" :src="block.url" :alt="block.alt" />
     </div>
     <Tab v-if="table" :columns="table.columns" :rows="table.rows" />
   </section>

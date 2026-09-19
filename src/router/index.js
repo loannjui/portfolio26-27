@@ -4,7 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
 import ProjectsView from "../views/ProjectsView.vue";
 import ProjectView from "../views/ProjectView.vue";
-import ContactView from "../views/ContactView.vue"
+import ContactView from "../views/ContactView.vue";
 
 const router = createRouter({
   history: createWebHistory(),

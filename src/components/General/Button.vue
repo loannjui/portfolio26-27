@@ -77,7 +77,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   [data-theme="dark"] &:hover,
   [data-theme="dark"] &:focus,
   [data-theme="dark"] &:active {
-    color: var(--color-main);
+    filter: brightness(0.6);
   }
 }
 
