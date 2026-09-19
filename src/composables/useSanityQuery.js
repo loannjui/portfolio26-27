@@ -2,6 +2,9 @@ import { onScopeDispose, ref } from "vue";
 import { sanity } from "@/services/sanity.js";
 import { cachedFetch } from "@/services/sanityCache.js";
 
+// Shown in place of a section whose query failed
+export const CONTENT_ERROR = "The content could not be loaded.";
+
 /**
  * Runs a GROQ query and exposes its result reactively.
  *

@@ -1,6 +1,9 @@
 <script setup>
 import { computed } from "vue";
-import { useSanityQuery } from "../composables/useSanityQuery.js";
+import {
+  useSanityQuery,
+  CONTENT_ERROR,
+} from "../composables/useSanityQuery.js";
 import {
   homeQuery,
   aboutHomeQuery,
@@ -37,7 +40,7 @@ const projectsSection = computed(() =>
 </script>
 
 <template>
-  <p v-if="error" role="alert">Le contenu n’a pas pu être chargé.</p>
+  <p v-if="error" role="alert">{{ CONTENT_ERROR }}</p>
 
   <template v-else>
     <HomeHero

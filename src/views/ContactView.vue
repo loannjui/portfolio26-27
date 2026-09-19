@@ -1,5 +1,8 @@
 <script setup>
-import { useSanityQuery } from "../composables/useSanityQuery.js";
+import {
+  useSanityQuery,
+  CONTENT_ERROR,
+} from "../composables/useSanityQuery.js";
 import { contactQuery } from "../services/queries.js";
 import ContactSection from "../components/Contact/ContactSection.vue";
 
@@ -7,7 +10,7 @@ const { data: hero, error } = useSanityQuery(contactQuery);
 </script>
 
 <template>
-  <p v-if="error" role="alert">Le contenu n’a pas pu être chargé.</p>
+  <p v-if="error" role="alert">{{ CONTENT_ERROR }}</p>
 
   <ContactSection
     v-else-if="hero"
