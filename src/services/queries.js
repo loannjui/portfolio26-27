@@ -119,3 +119,19 @@ export const mediaByTitleQuery = `
   "url": image.asset->url,
   alt
 }`;
+
+// Single project with its sections, looked up by slug.
+// A project only ever holds plain sections, never a projectsSection.
+export const projectQuery = `
+*[_type == "project" && slug.current == $slug][0]{${PROJECT_CARD},
+  "excerpt": coalesce(excerpt, ""),
+  "externalUrl": coalesce(externalUrl, ""),
+  "skills": coalesce(skills, []),
+  "category": coalesce(category, ""),
+  sections[]{
+    _key,
+    title,
+    subtitle,
+${SECTION_CONTENT}
+  }
+}`;
