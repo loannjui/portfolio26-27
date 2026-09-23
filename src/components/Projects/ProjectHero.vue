@@ -60,7 +60,7 @@ const rows = computed(() =>
 
 <template>
   <section id="home" class="hero container flex-column flex-end gap-md">
-    <Button variant="filled" @click="goBack">
+    <Button variant="filled-round" @click="goBack">
       <span class="icon-arrow_back" aria-hidden="true"></span
     ></Button>
     <div class="grid">

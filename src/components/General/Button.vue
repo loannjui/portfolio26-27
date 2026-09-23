@@ -57,6 +57,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   }
 
   &:focus-visible .btn-filled,
+  &:focus-visible .btn-filled-round,
   &:focus-visible .btn-stroke {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
@@ -64,7 +65,8 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   }
 }
 
-.btn-filled {
+.btn-filled,
+.btn-filled-round {
   border: 1px solid var(--color-main);
   background: var(--color-main);
   color: var(--color-main-bg);
@@ -147,5 +149,14 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.btn-filled-round.btn-content {
+display: flex;
+justify-content: center;
+  font-size: 1.2rem;
+  padding: 0;
+  width: 2.75rem;
+  height: 2.75rem;
 }
 </style>
