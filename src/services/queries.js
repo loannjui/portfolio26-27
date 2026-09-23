@@ -1,5 +1,17 @@
 // GROQ queries & reusable fragments
 
+// Everything the image URL builder needs: the asset id to address the file,
+// and the hotspot and crop the editor set in the Studio. Dimensions come
+// along so the browser can reserve the space before the file lands.
+export const IMAGE = `{
+    "asset": asset->{
+      _id,
+      "dimensions": metadata.dimensions
+    },
+    hotspot,
+    crop
+  }`;
+
 // Section content
 export const SECTION_CONTENT = `
     content[]{
@@ -7,7 +19,7 @@ export const SECTION_CONTENT = `
       _type,
       _type == "textBlock" => { title, content },
       _type == "reference" => {
-        "url": @->image.asset->url,
+        "image": @->image${IMAGE},
         "alt": @->alt,
         "caption": @->caption
       },
@@ -18,7 +30,7 @@ export const SECTION_CONTENT = `
           cells[]{
             _key,
             value,
-            "imageUrl": image->image.asset->url,
+            "image": image->image${IMAGE},
             "imageAlt": image->alt,
             link{
               "type": reference->_type,
@@ -36,7 +48,7 @@ export const PROJECT_CARD = `
   _id,
   title,
   "slug": slug.current,
-  "coverUrl": coverImage.asset->url,
+  "cover": coverImage${IMAGE},
   date`;
 
 // The "sections" array of a page
@@ -116,7 +128,7 @@ ${SECTION_CONTENT}
 // Single image looked up by its title
 export const mediaByTitleQuery = `
 *[_type == "media" && title == $title][0]{
-  "url": image.asset->url,
+  "image": image${IMAGE},
   alt
 }`;
 

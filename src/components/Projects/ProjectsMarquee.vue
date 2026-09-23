@@ -67,7 +67,8 @@ onUnmounted(() => cancelAnimationFrame(frame));
         <ProjectThumbnail
           :title="project.title"
           :to="`/projects/${project.slug}`"
-          :src="project.coverUrl"
+          :source="project.cover"
+          sizes="min(32rem, 80vw)"
           :alt="project.title"
           :date="project.date"
         />

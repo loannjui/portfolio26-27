@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { resolveLink } from "../../services/links.js";
+import SanityImage from "./SanityImage.vue";
 
 const props = defineProps({
   columns: {
@@ -38,7 +39,7 @@ const preview = ref(null);
 const pointer = ref({ x: 0, y: 0 });
 
 const rowImage = (row) =>
-  [...(row.cells ?? [])].reverse().find((cell) => cell.imageUrl) ?? null;
+  [...(row.cells ?? [])].reverse().find((cell) => cell.image) ?? null;
 
 function showPreview(row, event) {
   preview.value = rowImage(row);
@@ -78,11 +79,12 @@ const previewHandlers = (row) => ({
             role="cell"
             v-on="index === PREVIEW_COLUMN ? previewHandlers(row) : {}"
           >
-            <img
-              v-if="cell.imageUrl"
+            <SanityImage
               class="cell-image"
-              :src="cell.imageUrl"
+              :source="cell.image"
               :alt="cell.imageAlt ?? ''"
+              :width="900"
+              sizes="(min-width: 1440px) 0px, 66vw"
             />
             <RouterLink
               v-if="cell.link?.to"
@@ -107,11 +109,13 @@ const previewHandlers = (row) => ({
 
     <Teleport to="body">
       <Transition name="fade">
-        <img
+        <SanityImage
           v-if="preview"
           class="cursor-image"
-          :src="preview.imageUrl"
+          :source="preview.image"
           :alt="preview.imageAlt ?? ''"
+          :width="600"
+          sizes="300px"
           :style="{ left: `${pointer.x}px`, top: `${pointer.y}px` }"
         />
       </Transition>

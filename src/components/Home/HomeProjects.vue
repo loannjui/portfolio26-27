@@ -15,7 +15,11 @@ defineProps({
 </script>
 
 <template>
-  <section v-animate id="projectsPreview" class="container flex-column gap-md pad-section">
+  <section
+    v-animate
+    id="projectsPreview"
+    class="container flex-column gap-md pad-section"
+  >
     <div class="container flex-middle flex-between">
       <h4 class="container gap-sm flex-middle">
         {{ title }}
@@ -33,7 +37,7 @@ defineProps({
         <ProjectThumbnail
           :title="project.title"
           :to="`/projects/${project.slug}`"
-          :src="project.coverUrl"
+          :source="project.cover"
           :alt="project.title"
           :date="project.date"
         />

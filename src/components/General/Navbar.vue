@@ -4,6 +4,12 @@ import { useRoute } from "vue-router";
 import Button from "./Button.vue";
 import { sanity } from "../../services/sanity.js";
 import { useJsonStorage } from "../../composables/useJsonStorage.js";
+import { IMAGE } from "../../services/queries.js";
+import { imageUrl } from "../../services/image.js";
+import SanityImage from "./SanityImage.vue";
+
+// The logo never renders wider than the navbar slot
+const LOGO_WIDTH = 240;
 
 const nav = ref(null);
 const navEl = ref(null);
@@ -27,12 +33,19 @@ function toggleTheme() {
 }
 
 const logo = computed(() => {
-  if (theme.value === "dark" && nav.value?.logoDarkUrl) {
-    return { url: nav.value.logoDarkUrl, alt: nav.value.logoDarkAlt };
+  if (theme.value === "dark" && nav.value?.logoDark) {
+    return { source: nav.value.logoDark, alt: nav.value.logoDarkAlt };
   }
 
-  return { url: nav.value?.logoUrl, alt: nav.value?.logoAlt };
+  return { source: nav.value?.logo, alt: nav.value?.logoAlt };
 });
+
+// The dark logo is preloaded so switching theme does not blink
+const darkLogoUrl = computed(() =>
+  nav.value?.logoDark
+    ? imageUrl(nav.value.logoDark, { width: LOGO_WIDTH })
+    : "",
+);
 
 const route = useRoute();
 
@@ -114,9 +127,9 @@ onMounted(async () => {
 
   const query = `
     *[_type == "nav"][0]{
-      "logoUrl": logo->image.asset->url,
+      "logo": logo->image${IMAGE},
       "logoAlt": logo->alt,
-      "logoDarkUrl": logoDark->image.asset->url,
+      "logoDark": logoDark->image${IMAGE},
       "logoDarkAlt": logoDark->alt,
       items[defined(page->slug.current)]{
         _key,
@@ -137,7 +150,13 @@ onMounted(async () => {
 <template>
   <nav ref="navEl" :data-scrolled="scrolled" v-animate:fade>
     <RouterLink to="/" class="logo">
-      <img v-if="logo.url" :src="logo.url" :alt="logo.alt" />
+      <SanityImage
+        :source="logo.source"
+        :alt="logo.alt"
+        :width="LOGO_WIDTH"
+        sizes="240px"
+        loading="eager"
+      />
     </RouterLink>
 
     <div class="links">
@@ -209,12 +228,7 @@ onMounted(async () => {
     </ul>
   </nav>
 
-  <link
-    v-if="nav?.logoDarkUrl"
-    rel="preload"
-    as="image"
-    :href="nav.logoDarkUrl"
-  />
+  <link v-if="darkLogoUrl" rel="preload" as="image" :href="darkLogoUrl" />
 </template>
 
 <style scoped>

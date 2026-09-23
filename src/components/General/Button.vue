@@ -155,7 +155,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
 display: flex;
 justify-content: center;
   font-size: 1.2rem;
-  padding: 0;
+  padding: 1px 0 0 0;
   width: 2.75rem;
   height: 2.75rem;
 }

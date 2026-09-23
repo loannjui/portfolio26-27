@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import Tab from "../General/Tab.vue";
+import SanityImage from "../General/SanityImage.vue";
 
 // Column placements the blocks cycle through, so they never stack up in a
 // single column. Text and images walk their own rhythm: a block only ever
@@ -80,10 +81,15 @@ const blocks = computed(() => {
         </template>
 
         <figure
-          v-else-if="block._type === 'reference' && block.url"
+          v-else-if="block._type === 'reference' && block.image"
           v-animate:fade
         >
-          <img class="img-responsive" :src="block.url" :alt="block.alt ?? ''" />
+          <SanityImage
+            class="img-responsive"
+            :source="block.image"
+            :alt="block.alt ?? ''"
+            sizes="(min-width: 1440px) 50vw, 100vw"
+          />
           <figcaption v-if="block.caption" class="details">
             {{ block.caption }}
           </figcaption>

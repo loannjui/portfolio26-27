@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import Button from "./Button.vue";
+import SanityImage from "./SanityImage.vue";
 
 defineProps({
   title: {
@@ -11,19 +12,27 @@ defineProps({
     type: String,
     default: "",
   },
-  src: {
-    type: String,
-    default: "",
+  source: {
+    type: Object,
+    default: null,
   },
   alt: {
     type: String,
     default: "",
+  },
+  sizes: {
+    type: String,
+    default: "(min-width: 1440px) 50vw, 100vw",
   },
   date: {
     type: String,
     default: "",
   },
 });
+
+// The CSS crops the thumbnail to 16/9 anyway; asking the CDN for that shape
+// means the crop follows the hotspot instead of the middle of the image
+const THUMBNAIL_RATIO = 16 / 9;
 
 // cursor position
 const x = ref(0);
@@ -43,7 +52,13 @@ function follow(event) {
     :to="to"
     @mousemove="follow"
   >
-    <img v-if="src" class="img-responsive" :src="src" :alt="alt" />
+    <SanityImage
+      class="img-responsive"
+      :source="source"
+      :alt="alt"
+      :ratio="THUMBNAIL_RATIO"
+      :sizes="sizes"
+    />
     <div class="art-details container flex-between">
       <h5>{{ title }}</h5>
       <time v-if="date" :datetime="date">{{ date.slice(0, 4) }}</time>

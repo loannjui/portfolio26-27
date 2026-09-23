@@ -25,7 +25,7 @@ const { data: project, error } = useSanityQuery(projectQuery, {
       :skills="project.skills"
       :category="project.category"
       :external-url="project.externalUrl"
-      :cover-url="project.coverUrl"
+      :cover="project.cover"
     />
 
     <ProjectSection

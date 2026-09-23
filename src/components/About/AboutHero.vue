@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import Tab from "../General/Tab.vue";
+import SanityImage from "../General/SanityImage.vue";
 
 const props = defineProps({
   title: {
@@ -48,9 +49,14 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
       class="hero-img"
       v-for="block in images"
       :key="block._key"
-      v-show="block.url"
+      v-show="block.image"
     >
-      <img class="img-responsive" :src="block.url" :alt="block.alt" />
+      <SanityImage
+        class="img-responsive"
+        :source="block.image"
+        :alt="block.alt"
+        sizes="(min-width: 1440px) 33vw, (min-width: 768px) 50vw, 100vw"
+      />
     </div>
     <Tab v-if="table" :columns="table.columns" :rows="table.rows" />
   </section>

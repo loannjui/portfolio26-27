@@ -1,4 +1,6 @@
 <script setup>
+import SanityImage from "../General/SanityImage.vue";
+
 defineProps({
   title: {
     type: String,
@@ -28,9 +30,15 @@ defineProps({
       <div
         v-animate:fade
         class="hero-img"
-        v-else-if="block._type === 'reference' && block.url"
+        v-else-if="block._type === 'reference' && block.image"
       >
-        <img class="img-responsive" :src="block.url" :alt="block.alt" />
+        <SanityImage
+          class="img-responsive"
+          :source="block.image"
+          :alt="block.alt"
+          sizes="(min-width: 1440px) 33vw, (min-width: 768px) 50vw, 100vw"
+          loading="eager"
+        />
       </div>
     </template>
 

@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { useRouter } from "vue-router";
 import Button from "../General/Button.vue";
 import Tab from "../General/Tab.vue";
+import SanityImage from "../General/SanityImage.vue";
 
 const props = defineProps({
   title: {
@@ -25,16 +26,14 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  coverUrl: {
-    type: String,
-    default: "",
+  cover: {
+    type: Object,
+    default: null,
   },
 });
 
 const router = useRouter();
 
-// Back to wherever they came from, or to the projects list when the page was
-// opened directly (shared link, new tab): there is no history to pop then
 function goBack() {
   if (window.history.state?.back) router.back();
   else router.push("/projects");
@@ -45,8 +44,7 @@ const columns = [
   { _key: "category", name: "Category" },
 ];
 
-// The skills go down the first column, the category sits on the first row of
-// the second one. A project with a category but no skill still gets its row.
+// The skills go down the first column, the category sits on the first row of the second one.
 const rows = computed(() =>
   (props.skills.length ? props.skills : [""]).map((skill, index) => ({
     _key: `row-${index}`,
@@ -86,12 +84,13 @@ const rows = computed(() =>
         <span class="icon-arrow small" aria-hidden="true"></span>
       </Button>
 
-      <img
-        v-if="coverUrl"
+      <SanityImage
         v-animate:fade
         class="img-responsive"
-        :src="coverUrl"
+        :source="cover"
         :alt="title"
+        sizes="100vw"
+        loading="eager"
       />
     </div>
   </section>

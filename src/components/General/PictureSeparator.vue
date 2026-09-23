@@ -1,6 +1,11 @@
 <script setup>
 import { useSanityQuery } from "../../composables/useSanityQuery.js";
 import { mediaByTitleQuery } from "../../services/queries.js";
+import SanityImage from "./SanityImage.vue";
+
+// The strip is 200px tall across the full page width: cropping to roughly
+// that shape at the CDN beats shipping a tall image for object-fit to trim
+const SEPARATOR_RATIO = 4;
 
 const props = defineProps({
   name: {
@@ -13,8 +18,12 @@ const { data } = useSanityQuery(mediaByTitleQuery, { title: props.name });
 </script>
 
 <template>
-  <div v-if="data?.url" v-animate:fade class="picture-separator">
-    <img :src="data.url" :alt="data.alt ?? ''" />
+  <div v-if="data?.image" v-animate:fade class="picture-separator">
+    <SanityImage
+      :source="data.image"
+      :alt="data.alt ?? ''"
+      :ratio="SEPARATOR_RATIO"
+    />
   </div>
 </template>
 
@@ -25,7 +34,7 @@ const { data } = useSanityQuery(mediaByTitleQuery, { title: props.name });
   height: 200px;
   overflow: hidden;
   border-radius: var(--border-radius);
-  margin-bottom: var( --section-padding);
+  margin-bottom: var(--section-padding);
 }
 
 .picture-separator img {

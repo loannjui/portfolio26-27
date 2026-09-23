@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import ContactForm from "./ContactForm.vue";
 import Tab from "../General/Tab.vue";
+import SanityImage from "../General/SanityImage.vue";
 import { useSanityQuery } from "../../composables/useSanityQuery.js";
 import { mediaByTitleQuery } from "../../services/queries.js";
 
@@ -59,8 +60,8 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
         />
       </div>
     </section>
-    <div v-if="image?.url" v-animate:fade class="background-picture">
-      <img :src="image.url" :alt="image.alt ?? ''" />
+    <div v-if="image?.image" v-animate:fade class="background-picture">
+      <SanityImage :source="image.image" :alt="image.alt ?? ''" />
     </div>
   </div>
 </template>

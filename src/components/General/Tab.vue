@@ -1,6 +1,10 @@
 <script setup>
 import { computed } from "vue";
 import { resolveLink } from "../../services/links.js";
+import SanityImage from "./SanityImage.vue";
+
+// The cell images never render taller than 1.5em
+const CELL_IMAGE_WIDTH = 96;
 
 const props = defineProps({
   columns: {
@@ -62,11 +66,12 @@ const cellClass = computed(() => `col-xs-12 col-xl-${12 / count.value}`);
           :class="cellClass"
           role="cell"
         >
-          <img
-            v-if="cell.imageUrl"
+          <SanityImage
             class="cell-image"
-            :src="cell.imageUrl"
+            :source="cell.image"
             :alt="cell.imageAlt ?? ''"
+            :width="CELL_IMAGE_WIDTH"
+            sizes="96px"
           />
           <RouterLink
             v-if="cell.link?.to"
