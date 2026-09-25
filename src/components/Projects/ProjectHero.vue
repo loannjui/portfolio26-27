@@ -35,8 +35,7 @@ const props = defineProps({
 const router = useRouter();
 
 function goBack() {
-  if (window.history.state?.back) router.back();
-  else router.push("/projects");
+  router.push("/projects");
 }
 
 const columns = [
@@ -57,41 +56,61 @@ const rows = computed(() =>
 </script>
 
 <template>
-  <section id="home" class="hero container flex-column flex-end gap-md">
-    <Button variant="filled-round" @click="goBack">
+  <section id="project" class="hero container flex-column gap-md">
+    <Button class="back-button" variant="filled-round" @click="goBack">
       <span class="icon-arrow_back" aria-hidden="true"></span
     ></Button>
-    <div class="grid">
-      <h1 class="hero-title">
-        <span v-animate:reveal class="reveal"
-          ><span>{{ title }}</span></span
+    <div class="grid gap-xl hero-content">
+      <div class="col-xs-12 col-xl-6 container flex-column gap-md">
+        <h1 v-animate>
+          {{ title }}
+        </h1>
+        <div class="separator"/>
+        <p v-if="excerpt" v-animate>{{ excerpt }}</p>
+
+        <Tab v-if="skills.length || category" :columns="columns" :rows="rows" />
+
+        <Button
+          v-if="externalUrl"
+          v-animate
+          class="website-button"
+          variant="stroke"
+          :href="externalUrl"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-      </h1>
-
-      <p v-if="excerpt" v-animate>{{ excerpt }}</p>
-
-      <Tab v-if="skills.length || category" :columns="columns" :rows="rows" />
-
-      <Button
-        v-if="externalUrl"
-        v-animate
-        variant="stroke"
-        :href="externalUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Visit website
-        <span class="icon-arrow small" aria-hidden="true"></span>
-      </Button>
-
-      <SanityImage
-        v-animate:fade
-        class="img-responsive"
-        :source="cover"
-        :alt="title"
-        sizes="100vw"
-        loading="eager"
-      />
+          Visit website
+          <span class="icon-arrow small" aria-hidden="true"></span>
+        </Button>
+      </div>
+      <div class="col-xs-12 col-xl-6 wrapper">
+        <SanityImage
+          v-animate:fade
+          class="img-responsive"
+          :source="cover"
+          :alt="title"
+          sizes="100vw"
+          loading="eager"
+        />
+      </div>
     </div>
+    <span class="icon-arrow_down small" aria-hidden="true"></span>
   </section>
 </template>
+
+<style scoped>
+#project {
+  min-height: 100vh;
+  justify-content: space-between;
+  padding: 9.75rem 0 5rem;
+}
+
+.back-button,
+.website-button {
+  align-self: flex-start;
+}
+
+.hero-content {
+  align-items: center;
+}
+</style>

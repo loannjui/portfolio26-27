@@ -29,8 +29,9 @@ const { data: project, error } = useSanityQuery(projectQuery, {
     />
 
     <ProjectSection
-      v-for="section in project.sections ?? []"
+      v-for="(section, index) in project.sections ?? []"
       :key="section._key"
+      :index="index"
       :title="section.title"
       :subtitle="section.subtitle"
       :content="section.content"

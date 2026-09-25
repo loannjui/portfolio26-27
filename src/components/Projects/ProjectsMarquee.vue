@@ -3,6 +3,8 @@ import { computed, onUnmounted, ref } from "vue";
 import ProjectThumbnail from "../General/ProjectThumbnail.vue";
 
 const RAMP_MS = 700;
+const DRAG_THRESHOLD = 6;
+const FRICTION = 0.95;
 
 const props = defineProps({
   projects: {
@@ -44,6 +46,91 @@ function rampTo(target) {
   frame = requestAnimationFrame(step);
 }
 
+// Swipe (touch only)
+let drag = null;
+let dragged = false;
+
+function getAnimation() {
+  return track.value?.getAnimations()[0];
+}
+
+// Converts a horizontal distance (px) into animation time (ms)
+function pxToMs(animation, px) {
+  const duration = animation.effect.getComputedTiming().duration;
+  return (-px * duration) / (track.value.offsetWidth / 2);
+}
+
+function seek(animation, delta) {
+  const duration = animation.effect.getComputedTiming().duration;
+  const time = animation.currentTime + delta;
+  animation.currentTime = ((time % duration) + duration) % duration;
+}
+
+function onPointerDown(event) {
+  if (event.pointerType === "mouse") return;
+  const animation = getAnimation();
+  if (!animation) return;
+
+  cancelAnimationFrame(frame);
+  rate = 0;
+  animation.playbackRate = 0;
+
+  dragged = false;
+  drag = {
+    animation,
+    x: event.clientX,
+    velocity: 0,
+    time: performance.now(),
+  };
+}
+
+function onPointerMove(event) {
+  if (!drag) return;
+
+  const dx = event.clientX - drag.x;
+  if (!dragged && Math.abs(dx) < DRAG_THRESHOLD) return;
+  if (!dragged) {
+    dragged = true;
+    track.value.setPointerCapture(event.pointerId);
+  }
+
+  const now = performance.now();
+  drag.velocity = dx / Math.max(now - drag.time, 1);
+  drag.x = event.clientX;
+  drag.time = now;
+
+  seek(drag.animation, pxToMs(drag.animation, dx));
+}
+
+function onPointerUp() {
+  if (!drag) return;
+  const { animation } = drag;
+  let velocity = dragged ? drag.velocity : 0;
+  drag = null;
+
+  // Inertia, then resume the marquee
+  let last = performance.now();
+  function glide(now) {
+    seek(animation, pxToMs(animation, velocity * (now - last)));
+    velocity *= FRICTION;
+    last = now;
+    if (Math.abs(velocity) > 0.02) {
+      frame = requestAnimationFrame(glide);
+    } else {
+      rampTo(1);
+    }
+  }
+  frame = requestAnimationFrame(glide);
+}
+
+// Prevents opening a project at the end of a swipe
+function onClickCapture(event) {
+  if (!dragged) return;
+  event.preventDefault();
+  event.stopPropagation();
+  dragged = false;
+}
+
 onUnmounted(() => cancelAnimationFrame(frame));
 </script>
 
@@ -54,7 +141,15 @@ onUnmounted(() => cancelAnimationFrame(frame));
     class="marquee"
     :style="{ '--marquee-items': projects.length }"
   >
-    <div ref="track" class="marquee-track">
+    <div
+      ref="track"
+      class="marquee-track"
+      @pointerdown="onPointerDown"
+      @pointermove="onPointerMove"
+      @pointerup="onPointerUp"
+      @pointercancel="onPointerUp"
+      @click.capture="onClickCapture"
+    >
       <div
         v-for="(project, index) in loop"
         :key="`${project._id}-${index}`"
@@ -97,7 +192,7 @@ onUnmounted(() => cancelAnimationFrame(frame));
   }
 
   @media (min-width: 1440px) {
-    margin-inline: -3rem;
+    margin-inline: -4rem;
   }
 }
 
@@ -107,6 +202,7 @@ onUnmounted(() => cancelAnimationFrame(frame));
   padding: 0 0 var(--marquee-offset);
   animation: marquee calc(var(--marquee-items, 4) * var(--marquee-speed)) linear
     infinite;
+  touch-action: pan-y;
 }
 
 .marquee-item {

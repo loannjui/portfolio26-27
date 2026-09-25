@@ -1,15 +1,35 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import Button from "../General/Button.vue";
+import Tab from "../General/Tab.vue";
 
-// Public by design: the key only identifies the inbox, set on web3forms.com
+const props = defineProps({
+  title: {
+    type: String,
+    default: "",
+  },
+  subtitle: {
+    type: String,
+    default: "",
+  },
+  content: {
+    type: Array,
+    default: () => [],
+  },
+});
+
+const texts = computed(() =>
+  props.content.filter((b) => b._type === "textBlock"),
+);
+const table = computed(() => props.content.find((b) => b._type === "table"));
+
 const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 
 const form = reactive({
   name: "",
   email: "",
   message: "",
-  // Honeypot: bots fill it in, humans never see it
+  // Honeypot
   botcheck: "",
 });
 
@@ -47,67 +67,110 @@ async function onSubmit() {
 </script>
 
 <template>
-  <form class="grid gap-md" @submit.prevent="onSubmit">
-    <label class="col-xs-6 container flex-column">
-      <span>Name</span>
-      <input
-        v-model.trim="form.name"
-        type="text"
-        name="name"
-        placeholder="Your name"
-        autocomplete="name"
-        required
-      />
-    </label>
-
-    <label class="col-xs-6 container flex-column">
-      <span>Email</span>
-      <input
-        v-model.trim="form.email"
-        type="email"
-        name="email"
-        placeholder="Your email"
-        autocomplete="email"
-        required
-      />
-    </label>
-
-    <label class="col-xs-12 container flex-column">
-      <span>Your message</span>
-      <textarea
-        v-model.trim="form.message"
-        name="message"
-        rows="5"
-        placeholder="Your message"
-        required
-      />
-    </label>
-
-    <!-- Honeypot -->
-    <input
-      v-model="form.botcheck"
-      class="botcheck"
-      type="checkbox"
-      tabindex="-1"
-      autocomplete="off"
-    />
-
-    <div class="col-xs-12">
-      <Button variant="contact" :disabled="sending">
-        {{ sending ? "Sending…" : "Submit" }}
-      </Button>
+  <section v-animate id="contact" class="grid gap-xl">
+    <div class="col-xs-12 col-xl-12 container flex-column gap-md">
+      <h2>{{ title }}</h2>
+      <div class="separator" />
     </div>
+    <div class="col-xs-12 col-xl-6">
+      <p v-animate v-for="block in texts" :key="block._key">
+        {{ block.content }}
+      </p>
+    </div>
+    <div class="col-xs-12 col-xl-6">
+      <form class="grid gap-md" @submit.prevent="onSubmit">
+        <label class="col-xs-6 container flex-column">
+          <span>Name</span>
+          <input
+            v-model.trim="form.name"
+            type="text"
+            name="name"
+            placeholder="Your name"
+            autocomplete="name"
+            required
+          />
+        </label>
 
-    <p v-if="status === 'sent'" class="col-xs-12 details" role="status">
-      Thank you for your emai, I'll answer it shortly.
-    </p>
-    <p v-else-if="status === 'error'" class="col-xs-12 details" role="alert">
-      The delivery failed. Try it again or write me someting directly.
-    </p>
-  </form>
+        <label class="col-xs-6 container flex-column">
+          <span>Email</span>
+          <input
+            v-model.trim="form.email"
+            type="email"
+            name="email"
+            placeholder="Your email"
+            autocomplete="email"
+            required
+          />
+        </label>
+
+        <label class="col-xs-12 container flex-column">
+          <span>Your message</span>
+          <textarea
+            v-model.trim="form.message"
+            name="message"
+            rows="5"
+            placeholder="Your message"
+            required
+          />
+        </label>
+
+        <!-- Honeypot -->
+        <input
+          v-model="form.botcheck"
+          class="botcheck"
+          type="checkbox"
+          tabindex="-1"
+          autocomplete="off"
+        />
+
+        <div class="col-xs-12">
+          <Button variant="contact" :disabled="sending">
+            {{ sending ? "Sending…" : "Submit" }}
+          </Button>
+        </div>
+
+        <p v-if="status === 'sent'" class="col-xs-12 details" role="status">
+          Thank you for your emai, I'll answer it shortly.
+        </p>
+        <p v-else-if="status === 'error'" class="col-xs-12 details" role="alert">
+          The delivery failed. Try it again or write me someting directly.
+        </p>
+      </form>
+    </div>
+    <div class="col-xs-12 col-xl-12">
+      <Tab
+        v-if="table"
+        :columns="table.columns"
+        :rows="table.rows"
+        :show-header="false"
+      />
+    </div>
+  </section>
 </template>
 
 <style scoped>
+#contact {
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-contact);
+  color: var(--color-contact-text);
+  border-radius: 0.5rem;
+  padding: 1.5rem 1rem;
+  :deep(a) {
+    color: var(--color-contact-text);
+  }
+  :deep(table) {
+    border-top: 1px solid var(--color-contact-text);
+  }
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
+}
+
+#contact .separator {
+  background-color: var(--color-contact-text) !important;
+}
+
 label > span {
   text-transform: uppercase;
   color: var(--color-lgt-txt);

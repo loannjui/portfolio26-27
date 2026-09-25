@@ -3,23 +3,6 @@ import { computed } from "vue";
 import Tab from "../General/Tab.vue";
 import SanityImage from "../General/SanityImage.vue";
 
-// Column placements the blocks cycle through, so they never stack up in a
-// single column. Text and images walk their own rhythm: a block only ever
-// shifts when another block of the same kind is added before it.
-const TEXT_LAYOUTS = [
-  { start: 1, span: 5 },
-  { start: 7, span: 5 },
-  { start: 3, span: 5 },
-  { start: 6, span: 6 },
-];
-
-const IMAGE_LAYOUTS = [
-  { start: 6, span: 7 },
-  { start: 1, span: 6 },
-  { start: 3, span: 8 },
-  { start: 2, span: 5 },
-];
-
 const props = defineProps({
   title: {
     type: String,
@@ -33,47 +16,38 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  index: {
+    type: Number,
+    default: 0,
+  },
 });
 
-function layoutFor(type, rank) {
-  const layouts = type === "reference" ? IMAGE_LAYOUTS : TEXT_LAYOUTS;
-  const { start, span } = layouts[rank % layouts.length];
+const number = computed(() => String(props.index + 1).padStart(2, "0"));
 
-  return { "--start": start, "--span": span };
+// Text and images take 4 columns on desktop; captioned images and tables go full width.
+function isFullWidth(block) {
+  return (
+    block._type === "table" ||
+    (block._type === "reference" && Boolean(block.caption))
+  );
 }
-
-// Tables are left full width; every other block gets a placement from the
-// cycle of its own type.
-const blocks = computed(() => {
-  const ranks = {};
-
-  return props.content.map((block) => {
-    ranks[block._type] = (ranks[block._type] ?? -1) + 1;
-
-    return {
-      ...block,
-      style:
-        block._type === "table"
-          ? null
-          : layoutFor(block._type, ranks[block._type]),
-    };
-  });
-});
 </script>
 
 <template>
   <section class="container flex-column gap-xl pad-section">
     <header v-if="title || subtitle" class="container flex-column gap-sm">
       <p v-if="subtitle" v-animate class="details all-caps">{{ subtitle }}</p>
-      <h2 v-if="title" v-animate>{{ title }}</h2>
+      <h3 v-if="title" v-animate>
+        {{ title }}<sup class="details">{{ number }}</sup>
+      </h3>
+      <div class="separator" />
     </header>
 
     <div class="grid gap-xl">
       <div
-        v-for="block in blocks"
+        v-for="block in content"
         :key="block._key"
-        class="block"
-        :style="block.style"
+        :class="isFullWidth(block) ? 'col-xs-12' : 'col-xs-12 col-xl-4'"
       >
         <template v-if="block._type === 'textBlock'">
           <h4 v-if="block.title" v-animate>{{ block.title }}</h4>
@@ -88,7 +62,9 @@ const blocks = computed(() => {
             class="img-responsive"
             :source="block.image"
             :alt="block.alt ?? ''"
-            sizes="(min-width: 1440px) 50vw, 100vw"
+            :sizes="
+              block.caption ? '100vw' : '(min-width: 1440px) 33vw, 100vw'
+            "
           />
           <figcaption v-if="block.caption" class="details">
             {{ block.caption }}
@@ -106,23 +82,27 @@ const blocks = computed(() => {
 </template>
 
 <style scoped>
+h3 {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+h3 sup {
+  vertical-align: baseline;
+  line-height: 1;
+}
+
 .grid {
   align-items: start;
 }
 
-.block {
-  grid-column: 1 / -1;
-}
-
-/* The placements only kick in once there is room to spread the blocks out */
-@media (min-width: 1440px) {
-  .block {
-    grid-column: var(--start, 1) / span var(--span, 12);
-  }
-}
-
 figure {
   margin: 0;
+}
+
+figure img {
+  width: 100%;
 }
 
 figcaption {

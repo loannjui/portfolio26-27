@@ -1,7 +1,5 @@
 <script setup>
-import { computed } from "vue";
 import ContactForm from "./ContactForm.vue";
-import Tab from "../General/Tab.vue";
 import SanityImage from "../General/SanityImage.vue";
 import { useSanityQuery } from "../../composables/useSanityQuery.js";
 import { mediaByTitleQuery } from "../../services/queries.js";
@@ -19,7 +17,6 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-  // Name of the media document shown behind the section
   imageName: {
     type: String,
     default: "Background_contact",
@@ -29,37 +26,11 @@ const props = defineProps({
 const { data: image } = useSanityQuery(mediaByTitleQuery, {
   title: props.imageName,
 });
-
-const texts = computed(() =>
-  props.content.filter((b) => b._type === "textBlock"),
-);
-const table = computed(() => props.content.find((b) => b._type === "table"));
 </script>
 
 <template>
   <div class="contact-wrapper">
-    <section v-animate id="contact" class="grid gap-xl">
-      <div class="col-xs-12 col-xl-12 container flex-column gap-md">
-        <h2>{{ title }}</h2>
-        <div class="separator" />
-      </div>
-      <div class="col-xs-12 col-xl-6">
-        <p v-animate v-for="block in texts" :key="block._key">
-          {{ block.content }}
-        </p>
-      </div>
-      <div class="col-xs-12 col-xl-6">
-        <ContactForm />
-      </div>
-      <div class="col-xs-12 col-xl-12">
-        <Tab
-          v-if="table"
-          :columns="table.columns"
-          :rows="table.rows"
-          :show-header="false"
-        />
-      </div>
-    </section>
+    <ContactForm :title="title" :subtitle="subtitle" :content="content" />
     <div v-if="image?.image" v-animate:fade class="background-picture">
       <SanityImage :source="image.image" :alt="image.alt ?? ''" />
     </div>
@@ -70,28 +41,6 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 .contact-wrapper {
   position: relative;
   padding-bottom: var(--picture-offset);
-}
-
-#contact {
-  position: relative;
-  z-index: 1;
-  background-color: var(--color-contact);
-  color: var(--color-contact-text);
-  border-radius: 0.5rem;
-  padding: 1.5rem 1rem;
-  :deep(a) {
-    color: var(--color-contact-text);
-  }
-  :deep(table) {
-    border-top: 1px solid var(--color-contact-text);
-  }
-  @media (min-width: 768px) {
-    padding: 2rem;
-  }
-}
-
-#contact .separator {
-  background-color: var(--color-contact-text) !important;
 }
 
 .background-picture {
