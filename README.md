@@ -1,23 +1,20 @@
-# .
+## Project
 
-This template should help get you started developing with Vue 3 in Vite.
+Personal 2026 portfolio for myself. Coded with vue with content managed by Sanity.
 
-## Recommended IDE Setup
+## Tech
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Vue 3** (Composition API, `<script setup>`) + **Vue Router**
+- **Vite** for development and builds
+- **Sanity** as a headless CMS (GROQ queries via `@sanity/client`, optimized images via `@sanity/image-url`)
+- **Web3Forms** to send the contact form
 
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Features
+- All content comes from a headless CMS
+- Responsive images generated from Sanity
+- Query caching in production to cut down on API calls
+- Light / dark theme saved in LocalStorage
+- Scroll-triggered reveal animations through `v-animate`
 
 ## Project Setup
 
