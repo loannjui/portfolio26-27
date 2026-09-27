@@ -62,9 +62,7 @@ function isFullWidth(block) {
             class="img-responsive"
             :source="block.image"
             :alt="block.alt ?? ''"
-            :sizes="
-              block.caption ? '100vw' : '(min-width: 1440px) 33vw, 100vw'
-            "
+            :sizes="block.caption ? '100vw' : '(min-width: 1440px) 33vw, 100vw'"
           />
           <figcaption v-if="block.caption" class="details">
             {{ block.caption }}
@@ -85,7 +83,10 @@ function isFullWidth(block) {
 h3 {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.25rem;
+  @media (min-width: 1440px) {
+    gap: 0.5rem;
+  }
 }
 
 h3 sup {

@@ -77,7 +77,6 @@ const previewHandlers = (row) => ({
             :key="cell._key"
             :class="cellClass(index)"
             role="cell"
-            v-on="index === PREVIEW_COLUMN ? previewHandlers(row) : {}"
           >
             <SanityImage
               class="cell-image"
@@ -90,6 +89,7 @@ const previewHandlers = (row) => ({
               v-if="cell.link?.to"
               :to="cell.link.to"
               :target="cell.link.newTab ? '_blank' : undefined"
+              v-on="index === PREVIEW_COLUMN ? previewHandlers(row) : {}"
             >
               {{ cell.value }}
             </RouterLink>
@@ -98,10 +98,16 @@ const previewHandlers = (row) => ({
               :href="cell.link.href"
               :target="cell.link.newTab ? '_blank' : undefined"
               :rel="cell.link.newTab ? 'noopener noreferrer' : undefined"
+              v-on="index === PREVIEW_COLUMN ? previewHandlers(row) : {}"
             >
               {{ cell.value }}
             </a>
-            <span v-else>{{ cell.value }}</span>
+            <span
+              v-else
+              v-on="index === PREVIEW_COLUMN ? previewHandlers(row) : {}"
+            >
+              {{ cell.value }}
+            </span>
           </td>
         </tr>
       </tbody>
@@ -218,6 +224,7 @@ td:nth-child(2) {
     height: auto;
     pointer-events: none;
     transform: translate(-50%, calc(-100% - 1rem));
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.07);
   }
 }
 </style>

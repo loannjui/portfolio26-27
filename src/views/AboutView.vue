@@ -34,7 +34,7 @@ const error = computed(
     :subtitle="hero.subtitle"
     :content="hero.content"
   />
-  <PictureSeparator name="Flower arrangement" />
+  <PictureSeparator name="Space" />
   <WhatICanDo
     v-if="whatICanDo"
     :title="whatICanDo.title"

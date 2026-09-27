@@ -65,7 +65,7 @@ const rows = computed(() =>
         <h1 v-animate>
           {{ title }}
         </h1>
-        <div class="separator"/>
+        <div class="separator" />
         <p v-if="excerpt" v-animate>{{ excerpt }}</p>
 
         <Tab v-if="skills.length || category" :columns="columns" :rows="rows" />
@@ -100,9 +100,19 @@ const rows = computed(() =>
 
 <style scoped>
 #project {
-  min-height: 100vh;
   justify-content: space-between;
-  padding: 9.75rem 0 5rem;
+  padding: 6.75rem 0 2rem;
+  @media (min-width: 1440px) {
+    padding: 9.75rem 0 5rem;
+    min-height: 100vh;
+  }
+}
+
+.back-button {
+  margin-bottom: 1rem;
+    @media (min-width: 1440px) {
+      margin-bottom: 0;
+    }
 }
 
 .back-button,

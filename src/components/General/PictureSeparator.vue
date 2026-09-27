@@ -3,8 +3,6 @@ import { useSanityQuery } from "../../composables/useSanityQuery.js";
 import { mediaByTitleQuery } from "../../services/queries.js";
 import SanityImage from "./SanityImage.vue";
 
-// The strip is 200px tall across the full page width: cropping to roughly
-// that shape at the CDN beats shipping a tall image for object-fit to trim
 const SEPARATOR_RATIO = 4;
 
 const props = defineProps({

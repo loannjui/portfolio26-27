@@ -182,7 +182,7 @@ h2 {
 }
 
 .hero-title {
-  font-size: 15.13cqw;
+  font-size: 15.12cqw;
   overflow: hidden;
   line-height: 0.9;
 
@@ -267,6 +267,10 @@ h5 {
 .details {
   font-size: clamp(0.75rem, 0.625vw, 1.5rem);
   font-weight: 700;
+}
+
+div p:last-of-type {
+  margin-bottom: 0;
 }
 
 p {
