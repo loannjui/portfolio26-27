@@ -29,6 +29,10 @@ const { data: hero, error } = useSanityQuery(notFoundQuery);
 </template>
 
 <style scoped>
+:deep(.hero-title .reveal) {
+  padding-bottom: 0.12em;
+}
+
 .home-link {
   align-self: flex-start;
   text-decoration: none;
