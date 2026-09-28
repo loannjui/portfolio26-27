@@ -23,7 +23,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # Same major version as local, so npm reads the lock file the same way
+          node-version: 24
           cache: npm
 
       - run: npm ci
