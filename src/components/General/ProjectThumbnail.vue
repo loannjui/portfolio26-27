@@ -109,7 +109,9 @@ function follow(event) {
   pointer-events: none;
 }
 
-.wrapper:hover .view {
-  opacity: 0.7;
+@media (hover: hover) {
+  .wrapper:hover .view {
+    opacity: 0.7;
+  }
 }
 </style>

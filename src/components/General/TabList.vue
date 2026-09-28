@@ -184,6 +184,7 @@ td:nth-child(2) {
   height: auto;
   margin-bottom: 1rem;
   border-radius: var(--border-radius);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.07);
 }
 
 .cursor-image {

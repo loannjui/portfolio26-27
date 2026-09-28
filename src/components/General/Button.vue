@@ -72,12 +72,10 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   background: var(--color-main);
   color: var(--color-main-bg);
   filter: brightness(1);
-  &:hover,
   &:active {
     filter: brightness(1.4);
   }
 
-  [data-theme="dark"] &:hover,
   [data-theme="dark"] &:focus,
   [data-theme="dark"] &:active {
     filter: brightness(0.6);
@@ -89,7 +87,6 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   border: 1px solid var(--color-light-light-bg);
   color: var(--color-main);
   background-color: var(--color-main-bg);
-  &:hover,
   &:active {
     border-color: var(--color-main);
     color: var(--color-main-bg);
@@ -100,7 +97,6 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
 .btn-stroke-inverted {
   border: 1px solid var(--color-main-bg);
   color: var(--color-main-bg);
-  &:hover,
   &:active {
     color: var(--color-main);
     background: var(--color-main-bg);
@@ -110,8 +106,36 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
 .btn-contact {
   border: 1px solid var(--color-contact-text);
   color: var(--color-contact-text);
-  &:hover,
   &:active {
+    color: var(--color-contact);
+    background: var(--color-contact-text);
+  }
+}
+
+@media (hover: hover) {
+  .btn-filled:hover,
+  .btn-filled-round:hover {
+    filter: brightness(1.4);
+  }
+
+  [data-theme="dark"] .btn-filled:hover,
+  [data-theme="dark"] .btn-filled-round:hover {
+    filter: brightness(0.6);
+  }
+
+  .btn-stroke:hover,
+  .btn-stroke-round:hover {
+    border-color: var(--color-main);
+    color: var(--color-main-bg);
+    background: var(--color-main);
+  }
+
+  .btn-stroke-inverted:hover {
+    color: var(--color-main);
+    background: var(--color-main-bg);
+  }
+
+  .btn-contact:hover {
     color: var(--color-contact);
     background: var(--color-contact-text);
   }

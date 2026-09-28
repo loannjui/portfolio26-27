@@ -5,6 +5,7 @@ import ProjectThumbnail from "../General/ProjectThumbnail.vue";
 const RAMP_MS = 700;
 const DRAG_THRESHOLD = 6;
 const FRICTION = 0.95;
+const MIN_ITEMS = 8;
 
 const props = defineProps({
   projects: {
@@ -13,10 +14,19 @@ const props = defineProps({
   },
 });
 
-const loop = computed(() => [...props.projects, ...props.projects]);
+const half = computed(() => {
+  const items = [];
+  if (!props.projects.length) return items;
+  while (items.length < MIN_ITEMS || items.length % 2) {
+    items.push(...props.projects);
+  }
+  return items;
+});
+
+const loop = computed(() => [...half.value, ...half.value]);
 
 function isOffset(index) {
-  return (index % (props.projects.length || 1)) % 2 === 1;
+  return index % 2 === 1;
 }
 
 const track = ref(null);
@@ -139,7 +149,7 @@ onUnmounted(() => cancelAnimationFrame(frame));
     v-animate
     id="projectsPreview"
     class="marquee"
-    :style="{ '--marquee-items': projects.length }"
+    :style="{ '--marquee-items': half.length }"
   >
     <div
       ref="track"
