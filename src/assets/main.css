@@ -305,6 +305,7 @@ button {
   max-width: 100%;
   height: auto;
   border-radius: var(--border-radius);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.07);
 }
 
 .wrapper {

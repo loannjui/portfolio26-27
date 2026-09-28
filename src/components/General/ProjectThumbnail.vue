@@ -76,6 +76,16 @@ function follow(event) {
 </template>
 
 <style scoped>
+/* Darkens the bottom of the image so the title stays readable */
+.wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 40% 0 0;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.5), transparent);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  pointer-events: none;
+}
+
 .art-details {
   position: absolute;
   width: calc(100% - 2rem);

@@ -24,12 +24,12 @@ const props = defineProps({
 
 const number = computed(() => String(props.index + 1).padStart(2, "0"));
 
-// Text and images take 4 columns on desktop; captioned images and tables go full width.
-function isFullWidth(block) {
-  return (
-    block._type === "table" ||
-    (block._type === "reference" && Boolean(block.caption))
-  );
+// Text and images take 4 columns on desktop, captioned images and embeds 8 and tables go full width.
+function columnClass(block) {
+  if (block._type === "table") return "col-xs-12";
+  if (block._type === "embed") return "col-xs-12 col-xl-8";
+  if (block._type === "reference" && block.caption) return "col-xs-12 col-xl-8";
+  return "col-xs-12 col-xl-4";
 }
 </script>
 
@@ -47,7 +47,7 @@ function isFullWidth(block) {
       <div
         v-for="block in content"
         :key="block._key"
-        :class="isFullWidth(block) ? 'col-xs-12' : 'col-xs-12 col-xl-4'"
+        :class="columnClass(block)"
       >
         <template v-if="block._type === 'textBlock'">
           <h4 v-if="block.title" v-animate>{{ block.title }}</h4>
@@ -62,7 +62,24 @@ function isFullWidth(block) {
             class="img-responsive"
             :source="block.image"
             :alt="block.alt ?? ''"
-            :sizes="block.caption ? '100vw' : '(min-width: 1440px) 33vw, 100vw'"
+            :sizes="
+              block.caption
+                ? '(min-width: 1440px) 67vw, 100vw'
+                : '(min-width: 1440px) 33vw, 100vw'
+            "
+          />
+          <figcaption v-if="block.caption" class="details">
+            {{ block.caption }}
+          </figcaption>
+        </figure>
+
+        <figure v-else-if="block._type === 'embed' && block.url" v-animate:fade>
+          <iframe
+            :src="block.url"
+            :title="block.title"
+            :style="{ aspectRatio: block.aspectRatio }"
+            loading="lazy"
+            allowfullscreen
           />
           <figcaption v-if="block.caption" class="details">
             {{ block.caption }}
@@ -104,6 +121,12 @@ figure {
 
 figure img {
   width: 100%;
+}
+
+figure iframe {
+  display: block;
+  width: 100%;
+  border: 0;
 }
 
 figcaption {

@@ -1,4 +1,5 @@
 <script setup>
+import { watch } from "vue";
 import { useRoute } from "vue-router";
 import {
   useSanityQuery,
@@ -7,12 +8,16 @@ import {
 import { projectQuery } from "../services/queries.js";
 import ProjectSection from "../components/Projects/ProjectSection.vue";
 import ProjectHero from "../components/Projects/ProjectHero.vue";
+import Button from "../components/General/Button.vue";
+import { setPageTitle } from "../router/index.js";
 
 const route = useRoute();
 
 const { data: project, error } = useSanityQuery(projectQuery, {
   slug: route.params.slug,
 });
+
+watch(project, (value) => setPageTitle(value?.title), { immediate: true });
 </script>
 
 <template>
@@ -36,5 +41,21 @@ const { data: project, error } = useSanityQuery(projectQuery, {
       :subtitle="section.subtitle"
       :content="section.content"
     />
+
+    <section class="container pad-section">
+      <RouterLink to="/projects" class="back-link container flex-middle gap-md">
+        <Button tag="span" variant="stroke-round" aria-hidden="true">
+          <span class="icon-arrow_back"></span>
+        </Button>
+        <h4>Back to projects</h4>
+      </RouterLink>
+    </section>
   </template>
 </template>
+
+<style scoped>
+.back-link {
+  color: inherit;
+  text-decoration: none;
+}
+</style>

@@ -12,16 +12,19 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
+      meta: { title: "Home" },
       component: HomeView,
     },
     {
       path: "/about",
       name: "about",
+      meta: { title: "About" },
       component: AboutView,
     },
     {
       path: "/projects",
       name: "projects",
+      meta: { title: "Projects" },
       component: ProjectsView,
     },
     {
@@ -32,9 +35,21 @@ const router = createRouter({
     {
       path: "/contact",
       name: "contact",
+      meta: { title: "Contact" },
       component: ContactView,
     },
   ],
+});
+
+export const SITE_TITLE = "Loann Juillerat";
+
+export function setPageTitle(title) {
+  document.title = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
+}
+
+// Pages without a static title (a project) set it themselves once loaded
+router.afterEach((to) => {
+  if (to.meta.title) setPageTitle(to.meta.title);
 });
 
 export default router;

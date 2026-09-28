@@ -23,6 +23,7 @@ export const SECTION_CONTENT = `
         "alt": @->alt,
         "caption": @->caption
       },
+      _type == "embed" => { url, title, aspectRatio, caption },
       _type == "table" => {
         columns[]{ _key, name },
         rows[]{

@@ -58,7 +58,8 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
 
   &:focus-visible .btn-filled,
   &:focus-visible .btn-filled-round,
-  &:focus-visible .btn-stroke {
+  &:focus-visible .btn-stroke,
+  &:focus-visible .btn-stroke-round {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
     border-radius: 9999px;
@@ -83,7 +84,8 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   }
 }
 
-.btn-stroke {
+.btn-stroke,
+.btn-stroke-round {
   border: 1px solid var(--color-light-light-bg);
   color: var(--color-main);
   background-color: var(--color-main-bg);
@@ -151,9 +153,10 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   gap: 0.5rem;
 }
 
-.btn-filled-round.btn-content {
-display: flex;
-justify-content: center;
+.btn-filled-round.btn-content,
+.btn-stroke-round.btn-content {
+  display: flex;
+  justify-content: center;
   font-size: 1.2rem;
   padding: 1px 0 0 0;
   width: 2.75rem;
