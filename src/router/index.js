@@ -5,6 +5,7 @@ import AboutView from "../views/AboutView.vue";
 import ProjectsView from "../views/ProjectsView.vue";
 import ProjectView from "../views/ProjectView.vue";
 import ContactView from "../views/ContactView.vue";
+import NotFoundView from "../views/NotFoundView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -37,6 +38,12 @@ const router = createRouter({
       name: "contact",
       meta: { title: "Contact" },
       component: ContactView,
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "not-found",
+      meta: { title: "Page not found" },
+      component: NotFoundView,
     },
   ],
 });

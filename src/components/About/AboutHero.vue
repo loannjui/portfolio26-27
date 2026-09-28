@@ -43,6 +43,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
           </h4>
         </div>
       </div>
+      <slot />
     </div>
     <div
       v-animate:fade

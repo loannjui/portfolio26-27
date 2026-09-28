@@ -110,6 +110,17 @@ export const contactQuery = `
 ${SECTION_CONTENT}
   }`;
 
+// 404 page, shown for any unknown URL
+export const notFoundQuery = `
+*[_type == "page" && slug.current == "404"][0]
+  .sections[_type == "section"][0]{
+    _key,
+    _type,
+    title,
+    subtitle,
+${SECTION_CONTENT}
+  }`;
+
 // Every project, newest first
 export const allProjectsQuery = `
 *[_type == "project"]|order(date desc){${PROJECT_CARD}
