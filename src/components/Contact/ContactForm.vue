@@ -185,7 +185,7 @@ input,
 textarea {
   font-family: inherit;
   font-size: inherit;
-  color: inherit;
+  color: var(--black);
   background: var(--color-input);
   border: none;
   border-radius: 9999px;

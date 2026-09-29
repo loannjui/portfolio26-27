@@ -32,6 +32,8 @@ jobs:
       - run: npm install --no-audit --no-fund
 
       - run: npm run build
+        env:
+          VITE_WEB3FORMS_KEY: ${{ secrets.VITE_WEB3FORMS_KEY }}
 
       # Only uploads the files that changed since the last deploy, and removes
       # the ones that no longer exist (old hashed files in assets/)
