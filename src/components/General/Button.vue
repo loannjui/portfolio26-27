@@ -45,11 +45,11 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
 
   span {
     transition:
-      color var(--transi-fast) var(--bezier-o),
-      background-color var(--transi-mid) var(--bezier-o),
-      border var(--transi-mid) var(--bezier-o),
-      opacity var(--transi-fast) var(--bezier-o),
-      filter var(--transi-fast) var(--bezier-o);
+      color var(--transi-quick) var(--bezier-o),
+      background-color var(--transi-quick) var(--bezier-o),
+      border var(--transi-quick) var(--bezier-o),
+      opacity var(--transi-quick) var(--bezier-o),
+      filter var(--transi-quick) var(--bezier-o);
   }
 
   &:focus-visible {
