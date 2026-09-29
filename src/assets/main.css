@@ -353,7 +353,7 @@ button {
 }
 
 #projects {
-  height: 100dvh;
+  height: 100vh;
 }
 
 @media (min-width: 1440px) {

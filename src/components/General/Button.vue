@@ -43,13 +43,16 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   align-items: center;
   justify-content: center;
 
-  span {
+  .btn-content {
     transition:
-      color var(--transi-quick) var(--bezier-o),
-      background-color var(--transi-quick) var(--bezier-o),
-      border var(--transi-quick) var(--bezier-o),
-      opacity var(--transi-quick) var(--bezier-o),
-      filter var(--transi-quick) var(--bezier-o);
+      color var(--transi-fast) var(--bezier-o),
+      background-color var(--transi-mid) var(--bezier-o),
+      border var(--transi-mid) var(--bezier-o),
+      filter var(--transi-fast) var(--bezier-o);
+  }
+
+  .btn-label span {
+    transition: opacity var(--transi-fast) var(--bezier-o);
   }
 
   &:focus-visible {
@@ -76,7 +79,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
     filter: brightness(1.4);
   }
 
-  [data-theme="dark"] &:focus,
+  [data-theme="dark"] .btn:focus-visible &,
   [data-theme="dark"] &:active {
     filter: brightness(0.6);
   }
