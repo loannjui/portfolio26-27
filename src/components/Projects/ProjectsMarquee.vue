@@ -6,6 +6,7 @@ const RAMP_MS = 700;
 const DRAG_THRESHOLD = 6;
 const FRICTION = 0.95;
 const MIN_ITEMS = 8;
+const WHEEL_IDLE_MS = 150;
 
 const props = defineProps({
   projects: {
@@ -56,9 +57,24 @@ function rampTo(target) {
   frame = requestAnimationFrame(step);
 }
 
-// Swipe (touch only)
 let drag = null;
 let dragged = false;
+let hovered = false;
+let wheelTimer = null;
+
+function resume() {
+  rampTo(hovered ? 0 : 1);
+}
+
+function onItemEnter() {
+  hovered = true;
+  if (!drag) rampTo(0);
+}
+
+function onItemLeave() {
+  hovered = false;
+  if (!drag) rampTo(1);
+}
 
 function getAnimation() {
   return track.value?.getAnimations()[0];
@@ -77,7 +93,10 @@ function seek(animation, delta) {
 }
 
 function onPointerDown(event) {
-  if (event.pointerType === "mouse") return;
+  if (event.pointerType === "mouse") {
+    if (event.button !== 0) return;
+    event.preventDefault();
+  }
   const animation = getAnimation();
   if (!animation) return;
 
@@ -127,10 +146,27 @@ function onPointerUp() {
     if (Math.abs(velocity) > 0.02) {
       frame = requestAnimationFrame(glide);
     } else {
-      rampTo(1);
+      resume();
     }
   }
   frame = requestAnimationFrame(glide);
+}
+
+function onWheel(event) {
+  if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+  const animation = getAnimation();
+  if (!animation || drag) return;
+
+  event.preventDefault();
+  cancelAnimationFrame(frame);
+  rate = 0;
+  animation.playbackRate = 0;
+
+  const scale = event.deltaMode === 1 ? 16 : 1;
+  seek(animation, pxToMs(animation, -event.deltaX * scale));
+
+  clearTimeout(wheelTimer);
+  wheelTimer = setTimeout(resume, WHEEL_IDLE_MS);
 }
 
 // Prevents opening a project at the end of a swipe
@@ -141,7 +177,10 @@ function onClickCapture(event) {
   dragged = false;
 }
 
-onUnmounted(() => cancelAnimationFrame(frame));
+onUnmounted(() => {
+  cancelAnimationFrame(frame);
+  clearTimeout(wheelTimer);
+});
 </script>
 
 <template>
@@ -158,6 +197,7 @@ onUnmounted(() => cancelAnimationFrame(frame));
       @pointermove="onPointerMove"
       @pointerup="onPointerUp"
       @pointercancel="onPointerUp"
+      @wheel="onWheel"
       @click.capture="onClickCapture"
     >
       <div
@@ -166,8 +206,8 @@ onUnmounted(() => cancelAnimationFrame(frame));
         class="marquee-item"
         :class="{ 'is-offset': isOffset(index) }"
         :aria-hidden="index >= projects.length ? 'true' : null"
-        @mouseenter="rampTo(0)"
-        @mouseleave="rampTo(1)"
+        @mouseenter="onItemEnter"
+        @mouseleave="onItemLeave"
       >
         <ProjectThumbnail
           :title="project.title"
