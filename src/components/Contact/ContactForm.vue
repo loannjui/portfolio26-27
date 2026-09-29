@@ -129,11 +129,11 @@ async function onSubmit() {
           </Button>
         </div>
 
-        <p v-if="status === 'sent'" class="col-xs-12 details" role="status">
-          Thank you for your emai, I'll answer it shortly.
+        <p v-if="status === 'sent'" class="col-xs-12 details form-status" role="status">
+          Thank you for your email, I'll answer it shortly.
         </p>
-        <p v-else-if="status === 'error'" class="col-xs-12 details" role="alert">
-          The delivery failed. Try it again or write me someting directly.
+        <p v-else-if="status === 'error'" class="col-xs-12 details form-status" role="alert">
+          The delivery failed. Try it again or write me something directly.
         </p>
       </form>
     </div>
@@ -205,5 +205,14 @@ textarea {
 
 textarea {
   border-radius: 1.5rem;
+}
+
+.form-status {
+  justify-self: start;
+  margin-bottom: 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--white);
+  color: var(--black);
 }
 </style>
