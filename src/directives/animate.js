@@ -7,7 +7,12 @@ function getObserver() {
     (entries) => {
       const appearing = entries
         .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        .sort(
+          (a, b) =>
+            (b.target.dataset.animate === "reveal") -
+              (a.target.dataset.animate === "reveal") ||
+            a.boundingClientRect.top - b.boundingClientRect.top,
+        );
 
       appearing.forEach((entry, index) => {
         entry.target.style.setProperty("--animate-index", index);
