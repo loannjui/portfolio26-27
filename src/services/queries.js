@@ -50,7 +50,8 @@ export const PROJECT_CARD = `
   title,
   "slug": slug.current,
   "cover": coverImage${IMAGE},
-  date`;
+  date,
+  endDate`;
 
 // The "sections" array of a page
 export const SECTIONS = `

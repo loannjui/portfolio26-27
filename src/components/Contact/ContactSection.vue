@@ -40,7 +40,11 @@ const { data: image } = useSanityQuery(mediaByTitleQuery, {
 <style scoped>
 .contact-wrapper {
   position: relative;
-  padding-bottom: var(--picture-offset);
+  padding-bottom: calc(var(--picture-offset) + 2rem);
+
+  @media (min-width: 768px) {
+    padding-bottom: var(--picture-offset);
+  }
 }
 
 .background-picture {

@@ -28,6 +28,10 @@ defineProps({
     type: String,
     default: "",
   },
+  endDate: {
+    type: String,
+    default: "",
+  },
 });
 
 // The CSS crops the thumbnail to 16/9 anyway; asking the CDN for that shape
@@ -61,7 +65,12 @@ function follow(event) {
     />
     <div class="art-details container flex-between">
       <h5>{{ title }}</h5>
-      <time v-if="date" :datetime="date">{{ date.slice(0, 4) }}</time>
+      <span v-if="date">
+        <time :datetime="date">{{ date.slice(0, 4) }}</time>
+        <template v-if="endDate">
+          - <time :datetime="endDate">{{ endDate.slice(0, 4) }}</time>
+        </template>
+      </span>
     </div>
     <Button
       tag="span"

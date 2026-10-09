@@ -216,6 +216,7 @@ onUnmounted(() => {
           sizes="min(32rem, 80vw)"
           :alt="project.title"
           :date="project.date"
+          :end-date="project.endDate"
         />
       </div>
     </div>

@@ -40,6 +40,7 @@ defineProps({
           :source="project.cover"
           :alt="project.title"
           :date="project.date"
+          :end-date="project.endDate"
         />
       </div>
     </div>

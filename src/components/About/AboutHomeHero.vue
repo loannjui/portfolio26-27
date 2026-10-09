@@ -62,3 +62,14 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
     <Tab v-if="table" :columns="table.columns" :rows="table.rows" />
   </section>
 </template>
+
+<style scoped>
+.wrapper img {
+  filter: invert(0);
+  transition: filter var(--transi-fast) var(--bezier-o);
+
+  [data-theme="dark"] & {
+    filter: invert(1);
+  }
+}
+</style>
