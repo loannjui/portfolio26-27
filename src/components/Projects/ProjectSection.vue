@@ -41,6 +41,7 @@ function columnClass(block) {
   if (block._type === "table") return "col-xs-12";
   if (block._type === "embed") return "col-xs-12 col-xl-8";
   if (block._type === "reference" && block.caption) return "col-xs-12 col-xl-8";
+  if (block._type === "spacer") return "col-xs-12 col-xl-4 spacer-desktop";
   return "col-xs-12 col-xl-4";
 }
 </script>
@@ -144,6 +145,13 @@ h3 sup {
 
 figure {
   margin: 0;
+}
+
+.spacer-desktop {
+  display: none;
+  @media (min-width: 1440px) {
+    display: block;
+  }
 }
 
 .buttons {
