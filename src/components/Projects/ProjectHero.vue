@@ -26,6 +26,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  externalUrlLabel: {
+    type: String,
+    default: "",
+  },
   cover: {
     type: Object,
     default: null,
@@ -79,7 +83,7 @@ const rows = computed(() =>
           target="_blank"
           rel="noopener noreferrer"
         >
-          Visit website
+          {{ externalUrlLabel || "Visit website" }}
           <span class="icon-arrow small" aria-hidden="true"></span>
         </Button>
       </div>

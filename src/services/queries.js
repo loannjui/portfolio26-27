@@ -24,6 +24,7 @@ export const SECTION_CONTENT = `
         "caption": @->caption
       },
       _type == "embed" => { url, title, aspectRatio, caption },
+      _type == "button" => { label, url },
       _type == "table" => {
         columns[]{ _key, name },
         rows[]{
@@ -151,6 +152,7 @@ export const projectQuery = `
 *[_type == "project" && slug.current == $slug][0]{${PROJECT_CARD},
   "excerpt": coalesce(excerpt, ""),
   "externalUrl": coalesce(externalUrl, ""),
+  "externalUrlLabel": coalesce(externalUrlLabel, ""),
   "skills": coalesce(skills, []),
   "category": coalesce(category, ""),
   sections[]{

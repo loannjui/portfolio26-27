@@ -30,6 +30,7 @@ watch(project, (value) => setPageTitle(value?.title), { immediate: true });
       :skills="project.skills"
       :category="project.category"
       :external-url="project.externalUrl"
+      :external-url-label="project.externalUrlLabel"
       :cover="project.cover"
     />
 

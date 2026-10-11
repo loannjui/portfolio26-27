@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from "vue";
+import Button from "../General/Button.vue";
 import Tab from "../General/Tab.vue";
 import SanityImage from "../General/SanityImage.vue";
 
@@ -24,7 +25,18 @@ const props = defineProps({
 
 const number = computed(() => String(props.index + 1).padStart(2, "0"));
 
-// Text and images take 4 columns on desktop, captioned images and embeds 8 and tables go full width.
+const blocks = computed(() =>
+  (props.content ?? []).reduce((list, block) => {
+    const previous = list[list.length - 1];
+    if (block._type === "button" && previous) {
+      previous.buttons.push(block);
+    } else {
+      list.push({ ...block, buttons: block._type === "button" ? [block] : [] });
+    }
+    return list;
+  }, []),
+);
+
 function columnClass(block) {
   if (block._type === "table") return "col-xs-12";
   if (block._type === "embed") return "col-xs-12 col-xl-8";
@@ -45,7 +57,7 @@ function columnClass(block) {
 
     <div class="grid gap-xl">
       <div
-        v-for="block in content"
+        v-for="block in blocks"
         :key="block._key"
         :class="columnClass(block)"
       >
@@ -91,6 +103,21 @@ function columnClass(block) {
           :columns="block.columns"
           :rows="block.rows"
         />
+
+        <div v-if="block.buttons.length" class="buttons container gap-md">
+          <Button
+            v-for="button in block.buttons"
+            :key="button._key"
+            v-animate
+            variant="stroke"
+            :href="button.url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ button.label }}
+            <span class="icon-arrow small" aria-hidden="true"></span>
+          </Button>
+        </div>
       </div>
     </div>
   </section>
@@ -117,6 +144,11 @@ h3 sup {
 
 figure {
   margin: 0;
+}
+
+.buttons {
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 figure img {
