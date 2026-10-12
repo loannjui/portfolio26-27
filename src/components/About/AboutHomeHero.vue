@@ -37,7 +37,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
       <div v-animate class="separator" />
     </div>
     <div class="grid gap-xl">
-      <div class="col-xs-12 col-xl-4">
+      <div class="col-xs-12 col-md-6 col-xl-4">
         <figure
           v-animate:fade
           class="wrapper"
@@ -53,7 +53,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
           />
         </figure>
       </div>
-      <div v-animate class="col-xs-12 col-xl-4 container flex-column">
+      <div v-animate class="col-xs-12 col-md-6 col-xl-4 container flex-column">
         <p v-for="block in texts" :key="block._key">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ block.content }}
         </p>

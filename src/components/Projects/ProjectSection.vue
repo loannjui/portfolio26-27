@@ -41,8 +41,8 @@ function columnClass(block) {
   if (block._type === "table") return "col-xs-12";
   if (block._type === "embed") return "col-xs-12 col-xl-8";
   if (block._type === "reference" && block.caption) return "col-xs-12 col-xl-8";
-  if (block._type === "spacer") return "col-xs-12 col-xl-4 spacer-desktop";
-  return "col-xs-12 col-xl-4";
+  if (block._type === "spacer") return "col-xs-12 col-md-6 col-xl-4 spacer-desktop";
+  return "col-xs-12 col-md-6 col-xl-4";
 }
 </script>
 

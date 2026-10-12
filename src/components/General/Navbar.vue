@@ -252,7 +252,8 @@ nav {
 #mobile-menu {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 2rem);
+  width: min(calc(100% - 2rem), 20rem);
+  right: 1rem;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-0.5rem);

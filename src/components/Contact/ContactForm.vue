@@ -58,7 +58,7 @@ async function onSubmit() {
     status.value = "sent";
     Object.assign(form, { name: "", email: "", message: "" });
   } catch (err) {
-    console.warn("Envoi du formulaire impossible", err);
+    console.warn("Couldn't send form", err);
     status.value = "error";
   } finally {
     sending.value = false;
@@ -67,7 +67,7 @@ async function onSubmit() {
 </script>
 
 <template>
-  <section v-animate id="contact" class="grid gap-xl">
+  <section v-animate id="contact" class="drk-panel grid gap-xl">
     <div class="col-xs-12 col-xl-12 container flex-column gap-md">
       <h2>{{ title }}</h2>
       <div class="separator" />
@@ -149,27 +149,6 @@ async function onSubmit() {
 </template>
 
 <style scoped>
-#contact {
-  position: relative;
-  z-index: 1;
-  background-color: var(--color-contact);
-  color: var(--color-contact-text);
-  border-radius: 0.5rem;
-  padding: 1.5rem 1rem;
-  :deep(a) {
-    color: var(--color-contact-text);
-  }
-  :deep(table) {
-    border-top: 1px solid var(--color-contact-text);
-  }
-  @media (min-width: 768px) {
-    padding: 2rem;
-  }
-}
-
-#contact .separator {
-  background-color: var(--color-contact-text) !important;
-}
 
 label > span {
   text-transform: uppercase;

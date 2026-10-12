@@ -22,7 +22,7 @@ defineProps({
     <template v-for="block in content" :key="block._key">
       <h4
         v-animate
-        class="flex-xs-12 flex-xl-5"
+        class="flex-xs-12 flex-md-8 flex-xl-5"
         v-if="block._type === 'textBlock'"
       >
         {{ block.content }}

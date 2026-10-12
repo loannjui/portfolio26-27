@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { imageSize, imageSrcset, imageUrl } from "../../services/image.js";
 
 const props = defineProps({
-  // Sanity image object: asset, hotspot and crop
+  // Sanity image object
   source: {
     type: Object,
     default: null,
@@ -12,10 +12,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  // Largest width of the image
+  // Largest width 
   width: {
     type: Number,
-    default: 1600,
+    default: 1920,
   },
   // width / height. Crops around the hotspot rather than leaving it to CSS
   ratio: {

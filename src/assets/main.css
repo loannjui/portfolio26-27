@@ -305,7 +305,7 @@ button {
   max-width: 100%;
   height: auto;
   border-radius: var(--border-radius);
-  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.07);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.04);
 }
 
 .wrapper {
@@ -356,6 +356,34 @@ button {
   height: 100vh;
 }
 
+@media (min-width: 768px) {
+  .col-md-2 {
+    grid-column: span 2;
+  }
+  .col-md-3 {
+    grid-column: span 3;
+  }
+  .col-md-4 {
+    grid-column: span 4;
+  }
+  .col-md-5 {
+    grid-column: span 5;
+  }
+  .col-md-6 {
+    grid-column: span 6;
+  }
+  .col-md-8 {
+    grid-column: span 8;
+  }
+  .col-md-12 {
+    grid-column: span 12;
+  }
+  .flex-md-8 {
+    flex: 0 0 auto;
+    width: 66.6666%;
+  }
+}
+
 @media (min-width: 1440px) {
   .col-xl-2 {
     grid-column: span 2;
@@ -388,4 +416,26 @@ button {
     flex: 0 0 auto;
     width: 40.6666%;
   }
+}
+
+.drk-panel {
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-contact);
+  color: var(--color-contact-text);
+  border-radius: 0.5rem;
+  padding: 1.5rem 1rem;
+  a {
+    color: var(--color-contact-text);
+  }
+  table {
+    border-top: 1px solid var(--color-contact-text);
+  }
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
+}
+
+.drk-panel .separator {
+  background-color: var(--color-contact-text) !important;
 }

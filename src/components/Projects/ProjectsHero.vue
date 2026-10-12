@@ -19,7 +19,7 @@ const texts = computed(() =>
 
 <template>
   <div class="grid">
-    <div class="col-xl-4 col-xs-12 container flex-column gap-md">
+    <div class="col-xs-12 col-md-8 col-xl-4 container flex-column gap-md">
       <div class="container flex-column gap-md">
         <h1 v-animate>
           {{ title }}
