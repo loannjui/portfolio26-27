@@ -177,7 +177,7 @@ const element = computed(() => props.tag || (props.href ? "a" : "button"));
   padding: 0.33rem 0.75rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .btn-filled-round.btn-content,
