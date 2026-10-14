@@ -101,6 +101,16 @@ export const whatICanDoQuery = `
 ${SECTION_CONTENT}
   }`;
 
+export const aboutProjectQuery = `
+*[_type == "page" && slug.current == "about"][0]
+  .sections[_type == "section" && title == "This project"][0]{
+    _key,
+    _type,
+    title,
+    subtitle,
+${SECTION_CONTENT}
+  }`;
+
 // Contact page
 export const contactQuery = `
 *[_type == "page" && slug.current == "contact"][0]

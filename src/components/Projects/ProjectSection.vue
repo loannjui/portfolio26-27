@@ -154,11 +154,6 @@ figure {
   }
 }
 
-.buttons {
-  flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
 figure img {
   width: 100%;
 }

@@ -22,7 +22,7 @@ function getObserver() {
     },
     {
       threshold: 0,
-      rootMargin: "0px 0px -7% 0px",
+      rootMargin: "0px 0px -5% 0px",
     },
   );
 

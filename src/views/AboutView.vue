@@ -7,21 +7,29 @@ import {
 import {
   aboutHeroQuery,
   whatICanDoQuery,
+  aboutProjectQuery,
   contactQuery,
 } from "../services/queries.js";
 import AboutHero from "../components/About/AboutHero.vue";
 import PictureSeparator from "@/components/General/PictureSeparator.vue";
 import WhatICanDo from "@/components/About/WhatICanDo.vue";
 import ContactSection from "../components/Contact/ContactSection.vue";
+import AboutProject from "../components/About/AboutProject.vue";
 
 const { data: hero, error: heroError } = useSanityQuery(aboutHeroQuery);
 const { data: whatICanDo, error: whatICanDoError } =
   useSanityQuery(whatICanDoQuery);
+const { data: aboutProject, error: aboutProjectError } =
+  useSanityQuery(aboutProjectQuery);
 const { data: contactSection, error: contactSectionError } =
   useSanityQuery(contactQuery);
 
 const error = computed(
-  () => heroError.value ?? whatICanDoError.value ?? contactSectionError.value,
+  () =>
+    heroError.value ??
+    whatICanDoError.value ??
+    aboutProjectError.value ??
+    contactSectionError.value,
 );
 </script>
 
@@ -34,7 +42,11 @@ const error = computed(
     :subtitle="hero.subtitle"
     :content="hero.content"
   />
-  <PictureSeparator name="Space" />
+  <AboutProject
+    v-if="aboutProject"
+    :title="aboutProject.title"
+    :content="aboutProject.content"
+  />
   <WhatICanDo
     v-if="whatICanDo"
     :title="whatICanDo.title"

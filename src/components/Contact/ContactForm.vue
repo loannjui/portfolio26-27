@@ -73,9 +73,9 @@ async function onSubmit() {
       <div class="separator" />
     </div>
     <div class="col-xs-12 col-xl-6">
-      <p v-animate v-for="block in texts" :key="block._key">
+      <h4 v-animate v-for="block in texts" :key="block._key">
         {{ block.content }}
-      </p>
+      </h4>
     </div>
     <div class="col-xs-12 col-xl-6">
       <form class="grid gap-md" @submit.prevent="onSubmit">
