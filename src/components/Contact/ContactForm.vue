@@ -74,7 +74,7 @@ async function onSubmit() {
     </div>
     <div class="col-xs-12 col-xl-6">
       <h4 v-animate v-for="block in texts" :key="block._key">
-        {{ block.content }}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ block.content }}
       </h4>
     </div>
     <div class="col-xs-12 col-xl-6">
