@@ -129,10 +129,20 @@ async function onSubmit() {
           </Button>
         </div>
 
-        <p v-if="status === 'sent'" v-animate class="col-xs-12 details form-status" role="status">
+        <p
+          v-if="status === 'sent'"
+          v-animate
+          class="col-xs-12 details form-status"
+          role="status"
+        >
           Thank you for your email, I'll answer it shortly.
         </p>
-        <p v-else-if="status === 'error'" v-animate class="col-xs-12 details form-status" role="alert">
+        <p
+          v-else-if="status === 'error'"
+          v-animate
+          class="col-xs-12 details form-status"
+          role="alert"
+        >
           The delivery failed. Try it again or write me something directly.
         </p>
       </form>
@@ -149,7 +159,6 @@ async function onSubmit() {
 </template>
 
 <style scoped>
-
 label > span {
   text-transform: uppercase;
   color: var(--color-lgt-txt);
