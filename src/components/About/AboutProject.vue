@@ -35,8 +35,8 @@ const buttons = computed(() =>
     <div class="col-xl-6">
       <section v-animate id="contact" class="drk-panel grid gap-xl">
         <div class="col-xs-12 col-xl-12 container flex-column gap-md">
-          <h2>{{ title }}</h2>
-          <div class="separator" />
+          <h2 v-animate>{{ title }}</h2>
+          <div v-animate class="separator" />
         </div>
         <div class="col-xs-12 col-xl-12">
           <p v-animate v-for="block in texts" :key="block._key">
@@ -64,7 +64,7 @@ const buttons = computed(() =>
         v-for="block in images"
         :key="block._key"
         v-show="block.image"
-        v-animate
+        v-animate:fade
       >
         <SanityImage
           class="img-responsive"

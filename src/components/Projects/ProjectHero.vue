@@ -61,7 +61,7 @@ const rows = computed(() =>
 
 <template>
   <section id="project" class="hero container flex-column gap-md">
-    <Button class="back-button" variant="filled-round" @click="goBack">
+    <Button v-animate class="back-button" variant="filled-round" @click="goBack">
       <span class="icon-arrow_back" aria-hidden="true"></span
     ></Button>
     <div class="grid gap-xl hero-content">
@@ -69,7 +69,7 @@ const rows = computed(() =>
         <h1 v-animate>
           {{ title }}
         </h1>
-        <div class="separator" />
+        <div v-animate class="separator" />
         <p v-if="excerpt" v-animate>{{ excerpt }}</p>
 
         <Tab v-if="skills.length || category" :columns="columns" :rows="rows" />
@@ -98,7 +98,7 @@ const rows = computed(() =>
         />
       </div>
     </div>
-    <span class="icon-arrow_down small" aria-hidden="true"></span>
+    <span v-animate class="icon-arrow_down small" aria-hidden="true"></span>
   </section>
 </template>
 

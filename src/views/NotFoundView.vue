@@ -19,7 +19,7 @@ const { data: hero, error } = useSanityQuery(notFoundQuery);
     :subtitle="hero.subtitle"
     :content="hero.content"
   >
-    <RouterLink to="/" class="home-link">
+    <RouterLink v-animate to="/" class="home-link">
       <Button tag="span" variant="stroke">
         Back to home
         <span class="icon-arrow small" aria-hidden="true"></span>

@@ -185,7 +185,6 @@ onUnmounted(() => {
 
 <template>
   <section
-    v-animate
     id="projectsPreview"
     class="marquee"
     :style="{ '--marquee-items': half.length }"

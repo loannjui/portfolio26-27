@@ -19,7 +19,9 @@ const { data: projects, error: projectsError } =
 
       <template v-else>
         <ProjectsHero v-if="hero" :title="hero.title" :content="hero.content" />
-        <ProjectsMarquee v-animate v-if="projects" :projects="projects" />
+        <div v-if="projects" v-animate>
+          <ProjectsMarquee :projects="projects" />
+        </div>
       </template>
     </div>
   </section>

@@ -53,7 +53,7 @@ function columnClass(block) {
       <h3 v-if="title" v-animate>
         {{ title }}<sup class="details">{{ number }}</sup>
       </h3>
-      <div class="separator" />
+      <div v-animate class="separator" />
     </header>
 
     <div class="grid gap-xl">

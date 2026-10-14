@@ -69,8 +69,8 @@ async function onSubmit() {
 <template>
   <section v-animate id="contact" class="drk-panel grid gap-xl">
     <div class="col-xs-12 col-xl-12 container flex-column gap-md">
-      <h2>{{ title }}</h2>
-      <div class="separator" />
+      <h2 v-animate>{{ title }}</h2>
+      <div v-animate class="separator" />
     </div>
     <div class="col-xs-12 col-xl-6">
       <h4 v-animate v-for="block in texts" :key="block._key">
@@ -79,7 +79,7 @@ async function onSubmit() {
     </div>
     <div class="col-xs-12 col-xl-6">
       <form class="grid gap-md" @submit.prevent="onSubmit">
-        <label class="col-xs-6 container flex-column">
+        <label v-animate class="col-xs-6 container flex-column">
           <span>Name</span>
           <input
             v-model.trim="form.name"
@@ -91,7 +91,7 @@ async function onSubmit() {
           />
         </label>
 
-        <label class="col-xs-6 container flex-column">
+        <label v-animate class="col-xs-6 container flex-column">
           <span>Email</span>
           <input
             v-model.trim="form.email"
@@ -103,7 +103,7 @@ async function onSubmit() {
           />
         </label>
 
-        <label class="col-xs-12 container flex-column">
+        <label v-animate class="col-xs-12 container flex-column">
           <span>Your message</span>
           <textarea
             v-model.trim="form.message"
@@ -123,16 +123,16 @@ async function onSubmit() {
           autocomplete="off"
         />
 
-        <div class="col-xs-12">
+        <div v-animate class="col-xs-12">
           <Button variant="contact" :disabled="sending">
             {{ sending ? "Sending…" : "Submit" }}
           </Button>
         </div>
 
-        <p v-if="status === 'sent'" class="col-xs-12 details form-status" role="status">
+        <p v-if="status === 'sent'" v-animate class="col-xs-12 details form-status" role="status">
           Thank you for your email, I'll answer it shortly.
         </p>
-        <p v-else-if="status === 'error'" class="col-xs-12 details form-status" role="alert">
+        <p v-else-if="status === 'error'" v-animate class="col-xs-12 details form-status" role="alert">
           The delivery failed. Try it again or write me something directly.
         </p>
       </form>

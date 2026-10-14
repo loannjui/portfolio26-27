@@ -44,7 +44,7 @@ watch(project, (value) => setPageTitle(value?.title), { immediate: true });
     />
 
     <section class="container pad-section">
-      <RouterLink to="/projects" class="back-link container flex-middle gap-md">
+      <RouterLink v-animate to="/projects" class="back-link container flex-middle gap-md">
         <Button tag="span" variant="stroke-round" aria-hidden="true">
           <span class="icon-arrow_back"></span>
         </Button>
