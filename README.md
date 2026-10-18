@@ -1,6 +1,7 @@
 ## Project
 
 Personal 2026 portfolio for myself. Coded with Vue.js with content managed by Sanity.
+The Sanity build is available [here](https://github.com/loannjui/portfolio-26-27-db-sanity).
 
 ## Tech
 
