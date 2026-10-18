@@ -1,6 +1,6 @@
 ## Project
 
-Personal 2026 portfolio for myself. Coded with vue with content managed by Sanity.
+Personal 2026 portfolio for myself. Coded with Vue.js with content managed by Sanity.
 
 ## Tech
 
@@ -12,7 +12,7 @@ Personal 2026 portfolio for myself. Coded with vue with content managed by Sanit
 ## Features
 - All content comes from a headless CMS
 - Responsive images generated from Sanity
-- Query caching in production to cut down on API calls
+- Sanity queries cached in LocalStorage (5 min TTL) in production to cut down on API calls
 - Light / dark theme saved in LocalStorage
 - Scroll-triggered reveal animations through `v-animate`
 
