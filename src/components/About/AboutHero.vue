@@ -37,7 +37,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
       </h1>
 
       <div class="grid gap-xl">
-        <div v-animate class="col-xs-12 col-xl-6 container flex-column">
+        <div v-animate class="col-xs-12 col-md-8 col-xl-6 container flex-column">
           <h4 v-for="block in texts" :key="block._key">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ block.content }}
           </h4>

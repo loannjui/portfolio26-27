@@ -25,6 +25,14 @@ main.container {
 #home {
   padding-top: 60vh;
 
+  @media (min-width: 768px) {
+    padding-top: 30vh;
+  }
+
+  @media (min-width: 768px) and (orientation: landscape) {
+    padding-top: 40vh;
+  }
+
   @media (min-width: 1440px) {
     padding-top: 25vh;
   }
@@ -32,6 +40,15 @@ main.container {
 
 #about {
   padding-top: 60vh;
+
+  @media (min-width: 768px) {
+    padding-top: 30vh;
+  }
+
+  @media (min-width: 768px) and (orientation: landscape) {
+    padding-top: 35vh;
+  }
+
   @media (min-width: 1440px) {
     padding-top: 36.5vh;
   }
@@ -211,20 +228,19 @@ h2 {
   z-index: -1;
   width: calc(100% - 4rem);
   left: 2rem;
-  top: 15vh;
+  top: 20vh;
 
   @media (min-width: 768px) {
     width: 50%;
     left: auto;
     right: 2rem;
-    top: 30vh;
+    top: 4.75rem;
   }
 
   @media (min-width: 1440px) {
     width: 33.3333%;
     left: auto;
     right: calc(var(--page-padding) + 1rem);
-    top: 4.75rem;
   }
 }
 
