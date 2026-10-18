@@ -32,7 +32,7 @@ const buttons = computed(() =>
 
 <template>
   <div class="grid gap-xl pad-drk">
-    <div class="col-xl-6">
+    <div class="col-xl-6 col-xs-12">
       <section v-animate id="contact" class="drk-panel grid gap-xl">
         <div class="col-xs-12 col-xl-12 container flex-column gap-md">
           <h2 v-animate>{{ title }}</h2>
