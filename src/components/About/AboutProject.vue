@@ -86,4 +86,21 @@ const buttons = computed(() =>
 figure {
   margin: 0;
 }
+
+@media (min-width: 1440px) {
+  .pad-drk {
+    align-items: stretch;
+  }
+
+  figure {
+    height: 100%;
+  }
+
+  .img-responsive {
+    width: 100%;
+    height: 0;
+    min-height: 100%;
+    object-fit: cover;
+  }
+}
 </style>
