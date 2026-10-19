@@ -85,12 +85,11 @@ function follow(event) {
 </template>
 
 <style scoped>
-/* Darkens the bottom of the image so the title stays readable */
 .wrapper::before {
   content: "";
   position: absolute;
-  inset: 25% 0 0;
-  background: linear-gradient(to top, rgb(0 0 0 / 0.75), transparent);
+  inset: 60% 0 0;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.4), transparent);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   pointer-events: none;
 }
@@ -101,7 +100,6 @@ function follow(event) {
   left: 1rem;
   bottom: 1rem;
   color: var(--white);
-  mix-blend-mode: exclusion;
 }
 
 .view {

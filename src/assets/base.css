@@ -20,7 +20,7 @@
   --section-padding: 1rem;
 
   @media (min-width: 768px) {
-    --page-padding: 1.5rem;
+    --page-padding: 3rem;
     --section-padding: 1.5rem;
   }
 
