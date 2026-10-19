@@ -12,7 +12,7 @@
   --transi-mid: 1s;
   --transi-slow: 1.5s;
   --transi-rl-slow: 1.75s;
-  --bezier-a: cubic-bezier(0.22, 1, 0.36, 1);
+  --bezier-a: cubic-bezier(0.25, 1, 0.5, 1);
   --bezier-o: cubic-bezier(0.4, 0, 0.2, 1);
   --stagger: 0.25s;
   --picture-offset: 2rem;

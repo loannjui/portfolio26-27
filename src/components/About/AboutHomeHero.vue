@@ -39,7 +39,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
     <div class="grid gap-xl">
       <div class="col-xs-12 col-md-6 col-xl-4">
         <figure
-          v-animate:fade
+          v-animate
           class="wrapper"
           v-for="block in images"
           :key="block._key"

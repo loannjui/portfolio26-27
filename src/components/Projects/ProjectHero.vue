@@ -61,7 +61,12 @@ const rows = computed(() =>
 
 <template>
   <section id="project" class="hero container flex-column gap-md">
-    <Button v-animate class="back-button" variant="filled-round" @click="goBack">
+    <Button
+      v-animate
+      class="back-button"
+      variant="filled-round"
+      @click="goBack"
+    >
       <span class="icon-arrow_back" aria-hidden="true"></span
     ></Button>
     <div class="grid gap-xl hero-content">
@@ -89,7 +94,7 @@ const rows = computed(() =>
       </div>
       <div class="col-xs-12 col-xl-6 wrapper">
         <SanityImage
-          v-animate:fade
+          v-animate
           class="img-responsive"
           :source="cover"
           :alt="title"
@@ -114,9 +119,9 @@ const rows = computed(() =>
 
 .back-button {
   margin-bottom: 1rem;
-    @media (min-width: 1440px) {
-      margin-bottom: 0;
-    }
+  @media (min-width: 1440px) {
+    margin-bottom: 0;
+  }
 }
 
 .back-button,

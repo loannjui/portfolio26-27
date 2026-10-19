@@ -28,7 +28,7 @@ defineProps({
         {{ block.content }}
       </h4>
       <div
-        v-animate:fade
+        v-animate
         class="hero-img"
         v-else-if="block._type === 'reference' && block.image"
       >

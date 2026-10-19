@@ -64,7 +64,7 @@ const buttons = computed(() =>
         v-for="block in images"
         :key="block._key"
         v-show="block.image"
-        v-animate:fade
+        v-animate
       >
         <SanityImage
           class="img-responsive"

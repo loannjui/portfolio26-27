@@ -41,7 +41,8 @@ function columnClass(block) {
   if (block._type === "table") return "col-xs-12";
   if (block._type === "embed") return "col-xs-12 col-xl-8";
   if (block._type === "reference" && block.caption) return "col-xs-12 col-xl-8";
-  if (block._type === "spacer") return "col-xs-12 col-md-6 col-xl-4 spacer-desktop";
+  if (block._type === "spacer")
+    return "col-xs-12 col-md-6 col-xl-4 spacer-desktop";
   return "col-xs-12 col-md-6 col-xl-4";
 }
 </script>
@@ -69,7 +70,7 @@ function columnClass(block) {
 
         <figure
           v-else-if="block._type === 'reference' && block.image"
-          v-animate:fade
+          v-animate
         >
           <SanityImage
             class="img-responsive"
@@ -86,7 +87,7 @@ function columnClass(block) {
           </figcaption>
         </figure>
 
-        <figure v-else-if="block._type === 'embed' && block.url" v-animate:fade>
+        <figure v-else-if="block._type === 'embed' && block.url" v-animate>
           <iframe
             :src="block.url"
             :title="block.title"

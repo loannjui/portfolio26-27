@@ -30,7 +30,7 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 <template>
   <section id="about" class="hero container flex-column flex-end gap-xl">
     <div
-      v-animate:fade
+      v-animate
       class="hero-img"
       v-for="block in images"
       :key="block._key"
