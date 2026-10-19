@@ -252,7 +252,7 @@ nav {
 #mobile-menu {
   display: flex;
   flex-direction: column;
-  width: min(calc(100% - 2rem), 20rem);
+  width: calc(100% - 2rem);
   right: 1rem;
   opacity: 0;
   visibility: hidden;
@@ -266,11 +266,11 @@ nav {
   padding: 2rem;
 
   li a {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: clamp(1.2rem, 1.4vw, 1.5rem);
+    font-weight: 700;
     color: var(--color-main-bg);
     span {
-      font-size: 1rem;
+      font-size: 0.65em;
     }
   }
 }
