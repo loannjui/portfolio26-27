@@ -29,21 +29,21 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 
 <template>
   <section id="about" class="hero container flex-column flex-end gap-xl">
+    <div
+      v-animate:fade
+      class="hero-img"
+      v-for="block in images"
+      :key="block._key"
+      v-show="block.image"
+    >
+      <SanityImage
+        class="img-responsive"
+        :source="block.image"
+        :alt="block.alt"
+        sizes="(min-width: 1440px) 33vw, (min-width: 768px) 50vw, 100vw"
+      />
+    </div>
     <div class="container flex-column gap-md">
-      <div
-        v-animate:fade
-        class="hero-img"
-        v-for="block in images"
-        :key="block._key"
-        v-show="block.image"
-      >
-        <SanityImage
-          class="img-responsive"
-          :source="block.image"
-          :alt="block.alt"
-          sizes="(min-width: 1440px) 33vw, (min-width: 768px) 50vw, 100vw"
-        />
-      </div>
       <h1 class="hero-title">
         <span v-animate:reveal class="reveal"
           ><span>{{ title }}</span></span
