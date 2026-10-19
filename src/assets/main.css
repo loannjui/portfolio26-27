@@ -228,7 +228,7 @@ h2 {
   z-index: -1;
   width: calc(100% - 4rem);
   left: 2rem;
-  top: 20vh;
+  top: 15vh;
 
   @media (min-width: 768px) {
     width: 50%;
