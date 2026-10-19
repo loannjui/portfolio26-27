@@ -30,6 +30,20 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
 <template>
   <section id="about" class="hero container flex-column flex-end gap-xl">
     <div class="container flex-column gap-md">
+      <div
+        v-animate:fade
+        class="hero-img"
+        v-for="block in images"
+        :key="block._key"
+        v-show="block.image"
+      >
+        <SanityImage
+          class="img-responsive"
+          :source="block.image"
+          :alt="block.alt"
+          sizes="(min-width: 1440px) 33vw, (min-width: 768px) 50vw, 100vw"
+        />
+      </div>
       <h1 class="hero-title">
         <span v-animate:reveal class="reveal"
           ><span>{{ title }}</span></span
@@ -37,27 +51,16 @@ const table = computed(() => props.content.find((b) => b._type === "table"));
       </h1>
 
       <div class="grid gap-xl">
-        <div v-animate class="col-xs-12 col-md-8 col-xl-6 container flex-column">
+        <div
+          v-animate
+          class="col-xs-12 col-md-8 col-xl-6 container flex-column"
+        >
           <h4 v-for="block in texts" :key="block._key">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ block.content }}
           </h4>
         </div>
       </div>
       <slot />
-    </div>
-    <div
-      v-animate:fade
-      class="hero-img"
-      v-for="block in images"
-      :key="block._key"
-      v-show="block.image"
-    >
-      <SanityImage
-        class="img-responsive"
-        :source="block.image"
-        :alt="block.alt"
-        sizes="(min-width: 1440px) 33vw, (min-width: 768px) 50vw, 100vw"
-      />
     </div>
     <Tab v-if="table" :columns="table.columns" :rows="table.rows" />
   </section>
