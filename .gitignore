@@ -40,3 +40,5 @@ __screenshots__/
 
 # Env
 .env
+
+public/sitemap.xml

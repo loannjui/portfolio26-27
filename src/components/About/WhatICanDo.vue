@@ -1,13 +1,9 @@
 <script setup>
-import { computed } from "vue";
 import TabList from "../General/TabList.vue";
+import { useBlocks } from "../../composables/useBlocks.js";
 
 const props = defineProps({
   title: {
-    type: String,
-    default: "",
-  },
-  subtitle: {
     type: String,
     default: "",
   },
@@ -17,11 +13,7 @@ const props = defineProps({
   },
 });
 
-const texts = computed(() =>
-  props.content.filter((b) => b._type === "textBlock"),
-);
-
-const table = computed(() => props.content.find((b) => b._type === "table"));
+const { texts, table } = useBlocks(() => props.content);
 </script>
 
 <template>

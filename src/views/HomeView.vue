@@ -12,7 +12,7 @@ import {
 } from "../services/queries.js";
 import HomeHero from "../components/Home/HomeHero.vue";
 import HomeProjects from "../components/Home/HomeProjects.vue";
-import AboutHero from "../components/About/AboutHomeHero.vue";
+import AboutHomeHero from "../components/About/AboutHomeHero.vue";
 import PictureSeparator from "@/components/General/PictureSeparator.vue";
 import WhatICanDo from "@/components/About/WhatICanDo.vue";
 import ContactSection from "@/components/Contact/ContactSection.vue";
@@ -54,10 +54,9 @@ const projectsSection = computed(() =>
       :title="projectsSection.title ?? undefined"
       :projects="projectsSection.projects"
     />
-    <AboutHero
+    <AboutHomeHero
       v-if="aboutHero"
       :title="aboutHero.title"
-      :subtitle="aboutHero.subtitle"
       :content="aboutHero.content"
     />
     <PictureSeparator name="Space" />

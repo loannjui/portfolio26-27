@@ -1,14 +1,11 @@
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { reactive, ref } from "vue";
 import Button from "../General/Button.vue";
 import Tab from "../General/Tab.vue";
+import { useBlocks } from "../../composables/useBlocks.js";
 
 const props = defineProps({
   title: {
-    type: String,
-    default: "",
-  },
-  subtitle: {
     type: String,
     default: "",
   },
@@ -18,10 +15,7 @@ const props = defineProps({
   },
 });
 
-const texts = computed(() =>
-  props.content.filter((b) => b._type === "textBlock"),
-);
-const table = computed(() => props.content.find((b) => b._type === "table"));
+const { texts, table } = useBlocks(() => props.content);
 
 const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 
@@ -187,7 +181,6 @@ textarea {
 
   &:focus-visible {
     outline: none;
-    border-color: var(--color-accent);
   }
 }
 

@@ -15,7 +15,6 @@ const { data: hero, error } = useSanityQuery(contactQuery);
   <div v-else-if="hero" class="container flex-column contact-page">
     <ContactForm
       :title="hero.title"
-      :subtitle="hero.subtitle"
       :content="hero.content"
     />
   </div>

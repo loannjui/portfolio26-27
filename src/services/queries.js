@@ -74,10 +74,9 @@ export const homeQuery = `
   title,${SECTIONS}
 }`;
 
-// About hero section, filtered by subtitle
-const aboutSectionQuery = (subtitle) => `
-*[_type == "page" && slug.current == "about"][0]
-  .sections[_type == "section" && subtitle == "${subtitle}"][0]{
+const pageSectionQuery = (slug, filter = "") => `
+*[_type == "page" && slug.current == "${slug}"][0]
+  .sections[_type == "section"${filter}][0]{
     _key,
     _type,
     title,
@@ -86,68 +85,28 @@ ${SECTION_CONTENT}
   }`;
 
 // About block shown on the home page
-export const aboutHomeQuery = aboutSectionQuery("home");
+export const aboutHomeQuery = pageSectionQuery("about", ` && subtitle == "home"`);
 
 // About hero shown on the about page
-export const aboutHeroQuery = aboutSectionQuery("about_page");
+export const aboutHeroQuery = pageSectionQuery("about", ` && subtitle == "about_page"`);
 
-export const whatICanDoQuery = `
-*[_type == "page" && slug.current == "about"][0]
-  .sections[_type == "section" && title == "What I can do"][0]{
-    _key,
-    _type,
-    title,
-    subtitle,
-${SECTION_CONTENT}
-  }`;
+export const whatICanDoQuery = pageSectionQuery("about", ` && title == "What I can do"`);
 
-export const aboutProjectQuery = `
-*[_type == "page" && slug.current == "about"][0]
-  .sections[_type == "section" && title == "This project"][0]{
-    _key,
-    _type,
-    title,
-    subtitle,
-${SECTION_CONTENT}
-  }`;
+export const aboutProjectQuery = pageSectionQuery("about", ` && title == "This project"`);
 
 // Contact page
-export const contactQuery = `
-*[_type == "page" && slug.current == "contact"][0]
-  .sections[_type == "section"][0]{
-    _key,
-    _type,
-    title,
-    subtitle,
-${SECTION_CONTENT}
-  }`;
+export const contactQuery = pageSectionQuery("contact");
 
 // 404 page, shown for any unknown URL
-export const notFoundQuery = `
-*[_type == "page" && slug.current == "404"][0]
-  .sections[_type == "section"][0]{
-    _key,
-    _type,
-    title,
-    subtitle,
-${SECTION_CONTENT}
-  }`;
+export const notFoundQuery = pageSectionQuery("404");
+
+// Projects page
+export const projectsQuery = pageSectionQuery("projects");
 
 // Every project, newest first
 export const allProjectsQuery = `
 *[_type == "project"]|order(date desc){${PROJECT_CARD}
 }`;
-
-// Projects page
-export const projectsQuery = `
-*[_type == "page" && slug.current == "projects"][0]
-  .sections[_type == "section"][0]{
-    _key,
-    _type,
-    title,
-    subtitle,
-${SECTION_CONTENT}
-  }`;
 
 // Single image looked up by its title
 export const mediaByTitleQuery = `

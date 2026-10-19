@@ -14,3 +14,13 @@ export function resolveLink(link) {
 
   return link.url ? { href: link.url, newTab: link.newTab } : null;
 }
+
+export function resolveRowLinks(rows) {
+  return rows.map((row) => ({
+    ...row,
+    cells: (row.cells ?? []).map((cell) => ({
+      ...cell,
+      link: resolveLink(cell.link),
+    })),
+  }));
+}

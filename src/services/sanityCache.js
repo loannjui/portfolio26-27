@@ -75,11 +75,3 @@ export function cachedFetch(query, params = {}, { ttl = DEFAULT_TTL, force = fal
 
   return request
 }
-
-// Clears every Sanity cache entry from localStorage.
-
-export function clearCache() {
-  Object.keys(localStorage)
-    .filter(key => key.startsWith(CACHE_PREFIX))
-    .forEach(key => localStorage.removeItem(key))
-}

@@ -11,7 +11,6 @@ import {
   contactQuery,
 } from "../services/queries.js";
 import AboutHero from "../components/About/AboutHero.vue";
-import PictureSeparator from "@/components/General/PictureSeparator.vue";
 import WhatICanDo from "@/components/About/WhatICanDo.vue";
 import ContactSection from "../components/Contact/ContactSection.vue";
 import AboutProject from "../components/About/AboutProject.vue";

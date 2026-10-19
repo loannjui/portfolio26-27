@@ -9,10 +9,6 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  subtitle: {
-    type: String,
-    default: "",
-  },
   content: {
     type: Array,
     default: () => [],
@@ -30,7 +26,7 @@ const { data: image } = useSanityQuery(mediaByTitleQuery, {
 
 <template>
   <div class="contact-wrapper">
-    <ContactForm :title="title" :subtitle="subtitle" :content="content" />
+    <ContactForm :title="title" :content="content" />
     <div v-if="image?.image" v-animate:fade class="background-picture">
       <SanityImage :source="image.image" :alt="image.alt ?? ''" />
     </div>

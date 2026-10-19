@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from "vue";
-import { resolveLink } from "../../services/links.js";
+import { resolveRowLinks } from "../../services/links.js";
 import SanityImage from "./SanityImage.vue";
 
 // The cell images never render taller than 1.5em
@@ -23,15 +23,7 @@ const props = defineProps({
 
 const count = computed(() => props.columns.length);
 
-const linkedRows = computed(() =>
-  props.rows.map((row) => ({
-    ...row,
-    cells: (row.cells ?? []).map((cell) => ({
-      ...cell,
-      link: resolveLink(cell.link),
-    })),
-  })),
-);
+const linkedRows = computed(() => resolveRowLinks(props.rows));
 
 // Change col classes to match the number of tabs
 const cellClass = computed(() => `col-xs-12 col-xl-${12 / count.value}`);

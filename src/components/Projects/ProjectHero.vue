@@ -1,6 +1,5 @@
 <script setup>
 import { computed } from "vue";
-import { useRouter } from "vue-router";
 import Button from "../General/Button.vue";
 import Tab from "../General/Tab.vue";
 import SanityImage from "../General/SanityImage.vue";
@@ -36,12 +35,6 @@ const props = defineProps({
   },
 });
 
-const router = useRouter();
-
-function goBack() {
-  router.push("/projects");
-}
-
 const columns = [
   { _key: "skills", name: "Skills" },
   { _key: "category", name: "Category" },
@@ -61,14 +54,11 @@ const rows = computed(() =>
 
 <template>
   <section id="project" class="hero container flex-column gap-md">
-    <Button
-      v-animate
-      class="back-button"
-      variant="filled-round"
-      @click="goBack"
-    >
-      <span class="icon-arrow_back" aria-hidden="true"></span
-    ></Button>
+    <RouterLink v-animate to="/projects" class="back-button">
+      <Button tag="span" variant="filled-round">
+        <span class="icon-arrow_back" aria-hidden="true"></span
+      ></Button>
+    </RouterLink>
     <div class="grid gap-xl hero-content">
       <div class="col-xs-12 col-xl-6 container flex-column gap-md">
         <h1 v-animate>

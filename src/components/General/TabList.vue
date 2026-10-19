@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
-import { resolveLink } from "../../services/links.js";
+import { resolveRowLinks } from "../../services/links.js";
 import SanityImage from "./SanityImage.vue";
 
 const props = defineProps({
@@ -24,15 +24,7 @@ const cellClass = (index) => `col-xs-12 col-xl-${COL_WIDTHS[index] ?? 12}`;
 // Only the middle column reveals the image
 const PREVIEW_COLUMN = 1;
 
-const linkedRows = computed(() =>
-  props.rows.map((row) => ({
-    ...row,
-    cells: (row.cells ?? []).map((cell) => ({
-      ...cell,
-      link: resolveLink(cell.link),
-    })),
-  })),
-);
+const linkedRows = computed(() => resolveRowLinks(props.rows));
 
 // Desktop only: the hovered row's image follows the cursor
 const preview = ref(null);

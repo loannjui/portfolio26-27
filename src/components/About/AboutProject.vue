@@ -1,15 +1,11 @@
 <script setup>
-import { computed } from "vue";
 import Button from "../General/Button.vue";
 import Tab from "../General/Tab.vue";
 import SanityImage from "../General/SanityImage.vue";
+import { useBlocks } from "../../composables/useBlocks.js";
 
 const props = defineProps({
   title: {
-    type: String,
-    default: "",
-  },
-  subtitle: {
     type: String,
     default: "",
   },
@@ -19,21 +15,13 @@ const props = defineProps({
   },
 });
 
-const texts = computed(() =>
-  props.content.filter((b) => b._type === "textBlock"),
-);
-const images = computed(() =>
-  props.content.filter((b) => b._type === "reference"),
-);
-const buttons = computed(() =>
-  props.content.filter((b) => b._type === "button"),
-);
+const { texts, images, buttons } = useBlocks(() => props.content);
 </script>
 
 <template>
   <div class="grid gap-xl pad-drk">
     <div class="col-xl-6 col-xs-12">
-      <section v-animate id="contact" class="drk-panel grid gap-xl">
+      <section v-animate class="drk-panel grid gap-xl">
         <div class="col-xs-12 col-xl-12 container flex-column gap-md">
           <h2 v-animate>{{ title }}</h2>
           <div v-animate class="separator" />
@@ -47,7 +35,7 @@ const buttons = computed(() =>
               v-for="button in buttons"
               :key="button._key"
               v-animate
-              variant="stroke-inverted"
+              variant="contact"
               :href="button.url"
               target="_blank"
               rel="noopener noreferrer"

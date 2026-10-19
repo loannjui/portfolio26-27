@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { useBlocks } from "../../composables/useBlocks.js";
 
 const props = defineProps({
   title: {
@@ -12,9 +12,7 @@ const props = defineProps({
   },
 });
 
-const texts = computed(() =>
-  props.content.filter((b) => b._type === "textBlock"),
-);
+const { texts } = useBlocks(() => props.content);
 </script>
 
 <template>
