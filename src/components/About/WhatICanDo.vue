@@ -25,7 +25,7 @@ const { texts, table } = useBlocks(() => props.content);
     <div class="grid">
       <div class="col-xl-8 col-xs-12">
         <h4 v-animate v-for="block in texts" :key="block._key">
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ block.content }}
+           {{ block.content }}
         </h4>
       </div>
     </div>

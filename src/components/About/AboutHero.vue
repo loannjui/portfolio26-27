@@ -50,7 +50,7 @@ const { texts, images, table } = useBlocks(() => props.content);
           class="col-xs-12 col-md-8 col-xl-6 container flex-column"
         >
           <h4 v-for="block in texts" :key="block._key">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ block.content }}
+            {{ block.content }}
           </h4>
         </div>
       </div>
