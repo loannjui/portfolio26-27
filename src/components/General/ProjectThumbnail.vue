@@ -89,7 +89,7 @@ function follow(event) {
   content: "";
   position: absolute;
   inset: 40% 0 0;
-  background: linear-gradient(to top, rgb(0 0 0 / 0.7), transparent);
+  background: linear-gradient(to top, rgb(0 0 0 / 0.6), transparent);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   pointer-events: none;
 }
