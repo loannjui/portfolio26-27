@@ -88,8 +88,8 @@ function follow(event) {
 .wrapper::before {
   content: "";
   position: absolute;
-  inset: 60% 0 0;
-  background: linear-gradient(to top, rgb(0 0 0 / 0.4), transparent);
+  inset: 40% 0 0;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.7), transparent);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   pointer-events: none;
 }
