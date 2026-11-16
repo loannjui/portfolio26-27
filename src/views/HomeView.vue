@@ -50,17 +50,20 @@ const projectsSection = computed(() =>
       :content="hero.content"
     />
     <HomeProjects
+      class="space-section"
       v-if="projectsSection?.projects?.length"
       :title="projectsSection.title ?? undefined"
       :projects="projectsSection.projects"
     />
     <AboutHomeHero
+      class="space-section"
       v-if="aboutHero"
       :title="aboutHero.title"
       :content="aboutHero.content"
     />
-    <PictureSeparator name="Space Boreal" />
+    <PictureSeparator class="space-section" name="Space Boreal" />
     <WhatICanDo
+      class="space-section"
       v-if="whatICanDo"
       :title="whatICanDo.title"
       :content="whatICanDo.content"

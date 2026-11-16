@@ -47,6 +47,7 @@ const error = computed(
     :content="aboutProject.content"
   />
   <WhatICanDo
+    class="space-section"
     v-if="whatICanDo"
     :title="whatICanDo.title"
     :content="whatICanDo.content"

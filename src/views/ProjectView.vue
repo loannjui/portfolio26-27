@@ -37,6 +37,7 @@ watch(project, (value) => setPageTitle(value?.title), { immediate: true });
     <ProjectSection
       v-for="(section, index) in project.sections ?? []"
       :key="section._key"
+      class="space-section"
       :index="index"
       :title="section.title"
       :subtitle="section.subtitle"

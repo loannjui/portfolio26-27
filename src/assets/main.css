@@ -54,7 +54,11 @@ main.container {
 }
 
 .pad-drk {
-  margin: calc(var(--section-padding) / 2) 0 var(--section-padding);
+  margin-top: var(--section-padding);
+}
+
+.space-section {
+  margin-bottom: 2.5rem;
 }
 
 .flex-end {
