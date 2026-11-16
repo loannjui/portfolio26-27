@@ -206,9 +206,15 @@ h2 {
   font-size: 15cqw;
   overflow: hidden;
   line-height: 0.9;
+  text-shadow: 0 0 2rem rgba(39, 37, 37, 0);
+  transition: text-shadow var(--transi-fast) var(--bezier-o);
 
   span {
     font-weight: 700;
+  }
+
+  [data-theme="dark"] & {
+     text-shadow: 0 0 2rem rgba(39, 37, 37, 0.4);
   }
 
   @media (min-width: 1440px) {
@@ -246,12 +252,6 @@ h2 {
 .hero-img img {
   width: 100%;
   height: auto;
-  filter: invert(0);
-  transition: filter var(--transi-fast) var(--bezier-o);
-
-  [data-theme="dark"] & {
-    filter: invert(1);
-  }
 }
 
 h3 {

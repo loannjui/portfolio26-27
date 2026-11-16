@@ -59,11 +59,5 @@ const { data: image } = useSanityQuery(mediaByTitleQuery, {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: invert(0);
-  transition: filter var(--transi-fast) var(--bezier-o);
-
-  [data-theme="dark"] & {
-    filter: invert(1);
-  }
 }
 </style>
