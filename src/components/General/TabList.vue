@@ -185,11 +185,11 @@ td:nth-child(2) {
 
 @media (max-width: 1439px) {
   td:nth-child(1) {
-    grid-column: span 6;
+    grid-column: span 4;
   }
 
   td:nth-child(n + 2) {
-    grid-column: 7 / -1;
+    grid-column: 5 / -1;
   }
 }
 

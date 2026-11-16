@@ -15,10 +15,10 @@ main {
 }
 
 main.container {
-  gap: 1.5rem;
+  gap: 3rem;
 
   @media (min-width: 768px) {
-    gap: 2.5rem;
+    gap: 5rem;
   }
 }
 
