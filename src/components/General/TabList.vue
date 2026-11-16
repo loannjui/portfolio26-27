@@ -216,7 +216,7 @@ td:nth-child(2) {
     max-width: 100%;
     height: auto;
     pointer-events: none;
-    transform: translate(-50%, calc(-100% - 1rem));
+    transform: translate(1rem, 0);
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.07);
   }
 }
