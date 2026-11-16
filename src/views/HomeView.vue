@@ -61,7 +61,7 @@ const projectsSection = computed(() =>
       :title="aboutHero.title"
       :content="aboutHero.content"
     />
-    <PictureSeparator class="space-section" name="Space Boreal" />
+    <PictureSeparator name="Space Boreal" />
     <WhatICanDo
       class="space-section"
       v-if="whatICanDo"

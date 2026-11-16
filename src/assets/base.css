@@ -19,6 +19,7 @@
   --picture-offset: 2rem;
   --page-padding: 1rem;
   --section-padding: 1rem;
+  --section-space: 2.5rem;
 
   @media (min-width: 768px) {
     --page-padding: 3rem;
