@@ -1,8 +1,9 @@
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import Button from "../General/Button.vue";
 import Tab from "../General/Tab.vue";
 import SanityImage from "../General/SanityImage.vue";
+import ImageLightbox from "../General/ImageLightbox.vue";
 
 const props = defineProps({
   title: {
@@ -34,6 +35,14 @@ const props = defineProps({
     default: null,
   },
 });
+
+const zoomed = ref(false);
+const preview = ref("");
+
+function zoom(event) {
+  preview.value = event.currentTarget.querySelector("img")?.currentSrc ?? "";
+  zoomed.value = true;
+}
 
 const columns = [
   { _key: "skills", name: "Skills" },
@@ -83,17 +92,26 @@ const rows = computed(() =>
         </Button>
       </div>
       <div class="col-xs-12 col-xl-6 wrapper">
-        <SanityImage
-          v-animate
-          class="img-responsive"
-          :source="cover"
-          :alt="title"
-          sizes="100vw"
-          loading="eager"
-        />
+        <button v-if="cover" type="button" class="zoom" @click="zoom">
+          <SanityImage
+            v-animate
+            class="img-responsive"
+            :source="cover"
+            :alt="title"
+            sizes="100vw"
+            loading="eager"
+          />
+        </button>
       </div>
     </div>
     <span v-animate class="icon-arrow_down small" aria-hidden="true"></span>
+
+    <ImageLightbox
+      :source="zoomed ? cover : null"
+      :alt="title"
+      :preview="preview"
+      @close="zoomed = false"
+    />
   </section>
 </template>
 
@@ -117,6 +135,19 @@ const rows = computed(() =>
 .back-button,
 .website-button {
   align-self: flex-start;
+}
+
+.zoom {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  pointer-events: none;
+  @media (min-width: 768px) {
+    pointer-events: auto;
+    cursor: pointer;
+  }
 }
 
 .hero-content {

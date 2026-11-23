@@ -1,8 +1,9 @@
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import Button from "../General/Button.vue";
 import Tab from "../General/Tab.vue";
 import SanityImage from "../General/SanityImage.vue";
+import ImageLightbox from "../General/ImageLightbox.vue";
 
 const props = defineProps({
   title: {
@@ -22,6 +23,14 @@ const props = defineProps({
     default: 0,
   },
 });
+
+const zoomed = ref(null);
+const preview = ref("");
+
+function zoom(block, event) {
+  preview.value = event.currentTarget.querySelector("img")?.currentSrc ?? "";
+  zoomed.value = block;
+}
 
 const number = computed(() => String(props.index + 1).padStart(2, "0"));
 
@@ -72,16 +81,18 @@ function columnClass(block) {
           v-else-if="block._type === 'reference' && block.image"
           v-animate
         >
-          <SanityImage
-            class="img-responsive"
-            :source="block.image"
-            :alt="block.alt ?? ''"
-            :sizes="
-              block.caption
-                ? '(min-width: 1440px) 67vw, 100vw'
-                : '(min-width: 1440px) 33vw, 100vw'
-            "
-          />
+          <button type="button" class="zoom" @click="zoom(block, $event)">
+            <SanityImage
+              class="img-responsive"
+              :source="block.image"
+              :alt="block.alt ?? ''"
+              :sizes="
+                block.caption
+                  ? '(min-width: 1440px) 67vw, 100vw'
+                  : '(min-width: 1440px) 33vw, 100vw'
+              "
+            />
+          </button>
           <figcaption v-if="block.caption" class="details">
             {{ block.caption }}
           </figcaption>
@@ -122,6 +133,13 @@ function columnClass(block) {
         </div>
       </div>
     </div>
+
+    <ImageLightbox
+      :source="zoomed?.image"
+      :alt="zoomed?.alt ?? ''"
+      :preview="preview"
+      @close="zoomed = null"
+    />
   </section>
 </template>
 
@@ -157,6 +175,19 @@ figure {
 
 figure img {
   width: 100%;
+}
+
+.zoom {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  pointer-events: none;
+  @media (min-width: 768px) {
+    pointer-events: auto;
+    cursor: pointer;
+  }
 }
 
 figure iframe {
