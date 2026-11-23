@@ -129,7 +129,6 @@ function onClose() {
 .lightbox::backdrop {
   background-color: color-mix(in srgb, var(--black) 60%, transparent);
   backdrop-filter: blur(0.125rem);
-  -webkit-backdrop-filter: blur(0.125rem);
   animation: lightbox-fade var(--transi-fast) var(--bezier-a);
 }
 
